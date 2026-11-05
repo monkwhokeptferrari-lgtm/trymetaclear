@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="content-language" content="en" />
+  
+  <!-- Primary Meta Tags -->
+  <title>TryMetaClear — Detect & Remove AI Image Metadata, C2PA & EXIF</title>
+  <meta name="title" content="TryMetaClear — Detect & Remove AI Image Metadata, C2PA & EXIF" />
+  <meta name="description" content="Free online tool to inspect hidden C2PA credentials, EXIF, IPTC, and AI prompt tags (ChatGPT, DALL-E, Midjourney, Stable Diffusion). Strip metadata instantly without losing photo quality." />
+  <meta name="keywords" content="AI image detector, remove C2PA metadata, EXIF remover, TryMetaClear, strip image metadata, Instagram AI label fix" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://trymetaclear.com/" />
+
+  <!-- Favicon Links -->
+  <link rel="icon" type="image/x-icon" href="/favico.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favico.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favico.png" />
+
+  <!-- Open Graph / Facebook / WhatsApp / LinkedIn Meta Tags -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://trymetaclear.com/" />
+  <meta property="og:title" content="TryMetaClear — Detect & Remove AI Image Metadata" />
+  <meta property="og:description" content="Inspect hidden C2PA manifests, EXIF, and AI prompt tags. Remove them instantly without affecting image quality." />
+  <meta property="og:image" content="https://trymetaclear.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="TryMetaClear AI Image Metadata Detector Interface" />
+  <meta property="og:site_name" content="TryMetaClear" />
+  <meta property="og:locale" content="en_US" />
+
+  <!-- Twitter / X Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:url" content="https://trymetaclear.com/" />
+  <meta name="twitter:title" content="TryMetaClear — Detect & Remove AI Image Metadata" />
+  <meta name="twitter:description" content="Inspect hidden C2PA manifests, EXIF, and AI prompt tags. Remove them instantly without affecting image quality." />
+  <meta name="twitter:image" content="https://trymetaclear.com/og-image.png" />
+
+  <!-- JSON-LD Structured Data Schema Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TryMetaClear",
+    "url": "https://trymetaclear.com/",
+    "description": "Free online browser tool to detect and remove AI metadata footprints, C2PA manifests, EXIF, and IPTC data from images up to 100MB.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All (Browser-Based)",
+    "browserRequirements": "Requires HTML5 and JavaScript enabled browser",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "featureList": [
+      "Detect C2PA and JUMBF manifests",
+      "Identify AI generation claims (ChatGPT, DALL-E, Midjourney, Stable Diffusion)",
+      "Strip EXIF, IPTC, and XMP tags without pixel loss",
+      "Prevent automated false AI labeling on social platforms",
+      "Support image files up to 100MB"
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#f0fdf4',
+              100: '#dcfce7',
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857',
+              800: '#065f46',
+              dark: '#004d40'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .accordion-content { transition: max-height 0.3s ease-out; }
+  </style>
+</head>
+<body class="bg-slate-50 min-h-screen text-slate-800 font-sans antialiased">
+
+  <!-- Navigation Bar -->
+  <nav class="bg-white border-b border-slate-200 py-4 px-6 sticky top-0 z-30">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      
+      <!-- LOGO POSITION -->
+      <a href="https://trymetaclear.com" class="flex items-center">
+        <img src="/Logo.png" alt="TryMetaClear Logo" class="h-9 w-auto" onerror="this.style.display='none'" />
+        <span class="font-extrabold text-xl text-slate-900 tracking-tight">TryMeta<span class="text-brand-700">Clear</span></span>
+      </a>
+
+      <div class="flex items-center space-x-6 text-sm font-semibold text-slate-600">
+        <a href="#tool" class="hover:text-brand-700 transition">Tool</a>
+        <a href="#how-it-works" class="hover:text-brand-700 transition">How it Works</a>
+        <a href="#features" class="hover:text-brand-700 transition">Features</a>
+        <a href="#faqs" class="hover:text-brand-700 transition">FAQs</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero & Main Tool Section -->
+  <section id="tool" class="py-12 px-4 max-w-4xl mx-auto space-y-8">
+    <div class="text-center space-y-3">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
+        AI Image Metadata Detector & Remover
+      </h1>
+      <p class="text-base md:text-lg text-slate-600 max-w-2xl mx-auto">
+        Inspect hidden C2PA credentials, EXIF, and AI prompt tags. Remove them instantly without affecting photo quality.
+      </p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="bg-white p-6 md:p-8 rounded-2xl shadow-sm border border-slate-200">
+      <div id="dropZone" 
+           onclick="document.getElementById('fileInput').click()" 
+           class="border-2 border-dashed border-slate-300 hover:border-brand-600 bg-slate-50/60 hover:bg-brand-50/40 p-8 md:p-12 rounded-xl cursor-pointer transition flex flex-col items-center justify-center text-center group">
+        <div class="w-16 h-16 bg-brand-50 text-brand-700 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+          </svg>
+        </div>
+        <span class="text-base font-bold text-slate-800">Click to upload or drag & drop</span>
+        <span class="text-xs text-slate-400 mt-1">PNG, JPG, JPEG, WEBP up to 100MB per file</span>
+      </div>
+      <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="processFile(this.files[0])">
+
+      <!-- Live Image Preview Container -->
+      <div id="previewCard" class="hidden mt-4 p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row items-center gap-4">
+        <div class="w-full md:w-32 h-32 bg-slate-200 rounded-lg overflow-hidden flex items-center justify-center flex-shrink-0">
+          <img id="imgPreview" src="" alt="Uploaded Preview" class="w-full h-full object-cover">
+        </div>
+        <div class="flex-1 w-full space-y-1">
+          <div class="flex items-center justify-between">
+            <h4 id="previewFileName" class="font-bold text-slate-800 text-sm truncate max-w-xs">image.png</h4>
+            <button onclick="resetTool()" class="text-xs font-semibold text-rose-600 hover:underline">Replace Image</button>
+          </div>
+          <p id="previewSpecs" class="text-xs text-slate-500">1920 x 1080 · 3.5 MB</p>
+          <div class="pt-2 flex items-center space-x-2">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-brand-100 text-brand-800">
+              Ready for Inspection
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inspection Results Container -->
+    <div id="resultsContainer" class="hidden space-y-6">
+      <div id="statusCard" class="bg-white p-6 rounded-2xl shadow-sm border flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-4">
+          <div id="statusIconBg" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold"></div>
+          <div>
+            <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">AI Status</div>
+            <h2 id="statusTitle" class="text-xl font-bold"></h2>
+            <p id="statusSubtitle" class="text-xs text-slate-500">Based on File Hidden Metadata. Not a Pixel level scan.</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <div class="text-xs font-semibold uppercase tracking-wider text-slate-400">AI Model Detected</div>
+          <div id="aiModelText" class="text-lg font-bold text-slate-800">None</div>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <div>
+          <span class="text-xs font-semibold uppercase text-slate-400">Total Metadata Fields</span>
+          <div id="statTotalFields" class="text-3xl font-extrabold text-slate-800">0</div>
+          <span id="statSubSections" class="text-xs text-slate-400">in 3 sections</span>
+        </div>
+        <div>
+          <span class="text-xs font-semibold uppercase text-rose-500">AI Metadata Tags</span>
+          <div id="statAiFields" class="text-
