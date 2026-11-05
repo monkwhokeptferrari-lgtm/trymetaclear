@@ -77,6 +77,13 @@
   [data-netlify-deploy-id],
   iframe[src*="netlify"],
   .netlify-badge,
+  #netlify-badge,
+  [class*="NetlifyBadge"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
 </style>
 <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
 <meta property="og:type" content="website">
