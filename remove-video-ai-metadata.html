@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Video AI Metadata & C2PA Credentials - TryMetaClear</title>
+  <meta name="description" content="Detect and remove hidden AI metadata, prompts, C2PA manifests, and EXIF tracking from MP4, MOV, and WebM videos instantly without quality loss.">
+  <link rel="canonical" href="https://trymetaclear.com/remove-video-ai-metadata">
+
+  <!-- Open Graph & Twitter Cards -->
+  <meta property="og:title" content="Remove Video AI Metadata & C2PA Credentials - TryMetaClear">
+  <meta property="og:description" content="Strip hidden AI signatures, prompts, and C2PA Content Credentials from MP4 & MOV videos lossless.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://trymetaclear.com/remove-video-ai-metadata">
+  <meta property="og:image" content="https://trymetaclear.com/og-image.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              500: '#0066ff',
+              600: '#0052cc',
+              900: '#0a194f'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Netlify Badge Suppression -->
+  <style>
+    [data-netlify-deploy-id], iframe[src*="netlify"], .netlify-badge, #netlify-badge, [class*="NetlifyBadge"] {
+      display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+    }
+  </style>
+
+  <!-- Schema.org WebApplication & FAQ Markup -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TryMetaClear Video Metadata Remover",
+    "url": "https://trymetaclear.com/remove-video-ai-metadata",
+    "description": "Free tool to strip AI metadata, prompt history, and C2PA manifests from MP4 and MOV video files without re-encoding video streams.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+
+  <!-- Header Component -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="/" class="flex items-center">
+        <img src="logo.png" alt="TryMetaClear" class="w-48 md:w-56 h-auto object-contain">
+      </a>
+      <nav class="flex items-center space-x-6">
+        <div class="relative group py-4">
+          <button class="flex items-center space-x-1.5 text-slate-700 hover:text-brand-600 font-bold text-sm transition">
+            <span>Tools</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute right-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-xs">All AI Metadata Remover</a>
+            <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-xs">C2PA Content Credentials</a>
+            <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-xs">Midjourney Metadata</a>
+            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-xs">Video AI Metadata Stripper</a>
+          </div>
+        </div>
+        <a href="/about.html" class="text-slate-700 hover:text-brand-600 font-bold text-sm transition">About</a>
+        <a href="/" class="bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-4 py-2 rounded-xl transition">Open Main Tool</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero & Main Upload Work Area -->
+  <main class="flex-grow max-w-4xl mx-auto px-4 py-12 text-center">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+      Remove AI Metadata & C2PA from <span class="text-brand-500">Video Files</span>
+    </h1>
+    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-8">
+      Strip hidden Sora, Runway, Pika, and Luma AI generator streams, C2PA manifests, and camera telemetry from MP4, MOV, and WebM videos without stream re-encoding.
+    </p>
+
+    <!-- Upload Card -->
+    <div class="bg-slate-800/80 border-2 border-dashed border-slate-700 rounded-3xl p-8 text-center max-w-xl mx-auto backdrop-blur-sm">
+      <input type="file" id="videoInput" accept="video/mp4,video/quicktime,video/webm" class="hidden" onchange="handleFileSelect(event)">
+      <label for="videoInput" class="cursor-pointer flex flex-col items-center justify-center space-y-4">
+        <div class="w-16 h-16 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+        </div>
+        <div>
+          <p class="font-bold text-white text-base">Click to upload video file</p>
+          <p class="text-xs text-slate-400 mt-1">Supports MP4, MOV, WebM (up to 100MB)</p>
+        </div>
+      </label>
+
+      <!-- Action Button -->
+      <button id="downloadBtn" onclick="downloadCleanedVideo()" disabled class="mt-6 w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center space-x-2">
+        <span>Remove AI Metadata & Download</span>
+      </button>
+    </div>
+  </main>
+
+  <!-- Global Footer -->
+  <footer class="bg-brand-900 text-white py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 space-y-6">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
+        <div>
+          <p class="font-bold text-white text-sm">TryMetaClear</p>
+          <p>© 2026 TryMetaClear. All rights reserved. Developed by Mayank Gupta.</p>
+        </div>
+        <div class="flex space-x-6 text-sm font-medium">
+          <a href="/about.html" class="hover:text-brand-500 transition">About</a>
+          <a href="/privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a>
+          <a href="/terms.html" class="hover:text-brand-500 transition">Terms of Service</a>
+          <a href="/contact.html" class="hover:text-brand-500 transition">Contact</a>
+        </div>
+      </div>
+      <div class="pt-6 border-t border-slate-800/80 text-center md:text-left">
+        <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Tools</p>
+        <div class="flex flex-wrap justify-center md:justify-start gap-6 text-xs text-slate-300 font-medium">
+          <a href="/remove-c2pa-content-credentials" class="hover:text-brand-500 transition">Remove C2PA Credentials</a>
+          <a href="/remove-midjourney-metadata" class="hover:text-brand-500 transition">Remove Midjourney Metadata</a>
+          <a href="/remove-ai-metadata-from-image" class="hover:text-brand-500 transition">Remove AI Metadata</a>
+          <a href="/remove-video-ai-metadata" class="hover:text-brand-500 transition">Remove Video AI Metadata</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Execution & GTM Push Script -->
+  <script>
+    const BACKEND_API_URL = "https://your-flask-backend-domain.com"; // Replace with your DigitalOcean API endpoint
+    let currentUploadedFile = null;
+
+    function handleFileSelect(event) {
+      currentUploadedFile = event.target.files[0];
+      if (currentUploadedFile) {
+        document.getElementById('downloadBtn').disabled = false;
+      }
+    }
+
+    async function downloadCleanedVideo() {
+      if (!currentUploadedFile) return;
+
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.disabled = true;
+      downloadBtn.innerHTML = `<span>Cleaning Video Metadata...</span>`;
+
+      const formData = new FormData();
+      formData.append("file", currentUploadedFile);
+
+      try {
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) throw new Error("Cleaning failed");
+
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cleared_${currentUploadedFile.name}`;
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+
+        // GTM Event Trigger
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          'event': 'file_download',
+          'file_name': currentUploadedFile.name,
+          'page_path': window.location.pathname
+        });
+
+      } catch (err) {
+        console.error("Video processing error:", err);
+        alert("Failed to process video metadata.");
+      } finally {
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
+      }
+    }
+  </script>
+</body>
+</html>
