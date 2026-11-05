@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - TryMetaClear</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { brand: { 50: '#eef6ff', 600: '#0066ff', 900: '#0a194f' } }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+  <header class="bg-white border-b border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
+      <a href="/"><img src="logo.png" alt="TryMetaClear" class="w-52 h-auto object-contain"></a>
+    </div>
+  </header>
+
+  <main class="max-w-4xl mx-auto px-4 py-12 w-full">
+    <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+      <h1 class="text-3xl font-extrabold text-brand-900">Privacy Policy</h1>
+      <p class="text-xs text-slate-400">Last updated: November 2026</p>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-900">1. File Upload & Processing Security</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Your privacy is our primary engineering focus. All file transfers between your browser and our backend occur over encrypted HTTPS connections. Uploaded image files are processed strictly in isolated temporary server memory buffers.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-900">2. Temporary File Retention</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          We do not store, archive, or retain your uploaded or processed media. Temporary files created during metadata scanning or cleaning operations are permanently deleted immediately after your cleaned image payload is generated.
+        </p>
+      </section>
+
+      <section class="space-y-3">
+        <h2 class="text-xl font-bold text-brand-900">3. Analytics & Cookies</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          We utilize Google Analytics 4 (GA4) and Microsoft Clarity to understand aggregate web traffic and improve UI usability. These services collect non-personally identifiable diagnostic information such as browser type, device category, and page views.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer class="bg-brand-900 text-white py-8 border-t border-slate-800 text-center text-xs text-slate-400">
+    <p>© 2026 TryMetaClear. All rights reserved.</p>
+  </footer>
+</body>
+</html>
