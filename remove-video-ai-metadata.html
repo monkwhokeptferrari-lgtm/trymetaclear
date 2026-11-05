@@ -108,6 +108,7 @@
         <span>Remove AI Metadata & Download</span>
       </button>
     </div>
+    <div id="metadataResult" class="mt-6 hidden max-w-xl mx-auto"></div>
   </main>
 
   <!-- Global Footer -->
@@ -139,55 +140,138 @@
 
   <!-- Execution & GTM Push Script -->
   <script>
-    const BACKEND_API_URL = "https://api.trymetaclear.com/api/v1/clean";
-    let currentUploadedFile = null;
+  // Correct JavaScript endpoint variables
+  const SCAN_API_URL = "https://api.trymetaclear.com/api/v1/scan";
+  const CLEAN_API_URL = "https://api.trymetaclear.com/api/v1/clean";
+  const MAX_SIZE_MB = 100;
+  let currentUploadedFile = null;
 
-    function handleFileSelect(event) {
-      currentUploadedFile = event.target.files[0];
-      if (currentUploadedFile) {
-        document.getElementById('downloadBtn').disabled = false;
+  async function handleFileSelect(event) {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    if (file.size > MAX_SIZE_MB * 1024 * 1024) {
+      alert(`File size exceeds ${MAX_SIZE_MB}MB limit.`);
+      event.target.value = "";
+      return;
+    }
+
+    currentUploadedFile = file;
+
+    // UI Loading State: Scanning Video Container
+    const scanContainer = document.getElementById('metadataResult');
+    if (scanContainer) {
+      scanContainer.classList.remove('hidden');
+      scanContainer.innerHTML = `
+        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 text-center space-y-3">
+          <div class="inline-block animate-spin rounded-full h-8 w-8 border-4 border-brand-500 border-t-transparent"></div>
+          <p class="text-sm font-bold text-slate-200">Scanning Video Container & Headers...</p>
+          <p class="text-xs text-slate-400">Parsing MP4/MOV atoms, handler specs, and C2PA manifests</p>
+        </div>
+      `;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(SCAN_API_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        renderMetadataBreakdown(data);
+      } else {
+        renderDefaultVideoPreview(file);
       }
+    } catch (err) {
+      console.warn("Scan endpoint unavailable, proceeding to download ready:", err);
+      renderDefaultVideoPreview(file);
     }
 
-    async function downloadCleanedVideo() {
-  if (!currentUploadedFile) return;
-
-  const downloadBtn = document.getElementById('downloadBtn');
-  downloadBtn.disabled = true;
-  downloadBtn.innerHTML = `<span>Cleaning Video Metadata...</span>`;
-
-  const formData = new FormData();
-  formData.append("file", currentUploadedFile);
-
-  try {
-    const response = await fetch(BACKEND_API_URL, {
-      method: "POST",
-      body: formData
-    });
-
-    if (!response.ok) {
-      const errData = await response.json().catch(() => ({}));
-      throw new Error(errData.detail || errData.error || `Server error (${response.status})`);
-    }
-
-    const blob = await response.blob();
-    const url = window.URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `cleared_${currentUploadedFile.name}`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    window.URL.revokeObjectURL(url);
-
-  } catch (err) {
-    console.error("Video process error:", err);
-    alert(`Failed to process video: ${err.message}`);
-  } finally {
-    downloadBtn.disabled = false;
-    downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
+    document.getElementById('downloadBtn').disabled = false;
   }
-}
-  </script>
+
+  function renderMetadataBreakdown(data) {
+    const scanContainer = document.getElementById('metadataResult');
+    if (!scanContainer) return;
+
+    const tags = data.metadata || data.tags || ["MP4 Container Header", "Video Stream Specs", "Encoder Metadata"];
+    
+    scanContainer.innerHTML = `
+      <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 text-left space-y-4">
+        <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-brand-500">Scan Results</span>
+          <span class="text-xs text-slate-400">${currentUploadedFile.name} (${(currentUploadedFile.size / (1024*1024)).toFixed(1)} MB)</span>
+        </div>
+        <div class="space-y-2">
+          <p class="text-xs font-semibold text-slate-300">Detected Metadata Tags:</p>
+          <div class="flex flex-wrap gap-2">
+            ${tags.map(tag => `<span class="px-2.5 py-1 bg-red-500/10 text-red-400 border border-red-500/20 rounded-lg text-xs font-mono">${tag}</span>`).join('')}
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderDefaultVideoPreview(file) {
+    const scanContainer = document.getElementById('metadataResult');
+    if (!scanContainer) return;
+
+    scanContainer.innerHTML = `
+      <div class="p-4 bg-slate-800 rounded-2xl border border-slate-700 text-left flex items-center justify-between">
+        <div>
+          <p class="text-xs font-bold text-white">${file.name}</p>
+          <p class="text-[11px] text-slate-400">Ready for header stripping & clean download</p>
+        </div>
+        <span class="px-2 py-1 bg-brand-500/10 text-brand-400 rounded text-xs font-mono">Ready</span>
+      </div>
+    `;
+  }
+
+  async function downloadCleanedVideo() {
+    if (!currentUploadedFile) return;
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.disabled = true;
+    downloadBtn.innerHTML = `
+      <div class="flex items-center justify-center space-x-2">
+        <div class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
+        <span>Stripping Video Container Metadata...</span>
+      </div>
+    `;
+
+    const formData = new FormData();
+    formData.append("file", currentUploadedFile);
+
+    try {
+      const response = await fetch(CLEAN_API_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Cleaning failed");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cleared_${currentUploadedFile.name}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      window.URL.revokeObjectURL(url);
+
+    } catch (err) {
+      console.error("Video processing error:", err);
+      alert("Failed to process video metadata.");
+    } finally {
+      downloadBtn.disabled = false;
+      downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
+    }
+  }
+</script>
 </body>
 </html>
