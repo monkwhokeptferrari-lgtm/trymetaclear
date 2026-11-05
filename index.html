@@ -556,25 +556,34 @@
     formData.append("file", currentUploadedFile);
 
     try {
-      const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
-        method: "POST",
-        body: formData
-      });
+  const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
+    method: "POST",
+    body: formData
+  });
 
-      if (!response.ok) throw new Error("Cleaning failed");
+  if (!response.ok) throw new Error("Cleaning failed");
 
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `cleared_${currentUploadedFile.name}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-    } catch (err) {
-      console.error("Clean download error:", err);
-      alert("Failed to download cleaned image.");
-    } finally {
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `cleared_${currentUploadedFile.name}`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  // --- ADD THIS GTM EVENT HERE ---
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'file_download',
+    'file_name': currentUploadedFile.name,
+    'page_path': window.location.pathname
+  });
+
+} catch (err) {
+  console.error("Clean download error:", err);
+  alert("Failed to download cleaned image.");
+} finally {
       downloadBtn.disabled = false;
       downloadBtn.innerHTML = `
         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
