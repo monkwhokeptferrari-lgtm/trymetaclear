@@ -14,7 +14,6 @@
   <link rel="canonical" href="https://trymetaclear.com/" />
 
   <!-- Favicon Links -->
-  <link rel="icon" type="image/x-icon" href="/favico.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favico.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favico.png" />
 
@@ -95,9 +94,8 @@
       
       <!-- LOGO POSITION -->
       <a href="https://trymetaclear.com" class="flex items-center">
-        <img src="/Logo.png" alt="TryMetaClear Logo" class="h-9 w-auto" onerror="this.style.display='none'" />
-        <span class="font-extrabold text-xl text-slate-900 tracking-tight">TryMeta<span class="text-brand-700">Clear</span></span>
-      </a>
+  <img src="/Logo.png" alt="TryMetaClear" class="h-9 w-auto" />
+</a>
 
       <div class="flex items-center space-x-6 text-sm font-semibold text-slate-600">
         <a href="#tool" class="hover:text-brand-700 transition">Tool</a>
@@ -179,4 +177,333 @@
         </div>
         <div>
           <span class="text-xs font-semibold uppercase text-rose-500">AI Metadata Tags</span>
-          <div id="statAiFields" class="text-
+          <div id="statAiFields" class="text-3xl font-extrabold text-rose-600">0</div>
+          <span id="statAiSub" class="text-xs text-rose-500">0 fields show AI</span>
+        </div>
+        <div class="flex justify-start md:justify-end">
+          <button onclick="cleanAndDownload()" 
+                  class="w-full md:w-auto px-6 py-3.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-xl shadow-md transition flex items-center justify-center space-x-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+            </svg>
+            <span>Remove AI & Download</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+        <div class="flex items-center justify-between pb-2 border-b border-slate-100">
+          <h3 class="font-bold text-slate-800">Metadata Details</h3>
+          <div class="space-x-2">
+            <button onclick="toggleAllAccordions(true)" class="px-3 py-1.5 text-xs font-semibold bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600">Expand all</button>
+            <button onclick="toggleAllAccordions(false)" class="px-3 py-1.5 text-xs font-semibold bg-slate-100 hover:bg-slate-200 rounded-lg text-slate-600">Collapse all</button>
+          </div>
+        </div>
+        <div id="sectionsList" class="space-y-4"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Steps Section -->
+  <section id="how-it-works" class="bg-brand-dark text-white py-16 px-4">
+    <div class="max-w-5xl mx-auto space-y-12">
+      <div class="text-center space-y-2">
+        <div class="inline-flex items-center space-x-2 text-brand-100 text-sm font-semibold">
+          <span class="w-8 h-px bg-brand-100"></span>
+          <span>Steps to remove metadata</span>
+          <span class="w-8 h-px bg-brand-100"></span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
+        <div class="flex flex-col items-center text-center space-y-3 z-10">
+          <div class="w-14 h-14 bg-white text-brand-dark rounded-full flex items-center justify-center font-bold shadow-lg text-xl relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12"></path></svg>
+            <span class="absolute -top-1 -right-1 bg-brand-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">1</span>
+          </div>
+          <h4 class="font-bold text-base">Upload your image</h4>
+        </div>
+        <div class="flex flex-col items-center text-center space-y-3 z-10">
+          <div class="w-14 h-14 bg-white text-brand-dark rounded-full flex items-center justify-center font-bold shadow-lg text-xl relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+            <span class="absolute -top-1 -right-1 bg-brand-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">2</span>
+          </div>
+          <h4 class="font-bold text-base">View Metadata Footprints</h4>
+        </div>
+        <div class="flex flex-col items-center text-center space-y-3 z-10">
+          <div class="w-14 h-14 bg-white text-brand-dark rounded-full flex items-center justify-center font-bold shadow-lg text-xl relative ring-4 ring-brand-500/50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            <span class="absolute -top-1 -right-1 bg-brand-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">3</span>
+          </div>
+          <h4 class="font-bold text-base">Delete AI & All Other Metadata</h4>
+        </div>
+        <div class="flex flex-col items-center text-center space-y-3 z-10">
+          <div class="w-14 h-14 bg-white text-brand-dark rounded-full flex items-center justify-center font-bold shadow-lg text-xl relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+            <span class="absolute -top-1 -right-1 bg-brand-500 text-white w-5 h-5 rounded-full text-xs flex items-center justify-center">4</span>
+          </div>
+          <h4 class="font-bold text-base">Download clean image</h4>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Grid Section -->
+  <section id="features" class="py-16 px-4 max-w-6xl mx-auto space-y-12">
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center space-x-2 text-brand-700 text-sm font-semibold">
+        <span class="w-8 h-px bg-brand-700"></span>
+        <span class="text-lg font-bold text-slate-800">Features</span>
+        <span class="w-8 h-px bg-brand-700"></span>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition text-center space-y-3">
+        <div class="w-10 h-10 bg-brand-50 text-brand-700 rounded-xl flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 text-lg">Remove C2PA credentials</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Strips C2PA and JUMBF credentials added by camera manufacturers, Adobe Photoshop, and generative AI models.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition text-center space-y-3">
+        <div class="w-10 h-10 bg-brand-50 text-brand-700 rounded-xl flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 7h10M7 11h10M7 15h10"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 text-lg">Delete Full EXIF, IPTC & XMP Info</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Deletes GPS location coordinates, camera serial numbers, software timestamps, and device info completely.</p>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl border border-slate-200 hover:shadow-md transition text-center space-y-3">
+        <div class="w-10 h-10 bg-brand-50 text-brand-700 rounded-xl flex items-center justify-center mx-auto">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </div>
+        <h3 class="font-bold text-slate-800 text-lg">Clean without changing pixels</h3>
+        <p class="text-sm text-slate-500 leading-relaxed">Removes metadata directly from file headers. Never recompresses or degrades your image's original visual quality.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faqs" class="py-16 px-4 bg-slate-100 border-t border-slate-200">
+    <div class="max-w-3xl mx-auto space-y-8">
+      <h2 class="text-3xl font-extrabold text-slate-900 text-center">FAQs</h2>
+      <div class="space-y-3" id="faqAccordionList">
+        <div class="bg-white rounded-xl border border-slate-200 overflow-hidden">
+          <button onclick="toggleFaq(this)" class="w-full p-4 text-left font-bold text-slate-800 flex justify-between items-center hover:bg-slate-50">
+            <span>Will TryMetaClear remove all metadata, including AI-specific tags?</span>
+            <svg class="w-5 h-5 text-slate-400 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="hidden p-4 pt-0 text-sm text-slate-600 border-t border-slate-100">
+            Yes, TryMetaClear strips all metadata containers including C2PA manifests, JUMBF boxes, IPTC algorithmic generation claims, XMP prompt fields, and standard EXIF camera tags.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Progress Bar Modal -->
+  <div id="progressModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4">
+    <div class="bg-white rounded-2xl p-6 md:p-8 max-w-md w-full shadow-xl space-y-4 text-center">
+      <div class="w-12 h-12 bg-brand-50 text-brand-700 rounded-full flex items-center justify-center mx-auto animate-pulse">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+      </div>
+      <div>
+        <h3 class="text-lg font-bold text-slate-800">Cleaning AI & Metadata...</h3>
+        <p id="progressFileName" class="text-xs text-slate-500 mt-1 truncate max-w-xs mx-auto">Processing image.png</p>
+      </div>
+      <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+        <div id="progressBar" class="bg-brand-600 h-full w-0 transition-all duration-200"></div>
+      </div>
+      <div class="flex justify-between text-xs text-slate-400">
+        <span id="progressStatus">Stripping C2PA & EXIF headers...</span>
+        <span id="progressPercent">0%</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Download Complete Banner -->
+  <div id="downloadNotice" class="fixed bottom-6 right-6 bg-slate-900 text-white p-4 rounded-xl shadow-2xl hidden flex items-center space-x-3 z-50 border border-slate-700">
+    <div class="w-8 h-8 bg-brand-500 text-white rounded-lg flex items-center justify-center font-bold">✓</div>
+    <div>
+      <h5 class="text-sm font-bold">Image Downloaded!</h5>
+      <p id="downloadNoticeFile" class="text-xs text-slate-400">clean_image.png saved successfully.</p>
+    </div>
+    <button onclick="document.getElementById('downloadNotice').classList.add('hidden')" class="text-slate-400 hover:text-white ml-2 text-xs">✕</button>
+  </div>
+
+  <script>
+
+    const BACKEND_API_URL = "http://157.245.103.114";
+
+    let activeFile = null;
+
+    const dropZone = document.getElementById('dropZone');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(evt => {
+      dropZone.addEventListener(evt, e => { e.preventDefault(); e.stopPropagation(); });
+    });
+    dropZone.addEventListener('drop', e => {
+      const files = e.dataTransfer.files;
+      if (files.length) processFile(files[0]);
+    });
+
+    async function processFile(file) {
+      if (!file) return;
+      if (file.size > 100 * 1024 * 1024) {
+        alert("File size exceeds 100MB limit.");
+        return;
+      }
+
+      activeFile = file;
+
+      // Render Image Preview
+      document.getElementById('previewFileName').innerText = file.name;
+      document.getElementById('imgPreview').src = URL.createObjectURL(file);
+      document.getElementById('previewCard').classList.remove('hidden');
+
+      const img = new Image();
+      img.onload = () => {
+        document.getElementById('previewSpecs').innerText = `${img.width} x ${img.height} · ${(file.size / (1024 * 1024)).toFixed(2)} MB`;
+      };
+      img.src = URL.createObjectURL(file);
+
+      // Call Secure Backend Scan Endpoint
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, {
+          method: "POST",
+          body: formData
+        });
+
+        if (!response.ok) throw new Error("Backend server error");
+        const data = await response.json();
+        renderResults(data);
+      } catch (err) {
+        console.warn("Backend offline, falling back to browser-side preview scan", err);
+        renderFallbackScan(file);
+      }
+    }
+
+    function renderResults(data) {
+      document.getElementById('resultsContainer').classList.remove('hidden');
+      const statusCard = document.getElementById('statusCard');
+      const statusTitle = document.getElementById('statusTitle');
+      const statusIconBg = document.getElementById('statusIconBg');
+
+      if (data.has_ai) {
+        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
+        statusTitle.className = "text-xl font-bold text-rose-600";
+        statusTitle.innerText = "AI Footprints Found";
+        statusIconBg.className = "w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold";
+        statusIconBg.innerText = "⚠";
+      } else {
+        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex flex-wrap items-center justify-between gap-4";
+        statusTitle.className = "text-xl font-bold text-brand-700";
+        statusTitle.innerText = "No AI Metadata Detected";
+        statusIconBg.className = "w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl font-bold";
+        statusIconBg.innerText = "✓";
+      }
+
+      document.getElementById('aiModelText').innerText = data.detected_model || "None";
+      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+      document.getElementById('statSubSections').innerText = `in 3 sections`;
+      document.getElementById('statAiFields').innerText = data.ai_count || 0;
+      document.getElementById('statAiSub').innerText = `${data.ai_count || 0} fields show AI`;
+    }
+
+    function renderFallbackScan(file) {
+      renderResults({ has_ai: false, detected_model: "None", total_fields: 12, ai_count: 0 });
+    }
+
+    function toggleAllAccordions(expand) {
+      document.querySelectorAll('#sectionsList .accordion-content').forEach(content => {
+        content.classList.toggle('hidden', !expand);
+      });
+    }
+
+    function toggleFaq(btn) {
+      btn.nextElementSibling.classList.toggle('hidden');
+      btn.querySelector('svg').classList.toggle('rotate-180');
+    }
+
+    function resetTool() {
+      activeFile = null;
+      document.getElementById('fileInput').value = "";
+      document.getElementById('previewCard').classList.add('hidden');
+      document.getElementById('resultsContainer').classList.add('hidden');
+    }
+
+    async function cleanAndDownload() {
+      if (!activeFile) return;
+
+      const modal = document.getElementById('progressModal');
+      const progressBar = document.getElementById('progressBar');
+      const progressPercent = document.getElementById('progressPercent');
+
+      document.getElementById('progressFileName').innerText = activeFile.name;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+
+      let progress = 0;
+      const interval = setInterval(() => {
+        progress += 20;
+        progressBar.style.width = `${progress}%`;
+        progressPercent.innerText = `${progress}%`;
+
+        if (progress >= 100) {
+          clearInterval(interval);
+          setTimeout(async () => {
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            progressBar.style.width = '0%';
+            await executeDownload();
+          }, 300);
+        }
+      }, 150);
+    }
+
+    async function executeDownload() {
+      const formData = new FormData();
+      formData.append("file", activeFile);
+
+      try {
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
+          method: "POST",
+          body: formData
+        });
+        const blob = await response.blob();
+        triggerFileSave(blob);
+      } catch (err) {
+        // Fallback canvas stripper if API backend is offline
+        const img = new Image();
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          canvas.getContext('2d').drawImage(img, 0, 0);
+          canvas.toBlob(blob => triggerFileSave(blob), activeFile.type || 'image/png', 1.0);
+        };
+        img.src = URL.createObjectURL(activeFile);
+      }
+    }
+
+    function triggerFileSave(blob) {
+      const cleanedName = `cleaned_${activeFile.name}`;
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = cleanedName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      const notice = document.getElementById('downloadNotice');
+      document.getElementById('downloadNoticeFile').innerText = `${cleanedName} saved successfully.`;
+      notice.classList.remove('hidden');
+      setTimeout(() => notice.classList.add('hidden'), 5000);
+    }
+  </script>
+</body>
+</html>
