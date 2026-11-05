@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - TryMetaClear</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            brand: { 50: '#eef6ff', 100: '#e0f0ff', 600: '#0066ff', 700: '#0052cc', 900: '#0a194f' } 
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
+      <a href="/" class="flex items-center group py-2">
+        <img src="logo.png" alt="TryMetaClear" class="w-52 md:w-64 h-auto object-contain">
+      </a>
+      <a href="/" class="text-sm font-bold text-slate-700 hover:text-brand-600 transition">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Main Contact Card -->
+  <main class="max-w-3xl mx-auto px-4 py-16 w-full">
+    <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-8">
+      <div>
+        <h1 class="text-3xl font-extrabold text-brand-900 mb-2">Get in Touch</h1>
+        <p class="text-sm text-slate-600">Have questions, feedback, or custom feature requests for TryMetaClear?</p>
+      </div>
+
+      <div class="bg-brand-50/60 p-6 rounded-2xl border border-brand-100 flex items-start space-x-4">
+        <div class="w-10 h-10 bg-brand-600 text-white rounded-xl flex items-center justify-center shrink-0 font-bold">
+          ✉
+        </div>
+        <div>
+          <h2 class="font-bold text-brand-900 text-base mb-1">Direct Support</h2>
+          <p class="text-xs text-slate-500 mb-2">For inquiries, bug reports, or privacy concerns, reach out directly to the founder:</p>
+          <a href="mailto:support@trymetaclear.com" class="text-sm font-bold text-brand-600 hover:underline">support@trymetaclear.com</a>
+        </div>
+      </div>
+
+      <div class="border-t border-slate-100 pt-6">
+        <h3 class="font-bold text-brand-900 text-sm mb-2">Project Founder</h3>
+        <p class="text-xs text-slate-500">
+          Developed and maintained by <strong class="text-slate-800">Mayank Gupta</strong>.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-900 text-white py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="space-y-1 text-center md:text-left">
+        <p class="font-bold text-white text-sm">TryMetaClear</p>
+        <p>© 2026 TryMetaClear. All rights reserved. Developed by <span class="text-white font-semibold">Mayank Gupta</span>.</p>
+      </div>
+      <div class="flex space-x-6 text-sm font-medium">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

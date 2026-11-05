@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - TryMetaClear</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: { 
+            brand: { 50: '#eef6ff', 100: '#e0f0ff', 600: '#0066ff', 700: '#0052cc', 900: '#0a194f' } 
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
+      <a href="/" class="flex items-center group py-2">
+        <img src="logo.png" alt="TryMetaClear" class="w-52 md:w-64 h-auto object-contain">
+      </a>
+      <a href="/" class="text-sm font-bold text-slate-700 hover:text-brand-600 transition">← Back to Home</a>
+    </div>
+  </header>
+
+  <!-- Content -->
+  <main class="max-w-4xl mx-auto px-4 py-12 w-full">
+    <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
+      <h1 class="text-3xl font-extrabold text-brand-900">About TryMetaClear</h1>
+      
+      <p class="text-sm text-slate-600 leading-relaxed">
+        TryMetaClear is a modern privacy and metadata analysis platform engineered by <strong class="text-brand-900">Mayank Gupta</strong> for digital creators, marketers, photographers, and web users.
+      </p>
+      
+      <p class="text-sm text-slate-600 leading-relaxed">
+        As generative AI tools and media authenticity standards like C2PA become widespread, understanding what hidden information resides inside your image files is essential. TryMetaClear was built to provide fast, header-level inspection and removal of EXIF, IPTC, XMP, GPS location tags, and C2PA Content Credentials manifests—allowing you to sanitize your media without altering or degrading original image quality.
+      </p>
+
+      <div class="border-t border-slate-100 pt-6">
+        <h2 class="text-lg font-bold text-brand-900 mb-2">Founder & Developer</h2>
+        <p class="text-sm text-slate-600">
+          <strong class="text-brand-900">Mayank Gupta</strong> — Creator of TryMetaClear. Focused on privacy tools, web performance engineering, and digital utility products.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-900 text-white py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="space-y-1 text-center md:text-left">
+        <p class="font-bold text-white text-sm">TryMetaClear</p>
+        <p>© 2026 TryMetaClear. All rights reserved. Developed by <span class="text-white font-semibold">Mayank Gupta</span>.</p>
+      </div>
+      <div class="flex space-x-6 text-sm font-medium">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
