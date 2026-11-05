@@ -388,31 +388,68 @@
     }
 
     function renderResults(data) {
-      document.getElementById('resultsContainer').classList.remove('hidden');
-      const statusCard = document.getElementById('statusCard');
-      const statusTitle = document.getElementById('statusTitle');
-      const statusIconBg = document.getElementById('statusIconBg');
+  document.getElementById('resultsContainer').classList.remove('hidden');
+  const statusCard = document.getElementById('statusCard');
+  const statusTitle = document.getElementById('statusTitle');
+  const statusIconBg = document.getElementById('statusIconBg');
 
-      if (data.has_ai) {
-        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
-        statusTitle.className = "text-xl font-bold text-rose-600";
-        statusTitle.innerText = "AI Footprints Found";
-        statusIconBg.className = "w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold";
-        statusIconBg.innerText = "⚠";
-      } else {
-        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex flex-wrap items-center justify-between gap-4";
-        statusTitle.className = "text-xl font-bold text-brand-700";
-        statusTitle.innerText = "No AI Metadata Detected";
-        statusIconBg.className = "w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl font-bold";
-        statusIconBg.innerText = "✓";
-      }
+  if (data.has_ai) {
+    statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
+    statusTitle.className = "text-xl font-bold text-rose-600";
+    statusTitle.innerText = "AI Footprints Found";
+    statusIconBg.className = "w-12 h-12 bg-rose-100 text-rose-600 rounded-xl flex items-center justify-center text-xl font-bold";
+    statusIconBg.innerText = "⚠";
+  } else {
+    statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-200 flex flex-wrap items-center justify-between gap-4";
+    statusTitle.className = "text-xl font-bold text-brand-700";
+    statusTitle.innerText = "No AI Metadata Detected";
+    statusIconBg.className = "w-12 h-12 bg-brand-100 text-brand-700 rounded-xl flex items-center justify-center text-xl font-bold";
+    statusIconBg.innerText = "✓";
+  }
 
-      document.getElementById('aiModelText').innerText = data.detected_model || "None";
-      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
-      document.getElementById('statSubSections').innerText = `in 3 sections`;
-      document.getElementById('statAiFields').innerText = data.ai_count || 0;
-      document.getElementById('statAiSub').innerText = `${data.ai_count || 0} fields show AI`;
-    }
+  document.getElementById('aiModelText').innerText = data.detected_model || "None";
+  document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+  document.getElementById('statAiFields').innerText = data.ai_count || 0;
+  document.getElementById('statAiSub').innerText = `${data.ai_count || 0} fields show AI`;
+
+  // Render Section Accordions
+  const sectionsContainer = document.getElementById('sectionsList');
+  sectionsContainer.innerHTML = ""; // Clear old list
+
+  const sections = data.sections || {
+    "File & System Info": data.metadata?.file_info || [],
+    "EXIF / Camera Info": data.metadata?.exif || [],
+    "C2PA & AI Manifests": data.metadata?.c2pa_ai || []
+  };
+
+  Object.entries(sections).forEach(([sectionName, fields], idx) => {
+    if (!fields || fields.length === 0) return;
+
+    const accordion = document.createElement('div');
+    accordion.className = "border border-slate-200 rounded-xl overflow-hidden bg-white";
+    
+    let rowsHtml = fields.map(item => `
+      <tr class="border-b border-slate-100 hover:bg-slate-50/50">
+        <td class="py-2.5 px-4 font-semibold text-slate-700 text-xs w-1/3">${item.tag || item.key}</td>
+        <td class="py-2.5 px-4 text-slate-600 text-xs font-mono break-all w-2/3">${item.value}</td>
+      </tr>
+    `).join('');
+
+    accordion.innerHTML = `
+      <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="w-full p-4 text-left font-bold text-slate-800 flex justify-between items-center bg-slate-50/80 hover:bg-slate-100">
+        <span>${sectionName} (${fields.length})</span>
+        <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div class="accordion-content ${idx === 0 ? '' : 'hidden'} p-2">
+        <table class="w-full text-left">
+          <tbody>${rowsHtml}</tbody>
+        </table>
+      </div>
+    `;
+
+    sectionsContainer.appendChild(accordion);
+  });
+}
 
     function renderFallbackScan(file) {
       renderResults({ has_ai: false, detected_model: "None", total_fields: 12, ai_count: 0 });
