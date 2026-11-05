@@ -325,6 +325,7 @@
 <script>
   const BACKEND_API_URL = "https://api.trymetaclear.com";
   let currentUploadedFile = null;
+  let currentImagePreviewUrl = null;
 
   // Setup Drag & Drop Handlers
   const dropZone = document.getElementById('dropZone');
@@ -345,26 +346,35 @@
     if (files.length > 0) handleFileUpload(files[0]);
   });
 
-  // Animated Scanning State Helper
-  function showScanningState(filename) {
+  // Animated Scanning State with Image Thumbnail Preview
+  function showScanningState(file) {
+    if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
+    currentImagePreviewUrl = URL.createObjectURL(file);
+
     dropZone.innerHTML = `
-      <div class="w-full max-w-md mx-auto space-y-4 py-4">
+      <div class="w-full max-w-md mx-auto space-y-4 py-2">
+        <!-- Image Thumbnail Preview -->
+        <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
+          <img src="${currentImagePreviewUrl}" alt="Preview" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-brand-900/10 backdrop-blur-[1px]"></div>
+        </div>
+
         <div class="flex items-center justify-between text-xs font-bold text-brand-900">
           <span class="flex items-center space-x-2">
             <svg class="w-4 h-4 text-brand-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-            <span>Scanning hidden metadata tags...</span>
+            <span>Scanning metadata...</span>
           </span>
           <span id="scanPercentText" class="text-brand-600">15%</span>
         </div>
-        <!-- Progress Bar Container -->
-        <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden p-0.5">
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
           <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
         </div>
-        <p class="text-xs text-slate-500 truncate">File: <span class="font-semibold text-slate-700">${filename}</span></p>
+        <p class="text-xs text-slate-500 truncate">File: <span class="font-semibold text-slate-700">${file.name}</span></p>
       </div>
     `;
 
-    // Simulate smooth progress percentage increment up to 90%
     let currentPct = 15;
     const interval = setInterval(() => {
       if (currentPct < 90) {
@@ -398,7 +408,7 @@
     if (!file) return;
     currentUploadedFile = file;
 
-    const progressTimer = showScanningState(file.name);
+    const progressTimer = showScanningState(file);
     const formData = new FormData();
     formData.append("file", file);
 
@@ -411,7 +421,6 @@
       if (!response.ok) throw new Error("Backend scan failed");
       const data = await response.json();
 
-      // Complete progress bar animation to 100%
       clearInterval(progressTimer);
       const pBar = document.getElementById('scanProgressBar');
       const pText = document.getElementById('scanPercentText');
@@ -449,6 +458,18 @@
       statusTitle.innerText = "No AI Metadata Detected";
       statusIconBg.className = "w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-xl font-bold";
       statusIconBg.innerText = "✓";
+    }
+
+    // Attach Image Preview inside the Status Card header
+    const previewContainer = document.getElementById('statusCard');
+    if (!document.getElementById('imgCardPreview')) {
+      const imgDiv = document.createElement('div');
+      imgDiv.id = 'imgCardPreview';
+      imgDiv.className = 'w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0';
+      imgDiv.innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
+      previewContainer.insertBefore(imgDiv, previewContainer.firstChild);
+    } else {
+      document.getElementById('imgCardPreview').innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
     }
 
     document.getElementById('aiModelText').innerText = data.detected_model || "None";
