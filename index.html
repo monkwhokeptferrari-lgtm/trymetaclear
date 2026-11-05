@@ -152,22 +152,56 @@
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
 
   <!-- Header / Navigation -->
+<!-- Header -->
 <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
   <div class="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
-    <!-- Prominent Logo Image (Clickable & Fully Scaled) -->
+    <!-- Brand Logo -->
     <a href="/" class="flex items-center group py-2">
-      <img 
-        src="logo.png" 
-        alt="TryMetaClear" 
-        class="w-52 md:w-64 h-auto object-contain group-hover:opacity-90 transition-opacity duration-200"
-      />
+      <img src="logo.png" alt="TryMetaClear" class="w-52 md:w-64 h-auto object-contain">
     </a>
 
     <!-- Navigation Links -->
-    <nav class="hidden md:flex items-center space-x-2 text-base font-bold text-slate-700">
-      <a href="#tool" class="px-4 py-2 rounded-xl hover:text-brand-600 hover:bg-brand-50 transition-all duration-200">Tool</a>
-      <a href="#features" class="px-4 py-2 rounded-xl hover:text-brand-600 hover:bg-brand-50 transition-all duration-200">Features</a>
-      <a href="#faq" class="px-4 py-2 rounded-xl hover:text-brand-600 hover:bg-brand-50 transition-all duration-200">FAQs</a>
+    <nav class="flex items-center space-x-6">
+      
+      <!-- Interactive Tools Dropdown -->
+      <div class="relative group py-4">
+        <button class="flex items-center space-x-1.5 text-slate-700 hover:text-brand-600 font-bold text-sm transition">
+          <span>Tools</span>
+          <svg class="w-4 h-4 text-slate-400 group-hover:text-brand-600 transition-transform duration-200 group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div class="absolute right-0 md:left-0 mt-2 w-64 bg-white rounded-2xl shadow-xl border border-slate-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50 transform group-hover:translate-y-0 translate-y-1">
+          <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition">
+            <div class="font-bold text-slate-800 text-xs">All AI Metadata Remover</div>
+            <div class="text-[11px] text-slate-500 font-normal">Main scanner & cleaner tool</div>
+          </a>
+          <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition">
+            <div class="font-bold text-slate-800 text-xs">C2PA Content Credentials</div>
+            <div class="text-[11px] text-slate-500 font-normal">Strip JUMBF & CBOR manifests</div>
+          </a>
+          <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition">
+            <div class="font-bold text-slate-800 text-xs">Midjourney Metadata</div>
+            <div class="text-[11px] text-slate-500 font-normal">Clean prompts, seeds & job IDs</div>
+          </a>
+          <a href="/remove-ai-metadata-from-image" class="block px-4 py-3 rounded-xl hover:bg-slate-50 transition">
+            <div class="font-bold text-slate-800 text-xs">General AI Image Stripper</div>
+            <div class="text-[11px] text-slate-500 font-normal">Remove EXIF, IPTC & XMP tags</div>
+          </a>
+        </div>
+      </div>
+
+      <!-- About Link -->
+      <a href="/about.html" class="text-slate-700 hover:text-brand-600 font-bold text-sm transition">
+        About
+      </a>
+
+      <!-- Primary Action CTA -->
+      <a href="/" class="hidden sm:inline-block bg-brand-600 hover:bg-brand-700 text-white text-xs font-bold px-5 py-2.5 rounded-xl transition shadow-sm">
+        Open Main Tool
+      </a>
     </nav>
   </div>
 </header>
