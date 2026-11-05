@@ -139,7 +139,7 @@
 
   <!-- Execution & GTM Push Script -->
   <script>
-    const BACKEND_API_URL = "https://your-flask-backend-domain.com"; // Replace with your DigitalOcean API endpoint
+    const BACKEND_API_URL = "https://api.trymetaclear.com/api/v1/clean";
     let currentUploadedFile = null;
 
     function handleFileSelect(event) {
@@ -150,48 +150,44 @@
     }
 
     async function downloadCleanedVideo() {
-      if (!currentUploadedFile) return;
+  if (!currentUploadedFile) return;
 
-      const downloadBtn = document.getElementById('downloadBtn');
-      downloadBtn.disabled = true;
-      downloadBtn.innerHTML = `<span>Cleaning Video Metadata...</span>`;
+  const downloadBtn = document.getElementById('downloadBtn');
+  downloadBtn.disabled = true;
+  downloadBtn.innerHTML = `<span>Cleaning Video Metadata...</span>`;
 
-      const formData = new FormData();
-      formData.append("file", currentUploadedFile);
+  const formData = new FormData();
+  formData.append("file", currentUploadedFile);
 
-      try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
-          method: "POST",
-          body: formData
-        });
+  try {
+    const response = await fetch(BACKEND_API_URL, {
+      method: "POST",
+      body: formData
+    });
 
-        if (!response.ok) throw new Error("Cleaning failed");
-
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `cleared_${currentUploadedFile.name}`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-
-        // GTM Event Trigger
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          'event': 'file_download',
-          'file_name': currentUploadedFile.name,
-          'page_path': window.location.pathname
-        });
-
-      } catch (err) {
-        console.error("Video processing error:", err);
-        alert("Failed to process video metadata.");
-      } finally {
-        downloadBtn.disabled = false;
-        downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
-      }
+    if (!response.ok) {
+      const errData = await response.json().catch(() => ({}));
+      throw new Error(errData.detail || errData.error || `Server error (${response.status})`);
     }
+
+    const blob = await response.blob();
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `cleared_${currentUploadedFile.name}`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    window.URL.revokeObjectURL(url);
+
+  } catch (err) {
+    console.error("Video process error:", err);
+    alert(`Failed to process video: ${err.message}`);
+  } finally {
+    downloadBtn.disabled = false;
+    downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
+  }
+}
   </script>
 </body>
 </html>
