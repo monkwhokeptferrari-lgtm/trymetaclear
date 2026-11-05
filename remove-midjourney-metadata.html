@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PXHMQC7T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Remove Midjourney Metadata & Prompts from Images - TryMetaClear</title>
+  <meta name="description" content="Free online tool to inspect and strip hidden Midjourney prompts, generation parameters, IPTC tags, and C2PA credentials without re-compressing image pixels.">
+  <link rel="canonical" href="https://trymetaclear.com/remove-midjourney-metadata">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef6ff', 100: '#e0f0ff', 500: '#00d2ff', 600: '#0066ff', 700: '#0052cc', 900: '#0a194f' },
+            accent: { coral: '#ff4b4b' }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    [data-netlify-deploy-id], iframe[src*="netlify"], .netlify-badge, #netlify-badge, [class*="NetlifyBadge"] {
+      display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
+      <a href="/" class="flex items-center group py-2">
+        <img src="logo.png" alt="TryMetaClear" class="w-52 md:w-64 h-auto object-contain">
+      </a>
+      <a href="/" class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-bold px-5 py-2.5 rounded-xl transition">Open Main Tool</a>
+    </div>
+  </header>
+
+  <main class="py-12 px-4 max-w-4xl mx-auto w-full space-y-12">
+    
+    <!-- Hero Header -->
+    <div class="text-center space-y-3">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-brand-900">
+        Remove <span class="bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">Midjourney Metadata</span> & Prompts
+      </h1>
+      <p class="text-slate-600 text-base max-w-2xl mx-auto font-medium leading-relaxed">
+        Midjourney embeds hidden prompts, parameters (Job IDs, `--ar`, `--v`), PNG text chunks, and C2PA credentials inside output images. TryMetaClear inspects and strips all hidden Midjourney footprints instantly without losing pixel quality.
+      </p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 text-center">
+      <div id="dropZone" class="border-2 border-dashed border-slate-300 hover:border-brand-600 bg-brand-50/50 hover:bg-brand-50 p-10 rounded-2xl cursor-pointer transition flex flex-col items-center justify-center">
+        <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        </div>
+        <p id="uploadStatusText" class="font-bold text-brand-900 text-base mb-1">Drag and drop your Midjourney image here</p>
+        <p class="text-xs text-slate-500 mb-4">Supports PNG, WebP, JPG up to 100MB</p>
+        <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
+          Browse Files
+        </button>
+        <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
+      </div>
+      <p class="text-xs text-slate-500 text-center mt-4">
+        Free. No account required. Strips header parameters and EXIF/IPTC prompts safely.
+      </p>
+    </div>
+
+    <!-- Results Container -->
+    <div id="resultsContainer" class="hidden space-y-6">
+      <div id="statusCard" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-4">
+          <div id="statusIconBg" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold"></div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">MIDJOURNEY FOOTPRINT STATUS</span>
+            <h3 id="statusTitle" class="text-xl font-extrabold"></h3>
+            <p class="text-xs text-slate-500">Based on File Hidden Metadata. Not a Pixel level scan.</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">MODEL / GENERATOR</span>
+          <p id="aiModelText" class="text-lg font-bold text-brand-900"></p>
+        </div>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center space-x-8">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">TOTAL METADATA FIELDS</span>
+            <div id="statTotalFields" class="text-3xl font-extrabold text-brand-900">0</div>
+          </div>
+          <div class="border-l border-slate-200 pl-8">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-accent-coral">AI METADATA TAGS</span>
+            <div id="statAiFields" class="text-3xl font-extrabold text-accent-coral">0</div>
+          </div>
+        </div>
+
+        <button id="downloadBtn" onclick="downloadCleanedImage()" class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          <span>Remove Midjourney Metadata & Download</span>
+        </button>
+      </div>
+
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-extrabold text-brand-900 text-lg">Metadata Details</h3>
+        </div>
+        <div id="sectionsList" class="space-y-3"></div>
+      </div>
+    </div>
+
+    <!-- Walkthrough -->
+    <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
+      <h2 class="text-2xl font-extrabold text-brand-900">Why Strip Midjourney Metadata?</h2>
+      <p class="text-sm text-slate-600 leading-relaxed">
+        When you download generated artwork from Midjourney's Discord bot or web portal, the file stores your full text prompt, seed numbers, job IDs, and software version tag inside its PNG text chunks or EXIF header. Cleaning this data protects your creative prompt engineering and sanitizes files for client delivery.
+      </p>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-900 text-white py-10 border-t border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <div class="space-y-1 text-center md:text-left">
+        <p class="font-bold text-white text-sm">TryMetaClear</p>
+        <p>© 2026 TryMetaClear. All rights reserved. Developed by <span class="text-white font-semibold">Mayank Gupta</span>.</p>
+      </div>
+      <div class="flex space-x-6 text-sm font-medium">
+        <a href="/about.html" class="hover:text-white transition">About</a>
+        <a href="/privacy.html" class="hover:text-white transition">Privacy Policy</a>
+        <a href="/terms.html" class="hover:text-white transition">Terms of Service</a>
+        <a href="/contact.html" class="hover:text-white transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const BACKEND_API_URL = "https://api.trymetaclear.com";
+    let currentUploadedFile = null;
+    let currentImagePreviewUrl = null;
+
+    const dropZone = document.getElementById('dropZone');
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
+      dropZone.addEventListener(eName, e => { e.preventDefault(); e.stopPropagation(); }, false);
+    });
+
+    dropZone.addEventListener('drop', (e) => {
+      const files = e.dataTransfer.files;
+      if (files.length > 0) handleFileUpload(files[0]);
+    });
+
+    function showScanningState(file) {
+      if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
+      currentImagePreviewUrl = URL.createObjectURL(file);
+
+      dropZone.innerHTML = `
+        <div class="w-full max-w-md mx-auto space-y-4 py-2">
+          <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
+            <img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-brand-900">
+            <span>Scanning Midjourney metadata...</span>
+            <span id="scanPercentText" class="text-brand-600">15%</span>
+          </div>
+          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
+            <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
+          </div>
+        </div>
+      `;
+
+      let currentPct = 15;
+      const interval = setInterval(() => {
+        if (currentPct < 90) {
+          currentPct += 15;
+          if (currentPct > 90) currentPct = 90;
+          const pBar = document.getElementById('scanProgressBar');
+          const pText = document.getElementById('scanPercentText');
+          if (pBar) pBar.style.width = `${currentPct}%`;
+          if (pText) pText.innerText = `${currentPct}%`;
+        }
+      }, 250);
+
+      return interval;
+    }
+
+    function resetDropZoneUI() {
+      dropZone.innerHTML = `
+        <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        </div>
+        <p class="font-bold text-brand-900 text-base mb-1">Drag and drop your Midjourney image here</p>
+        <p class="text-xs text-slate-500 mb-4">Supports PNG, WebP, JPG up to 100MB</p>
+        <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
+          Browse Files
+        </button>
+        <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
+      `;
+    }
+
+    async function handleFileUpload(file) {
+      if (!file) return;
+      currentUploadedFile = file;
+      const progressTimer = showScanningState(file);
+      const formData = new FormData();
+      formData.append("file", file);
+
+      try {
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, { method: "POST", body: formData });
+        if (!response.ok) throw new Error("Backend scan failed");
+        const data = await response.json();
+        clearInterval(progressTimer);
+        resetDropZoneUI();
+        renderResults(data);
+      } catch (err) {
+        clearInterval(progressTimer);
+        resetDropZoneUI();
+        alert("Failed to scan metadata.");
+      }
+    }
+
+    function renderResults(data) {
+      document.getElementById('resultsContainer').classList.remove('hidden');
+      document.getElementById('statusTitle').innerText = data.has_ai ? "Midjourney Footprints Found" : "No Midjourney Tags Detected";
+      document.getElementById('aiModelText').innerText = data.detected_model || "Midjourney / AI";
+      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+      document.getElementById('statAiFields').innerText = data.ai_count || 0;
+
+      const sectionsContainer = document.getElementById('sectionsList');
+      sectionsContainer.innerHTML = "";
+      Object.entries(data.sections || {}).forEach(([name, fields]) => {
+        if (!fields || fields.length === 0) return;
+        const div = document.createElement('div');
+        div.className = "border border-slate-200 rounded-xl p-4 bg-white text-xs space-y-2";
+        div.innerHTML = `<h4 class="font-bold text-brand-900 text-sm">${name} (${fields.length} fields)</h4>`;
+        sectionsContainer.appendChild(div);
+      });
+      document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    async function downloadCleanedImage() {
+      if (!currentUploadedFile) return;
+      const formData = new FormData();
+      formData.append("file", currentUploadedFile);
+      try {
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, { method: "POST", body: formData });
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = `cleared_${currentUploadedFile.name}`;
+        a.click();
+      } catch (err) {
+        alert("Download failed.");
+      }
+    }
+  </script>
+</body>
+</html>
