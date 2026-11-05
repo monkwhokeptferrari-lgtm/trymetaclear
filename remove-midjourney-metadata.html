@@ -146,124 +146,235 @@
   </footer>
 
   <script>
-    const BACKEND_API_URL = "https://api.trymetaclear.com";
-    let currentUploadedFile = null;
-    let currentImagePreviewUrl = null;
+  const BACKEND_API_URL = "https://api.trymetaclear.com";
+  let currentUploadedFile = null;
+  let currentImagePreviewUrl = null;
 
-    const dropZone = document.getElementById('dropZone');
-    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
-      dropZone.addEventListener(eName, e => { e.preventDefault(); e.stopPropagation(); }, false);
-    });
+  // Setup Drag & Drop Handlers
+  const dropZone = document.getElementById('dropZone');
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
+    dropZone.addEventListener(eName, preventDefaults, false);
+  });
+  function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
 
-    dropZone.addEventListener('drop', (e) => {
-      const files = e.dataTransfer.files;
-      if (files.length > 0) handleFileUpload(files[0]);
-    });
+  ['dragenter', 'dragover'].forEach(eName => {
+    dropZone.addEventListener(eName, () => dropZone.classList.add('bg-brand-100/80', 'border-brand-600'), false);
+  });
+  ['dragleave', 'drop'].forEach(eName => {
+    dropZone.addEventListener(eName, () => dropZone.classList.remove('bg-brand-100/80', 'border-brand-600'), false);
+  });
 
-    function showScanningState(file) {
-      if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
-      currentImagePreviewUrl = URL.createObjectURL(file);
+  dropZone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer.files;
+    if (files.length > 0) handleFileUpload(files[0]);
+  });
 
-      dropZone.innerHTML = `
-        <div class="w-full max-w-md mx-auto space-y-4 py-2">
-          <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
-            <img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">
-          </div>
-          <div class="flex items-center justify-between text-xs font-bold text-brand-900">
+  function showScanningState(file) {
+    if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
+    currentImagePreviewUrl = URL.createObjectURL(file);
+
+    dropZone.innerHTML = `
+      <div class="w-full max-w-md mx-auto space-y-4 py-2">
+        <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
+          <img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">
+        </div>
+        <div class="flex items-center justify-between text-xs font-bold text-brand-900">
+          <span class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-brand-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
             <span>Scanning Midjourney metadata...</span>
-            <span id="scanPercentText" class="text-brand-600">15%</span>
-          </div>
-          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
-            <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
-          </div>
+          </span>
+          <span id="scanPercentText" class="text-brand-600">15%</span>
         </div>
-      `;
-
-      let currentPct = 15;
-      const interval = setInterval(() => {
-        if (currentPct < 90) {
-          currentPct += 15;
-          if (currentPct > 90) currentPct = 90;
-          const pBar = document.getElementById('scanProgressBar');
-          const pText = document.getElementById('scanPercentText');
-          if (pBar) pBar.style.width = `${currentPct}%`;
-          if (pText) pText.innerText = `${currentPct}%`;
-        }
-      }, 250);
-
-      return interval;
-    }
-
-    function resetDropZoneUI() {
-      dropZone.innerHTML = `
-        <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
-          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
+          <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
         </div>
-        <p class="font-bold text-brand-900 text-base mb-1">Drag and drop your Midjourney image here</p>
-        <p class="text-xs text-slate-500 mb-4">Supports PNG, WebP, JPG up to 100MB</p>
-        <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
-          Browse Files
-        </button>
-        <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
-      `;
-    }
+        <p class="text-xs text-slate-500 truncate">File: <span class="font-semibold text-slate-700">${file.name}</span></p>
+      </div>
+    `;
 
-    async function handleFileUpload(file) {
-      if (!file) return;
-      currentUploadedFile = file;
-      const progressTimer = showScanningState(file);
-      const formData = new FormData();
-      formData.append("file", file);
+    let currentPct = 15;
+    const interval = setInterval(() => {
+      if (currentPct < 90) {
+        currentPct += Math.floor(Math.random() * 15) + 5;
+        if (currentPct > 90) currentPct = 90;
+        const pBar = document.getElementById('scanProgressBar');
+        const pText = document.getElementById('scanPercentText');
+        if (pBar) pBar.style.width = `${currentPct}%`;
+        if (pText) pText.innerText = `${currentPct}%`;
+      }
+    }, 250);
 
-      try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, { method: "POST", body: formData });
-        if (!response.ok) throw new Error("Backend scan failed");
-        const data = await response.json();
-        clearInterval(progressTimer);
+    return interval;
+  }
+
+  function resetDropZoneUI() {
+    dropZone.innerHTML = `
+      <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+      </div>
+      <p class="font-bold text-brand-900 text-base mb-1">Drag and drop your Midjourney image here</p>
+      <p class="text-xs text-slate-500 mb-4">Supports PNG, WebP, JPG up to 100MB</p>
+      <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
+        Browse Files
+      </button>
+      <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
+    `;
+  }
+
+  async function handleFileUpload(file) {
+    if (!file) return;
+    currentUploadedFile = file;
+
+    const progressTimer = showScanningState(file);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Backend scan failed");
+      const data = await response.json();
+
+      clearInterval(progressTimer);
+      const pBar = document.getElementById('scanProgressBar');
+      const pText = document.getElementById('scanPercentText');
+      if (pBar) pBar.style.width = '100%';
+      if (pText) pText.innerText = '100%';
+
+      setTimeout(() => {
         resetDropZoneUI();
         renderResults(data);
-      } catch (err) {
-        clearInterval(progressTimer);
-        resetDropZoneUI();
-        alert("Failed to scan metadata.");
-      }
+      }, 300);
+
+    } catch (err) {
+      clearInterval(progressTimer);
+      console.error("Scan error:", err);
+      resetDropZoneUI();
+      alert("Failed to scan image metadata.");
+    }
+  }
+
+  function renderResults(data) {
+    document.getElementById('resultsContainer').classList.remove('hidden');
+    const statusCard = document.getElementById('statusCard');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusIconBg = document.getElementById('statusIconBg');
+
+    if (data.has_ai) {
+      statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
+      statusTitle.className = "text-xl font-extrabold text-accent-coral";
+      statusTitle.innerText = "Midjourney Footprints Found";
+      statusIconBg.className = "w-12 h-12 bg-rose-100 text-accent-coral rounded-xl flex items-center justify-center text-xl font-bold";
+      statusIconBg.innerText = "⚠";
+    } else {
+      statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-100 flex flex-wrap items-center justify-between gap-4";
+      statusTitle.className = "text-xl font-extrabold text-brand-600";
+      statusTitle.innerText = "No Midjourney Tags Detected";
+      statusIconBg.className = "w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-xl font-bold";
+      statusIconBg.innerText = "✓";
     }
 
-    function renderResults(data) {
-      document.getElementById('resultsContainer').classList.remove('hidden');
-      document.getElementById('statusTitle').innerText = data.has_ai ? "Midjourney Footprints Found" : "No Midjourney Tags Detected";
-      document.getElementById('aiModelText').innerText = data.detected_model || "Midjourney / AI";
-      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
-      document.getElementById('statAiFields').innerText = data.ai_count || 0;
+    // Attach Image Preview inside Status Card
+    if (!document.getElementById('imgCardPreview')) {
+      const imgDiv = document.createElement('div');
+      imgDiv.id = 'imgCardPreview';
+      imgDiv.className = 'w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0';
+      imgDiv.innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
+      statusCard.insertBefore(imgDiv, statusCard.firstChild);
+    } else {
+      document.getElementById('imgCardPreview').innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
+    }
 
-      const sectionsContainer = document.getElementById('sectionsList');
-      sectionsContainer.innerHTML = "";
-      Object.entries(data.sections || {}).forEach(([name, fields]) => {
-        if (!fields || fields.length === 0) return;
-        const div = document.createElement('div');
-        div.className = "border border-slate-200 rounded-xl p-4 bg-white text-xs space-y-2";
-        div.innerHTML = `<h4 class="font-bold text-brand-900 text-sm">${name} (${fields.length} fields)</h4>`;
-        sectionsContainer.appendChild(div);
+    document.getElementById('aiModelText').innerText = data.detected_model || "Midjourney / AI";
+    document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+    document.getElementById('statAiFields').innerText = data.ai_count || 0;
+
+    const sectionsContainer = document.getElementById('sectionsList');
+    sectionsContainer.innerHTML = "";
+
+    Object.entries(data.sections || {}).forEach(([sectionName, fields], idx) => {
+      if (!fields || !Array.isArray(fields) || fields.length === 0) return;
+
+      const aiCount = fields.filter(f => f.is_ai).length;
+      const accordion = document.createElement('div');
+      accordion.className = "border border-slate-200 rounded-xl overflow-hidden bg-white";
+
+      let rowsHtml = fields.map(item => `
+        <tr class="border-b border-slate-100 hover:bg-slate-50/50">
+          <td class="py-3 px-4 font-semibold text-slate-800 text-xs w-1/3 align-middle">
+            <div class="flex items-center space-x-2">
+              <span>${item.key || item.tag || 'Unknown'}</span>
+              ${item.is_ai ? '<span class="inline-flex items-center bg-[#FDF0ED] border border-[#F8D7DA] text-[#A94442] text-[10px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0">Midjourney Tag</span>' : ''}
+            </div>
+          </td>
+          <td class="py-3 px-4 text-slate-700 text-xs font-sans break-all w-2/3 align-middle">${item.value !== undefined ? item.value : ''}</td>
+        </tr>
+      `).join('');
+
+      accordion.innerHTML = `
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-4 text-left font-bold text-brand-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition">
+          <div class="flex items-center space-x-2">
+            <span>${sectionName}</span>
+            <span class="text-xs font-normal text-slate-500">(${fields.length} fields ${aiCount > 0 ? '· <strong class="text-accent-coral">' + aiCount + ' AI</strong>' : ''})</span>
+          </div>
+          <svg class="w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content ${idx === 0 ? '' : 'hidden'} p-2">
+          <table class="w-full text-left border-collapse">
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>
+      `;
+
+      sectionsContainer.appendChild(accordion);
+    });
+
+    document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  async function downloadCleanedImage() {
+    if (!currentUploadedFile) return;
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.disabled = true;
+    downloadBtn.innerHTML = `
+      <svg class="w-5 h-5 text-white animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+      <span>Cleaning & Downloading...</span>
+    `;
+
+    const formData = new FormData();
+    formData.append("file", currentUploadedFile);
+
+    try {
+      const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
+        method: "POST",
+        body: formData
       });
-      document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth' });
-    }
 
-    async function downloadCleanedImage() {
-      if (!currentUploadedFile) return;
-      const formData = new FormData();
-      formData.append("file", currentUploadedFile);
-      try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, { method: "POST", body: formData });
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `cleared_${currentUploadedFile.name}`;
-        a.click();
-      } catch (err) {
-        alert("Download failed.");
-      }
+      if (!response.ok) throw new Error("Cleaning failed");
+
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `cleared_${currentUploadedFile.name}`;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+    } catch (err) {
+      console.error("Clean download error:", err);
+      alert("Failed to download cleaned image.");
+    } finally {
+      downloadBtn.disabled = false;
+      downloadBtn.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        <span>Remove Midjourney Metadata & Download</span>
+      `;
     }
-  </script>
+  }
+</script>
 </body>
 </html>
