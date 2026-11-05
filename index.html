@@ -426,14 +426,16 @@
     accordion.className = "border border-slate-200 rounded-xl overflow-hidden bg-white";
     
     let rowsHtml = fields.map(item => `
-      <tr class="border-b border-slate-100 hover:bg-slate-50/50">
-        <td class="py-2.5 px-4 font-semibold text-slate-700 text-xs w-1/3 flex items-center justify-between">
-          <span>${item.key || item.tag}</span>
-          ${item.is_ai ? '<span class="bg-rose-100 text-rose-700 text-[10px] font-bold px-2 py-0.5 rounded-full ml-2">AI Footprint</span>' : ''}
-        </td>
-        <td class="py-2.5 px-4 text-slate-600 text-xs font-mono break-all w-2/3">${item.value}</td>
-      </tr>
-    `).join('');
+  <tr class="border-b border-slate-100 hover:bg-slate-50/50">
+    <td class="py-3 px-4 font-semibold text-slate-800 text-xs w-1/3 align-middle">
+      <div class="flex items-center space-x-2">
+        <span>${item.key || item.tag || 'Unknown'}</span>
+        ${item.is_ai ? '<span class="inline-flex items-center bg-rose-100 text-rose-700 text-[10px] font-bold px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0">AI Footprint</span>' : ''}
+      </div>
+    </td>
+    <td class="py-3 px-4 text-slate-700 text-xs font-sans break-all w-2/3 align-middle">${item.value !== undefined ? item.value : ''}</td>
+  </tr>
+`).join('');
 
     accordion.innerHTML = `
       <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-4 text-left font-bold text-slate-800 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition">
