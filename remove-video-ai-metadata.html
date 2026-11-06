@@ -33,14 +33,14 @@
     }
   </script>
 
-  <!-- Netlify Badge Suppression -->
+  <!-- Netlify Badge Suppression & Custom Scrollbar -->
   <style>
     [data-netlify-deploy-id], iframe[src*="netlify"], .netlify-badge, #netlify-badge, [class*="NetlifyBadge"] {
       display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
     }
     .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.6); border-radius: 4px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(51, 65, 85, 0.8); border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-track { background: rgba(241, 245, 249, 1); border-radius: 4px; }
+    .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(203, 213, 225, 1); border-radius: 4px; }
   </style>
 
   <!-- Schema.org WebApplication Markup -->
@@ -57,7 +57,7 @@
   }
   </script>
 </head>
-<body class="bg-slate-900 text-slate-100 min-h-screen flex flex-col font-sans">
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
 
   <!-- Header Component -->
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
@@ -86,34 +86,36 @@
 
   <!-- Hero & Main Upload Work Area -->
   <main class="flex-grow max-w-4xl mx-auto px-4 py-12 text-center">
-    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4">
+    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight mb-4 text-slate-900">
       Remove AI Metadata & C2PA from <span class="text-brand-500">Video Files</span>
     </h1>
-    <p class="text-slate-400 text-sm md:text-base max-w-2xl mx-auto mb-8">
+    <p class="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-8">
       Strip hidden Sora, Runway, Pika, and Luma AI generator streams, C2PA manifests, and camera telemetry from MP4, MOV, and WebM videos without stream re-encoding.
     </p>
 
     <!-- Upload Card -->
-    <div class="bg-slate-800/80 border-2 border-dashed border-slate-700 rounded-3xl p-8 text-center max-w-xl mx-auto backdrop-blur-sm">
+    <div class="bg-white border border-slate-200 shadow-xl rounded-3xl p-8 text-center max-w-xl mx-auto">
       <input type="file" id="videoInput" accept="video/mp4,video/quicktime,video/webm" class="hidden" onchange="handleFileSelect(event)">
-      <label for="videoInput" class="cursor-pointer flex flex-col items-center justify-center space-y-4">
+      <label for="videoInput" class="cursor-pointer border-2 border-dashed border-slate-300 hover:border-brand-500 rounded-2xl p-8 flex flex-col items-center justify-center space-y-4 transition">
         <div class="w-16 h-16 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center">
           <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
         </div>
         <div>
-          <p class="font-bold text-white text-base">Click to upload video file</p>
-          <p class="text-xs text-slate-400 mt-1">Supports MP4, MOV, WebM (up to 100MB)</p>
+          <p class="font-bold text-slate-800 text-base">Click to upload video file</p>
+          <p class="text-xs text-slate-500 mt-1">Supports MP4, MOV, WebM (up to 100MB)</p>
         </div>
       </label>
 
       <!-- Action Button -->
-      <button id="downloadBtn" onclick="downloadCleanedVideo()" disabled class="mt-6 w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center space-x-2">
+      <button id="downloadBtn" onclick="downloadCleanedVideo()" disabled class="mt-6 w-full bg-brand-600 hover:bg-brand-700 disabled:opacity-50 text-white font-bold py-3 px-6 rounded-xl transition flex items-center justify-center space-x-2 shadow-md">
         <span>Remove AI Metadata & Download</span>
       </button>
+      
+      <p class="text-[11px] text-slate-400 mt-4">Free. No account required. Removes metadata headers and tracking atoms.</p>
     </div>
 
     <!-- Scan Results & Live Preview Container -->
-    <div id="metadataResult" class="mt-6 hidden max-w-xl mx-auto"></div>
+    <div id="metadataResult" class="mt-6 max-w-xl mx-auto hidden text-left"></div>
   </main>
 
   <!-- Global Footer -->
@@ -125,10 +127,10 @@
           <p>© 2026 TryMetaClear. All rights reserved. Developed by Mayank Gupta.</p>
         </div>
         <div class="flex space-x-6 text-sm font-medium">
-          <a href="/about.html" class="hover:text-brand-500 transition">About</a>
-          <a href="/privacy.html" class="hover:text-brand-500 transition">Privacy Policy</a>
-          <a href="/terms.html" class="hover:text-brand-500 transition">Terms of Service</a>
-          <a href="/contact.html" class="hover:text-brand-500 transition">Contact</a>
+          <a href="/about.html" class="hover:text-brand-400 transition">About</a>
+          <a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a>
+          <a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a>
+          <a href="/contact.html" class="hover:text-brand-400 transition">Contact</a>
         </div>
       </div>
     </div>
@@ -162,13 +164,13 @@
 
       // Initial loading state with video preview player
       scanContainer.innerHTML = `
-        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 text-left space-y-6 shadow-xl">
-          <div class="rounded-xl overflow-hidden bg-black max-h-72 flex items-center justify-center border border-slate-700">
+        <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-xl text-left space-y-6">
+          <div class="rounded-2xl overflow-hidden bg-slate-900 max-h-72 flex items-center justify-center border border-slate-200">
             <video src="${currentVideoObjectUrl}" controls class="max-h-72 w-full object-contain"></video>
           </div>
-          <div class="flex items-center space-x-3 p-4 bg-slate-900/60 rounded-xl border border-slate-700/80">
+          <div class="flex items-center space-x-3 p-4 bg-slate-50 rounded-2xl border border-slate-200">
             <div class="animate-spin rounded-full h-5 w-5 border-2 border-brand-500 border-t-transparent"></div>
-            <span class="text-xs text-slate-300 font-medium">Scanning video container atoms, telemetry, and AI signatures...</span>
+            <span class="text-xs text-slate-700 font-medium">Scanning video container atoms, telemetry, and AI signatures...</span>
           </div>
         </div>
       `;
@@ -194,57 +196,105 @@
 
     function renderDetailedVideoResults(data) {
       const scanContainer = document.getElementById('metadataResult');
-      const tags = data.tags || [];
-      const totalFields = data.total_fields || tags.length;
-      const aiModel = data.detected_ai || "None Detected (Clean)";
+      const originalFileName = currentUploadedFile ? currentUploadedFile.name : "video.mp4";
+      const totalFields = data.total_fields || (data.tags ? data.tags.length : 0);
+      const aiCount = data.ai_count || data.ai_tags_count || 0;
+      const detectedModel = data.detected_model || data.detected_ai || data.ai_model || "None Detected (Clean)";
+
+      let sectionsHtml = '';
+      
+      if (data.sections && typeof data.sections === 'object') {
+        for (const [sectionName, fields] of Object.entries(data.sections)) {
+          if (!Array.isArray(fields) || fields.length === 0) continue;
+          const aiFieldsInSec = fields.filter(f => f.is_ai).length;
+          
+          sectionsHtml += `
+            <div class="bg-slate-50 rounded-xl border border-slate-200 overflow-hidden mb-3">
+              <button onclick="toggleSection('${sectionName}')" class="w-full px-4 py-3 flex items-center justify-between bg-slate-100 hover:bg-slate-200/60 transition text-left">
+                <span class="text-xs font-bold tracking-wider text-slate-800">${sectionName} <span class="font-normal text-slate-500">(${fields.length} fields ${aiFieldsInSec > 0 ? '• ' + aiFieldsInSec + ' AI' : ''})</span></span>
+                <svg id="arrow-${sectionName}" class="w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+              </button>
+              <div id="content-${sectionName}" class="hidden divide-y divide-slate-200">
+                ${fields.map(f => `
+                  <div class="px-4 py-2.5 flex items-center justify-between text-xs font-mono bg-white">
+                    <span class="text-slate-700 truncate pr-3 font-semibold">${f.name || f.key}</span>
+                    <div class="flex items-center space-x-2">
+                      <span class="text-slate-600">${f.name === 'FileName' ? originalFileName : (f.value || '')}</span>
+                      ${f.is_ai ? '<span class="px-2 py-0.5 bg-red-100 text-red-600 rounded text-[10px] font-bold">AI</span>' : ''}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+      } else {
+        const tags = data.tags || [];
+        sectionsHtml = `
+          <div class="max-h-48 overflow-y-auto space-y-1.5 pr-2 custom-scrollbar">
+            ${tags.length > 0 ? tags.map(tag => `
+              <div class="px-3 py-2 bg-slate-50 rounded-lg border border-slate-200 flex items-center justify-between text-xs font-mono">
+                <span class="text-slate-700 truncate pr-2">${tag}</span>
+              </div>
+            `).join('') : '<p class="text-xs text-slate-500">No custom metadata atoms found.</p>'}
+          </div>
+        `;
+      }
 
       scanContainer.innerHTML = `
-        <div class="p-6 bg-slate-800 rounded-2xl border border-slate-700 text-left space-y-6 shadow-xl">
+        <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-xl text-left space-y-6">
           <!-- Video Player Preview -->
-          <div class="rounded-xl overflow-hidden bg-black max-h-72 flex items-center justify-center border border-slate-700">
+          <div class="rounded-2xl overflow-hidden bg-slate-900 max-h-72 flex items-center justify-center border border-slate-200">
             <video src="${currentVideoObjectUrl}" controls class="max-h-72 w-full object-contain"></video>
           </div>
 
           <!-- Summary Header Grid -->
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 border-b border-slate-700 pb-4">
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-700">
-              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">File Size</p>
-              <p class="text-xs font-bold text-white mt-1">${(currentUploadedFile.size / (1024*1024)).toFixed(2)} MB</p>
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-3 border-b border-slate-200 pb-4">
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200">
+              <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">File Size</p>
+              <p class="text-xs font-bold text-slate-900 mt-1">${(currentUploadedFile.size / (1024*1024)).toFixed(2)} MB</p>
             </div>
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-700">
-              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">Detected Metadata</p>
-              <p class="text-xs font-bold text-brand-400 mt-1">${totalFields} fields found</p>
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200">
+              <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">AI Metadata Tags</p>
+              <p class="text-xs font-bold text-red-600 mt-1">${totalFields} found</p>
             </div>
-            <div class="p-3 bg-slate-900/60 rounded-xl border border-slate-700 col-span-2 md:col-span-1">
-              <p class="text-[10px] text-slate-400 uppercase font-bold tracking-wider">AI Model Signatures</p>
-              <p class="text-xs font-bold ${aiModel.includes('None') ? 'text-emerald-400' : 'text-red-400'} mt-1 truncate" title="${aiModel}">${aiModel}</p>
+            <div class="p-3 bg-slate-50 rounded-2xl border border-slate-200 col-span-2 md:col-span-1">
+              <p class="text-[10px] text-slate-500 uppercase font-bold tracking-wider">AI Model Signatures</p>
+              <p class="text-xs font-bold ${detectedModel.includes('None') ? 'text-emerald-600' : 'text-brand-600'} mt-1 truncate" title="${detectedModel}">${detectedModel}</p>
             </div>
           </div>
 
-          <!-- Detailed Tags List -->
+          <!-- Metadata Details Section -->
           <div class="space-y-3">
             <div class="flex items-center justify-between">
-              <span class="text-xs font-bold uppercase tracking-wider text-slate-300">Container & Header Tags</span>
-              <span class="text-[11px] text-slate-400">${currentUploadedFile.name}</span>
+              <span class="text-xs font-bold uppercase tracking-wider text-slate-700">AI Metadata Tags & Properties</span>
+              <span class="text-[11px] text-slate-500">${originalFileName}</span>
             </div>
-            <div class="max-h-48 overflow-y-auto space-y-1.5 pr-2 custom-scrollbar">
-              ${tags.length > 0 ? tags.map(tag => `
-                <div class="px-3 py-2 bg-slate-900/80 rounded-lg border border-slate-700/60 flex items-center justify-between text-xs font-mono">
-                  <span class="text-slate-300 truncate pr-2">${tag}</span>
-                  <span class="px-2 py-0.5 bg-red-500/10 text-red-400 rounded text-[10px] flex-shrink-0">Embedded</span>
-                </div>
-              `).join('') : '<p class="text-xs text-slate-400">No custom metadata atoms found.</p>'}
+            <div class="max-h-64 overflow-y-auto pr-1 custom-scrollbar space-y-2">
+              ${sectionsHtml || '<p class="text-xs text-slate-500">No metadata sections found.</p>'}
             </div>
           </div>
         </div>
       `;
     }
 
+    function toggleSection(sectionName) {
+      const content = document.getElementById(`content-${sectionName}`);
+      const arrow = document.getElementById(`arrow-${sectionName}`);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+
     function renderFallbackVideoResults() {
       renderDetailedVideoResults({
         tags: ["FileType: MP4 / QuickTime", "MajorBrand: isom", "HandlerName: VideoHandler", "Encoder: Container Metadata"],
         total_fields: 10,
-        detected_ai: "None Detected (Clean)"
+        detected_model: "None Detected (Clean)"
       });
     }
 
