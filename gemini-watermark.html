@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Gemini Watermark Remover for Images – TryMetaClear</title>
+<meta name="description" content="Free Gemini watermark remover. Upload your image, remove the visible corner watermark automatically, and download the clean PNG or JPG. No account, runs 100% in your browser.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Free Gemini Watermark Remover for Images – TryMetaClear">
+<meta property="og:description" content="Remove the visible Gemini watermark from your images in seconds. Free, private, no upload – everything runs in your browser.">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          brand: {
+            600: '#0066FF',
+            700: '#0052CC',
+            900: '#0B132B'
+          }
+        }
+      }
+    }
+  }
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Gemini Watermark Remover","applicationCategory":"MultimediaApplication","operatingSystem":"Any","browserRequirements":"Requires JavaScript","description":"Free browser-based tool that detects and removes the visible Gemini watermark from the corner of an image. Images are processed on your device and never uploaded.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}
+</script>
+<script type="application/ld+json" id="faq-ld">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "How do I remove the Gemini watermark from an image?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Drag and drop your image (PNG, JPG or WEBP) into the upload box. The tool automatically finds the visible Gemini watermark in the bottom-right corner and fills it in using the surrounding pixels. Compare the Result and Original tabs, check the corner close-up, then click Download clean image."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does this remove SynthID or other invisible watermarks?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. This tool removes only the visible watermark shown in the corner of the image. It does not remove invisible watermarks embedded directly into the pixels, such as Google DeepMind SynthID, because those are structural pixel patterns rather than a visible overlay."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Will removing the watermark reduce my image quality or resolution?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Your image keeps its original resolution. Only the small area covered by the watermark is rebuilt from the neighbouring pixels, and every other pixel stays exactly the same. Export as PNG for a fully lossless result, or choose JPEG for a smaller file."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Are my images uploaded or stored on your server?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. Everything happens inside your browser, on your own device. Your image is never uploaded, stored or shared, and you do not need an account."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "What if the watermark is not detected automatically?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Raise the Sensitivity slider, which helps with faint watermarks on light backgrounds. You can also switch on the manual brush and paint over the watermark, and it is filled in instantly. Results look best on smooth or gradient backgrounds; on busy textures, check the corner close-up before downloading."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Does the downloaded file keep EXIF or C2PA metadata?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "No. The cleaned image is saved as a fresh file built from the pixels, so embedded metadata such as EXIF, XMP and C2PA Content Credentials is not carried over. For a full metadata scan and dedicated cleaning, use the TryMetaClear AI Metadata Remover."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Which image formats and file sizes are supported?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "You can upload PNG, JPG and WEBP images up to 40 MB or 40 megapixels. The cleaned image can be downloaded as a PNG (lossless) or a JPEG."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Is the Gemini watermark remover free?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Yes. It is completely free, with no sign-up, no limit on the number of images, and nothing added to your result. Please use it only on images you created or have permission to edit."
+   }
+  }
+ ]
+}
+</script>
+<style>
+  :root{
+    --navy:#0b1a5c; --blue:#0a6cff; --cyan:#00c8ff; --bg:#f8fafc; --card:#ffffff;
+    --line:#e3e9f3; --muted:#5b6785; --soft:#eaf6ff;
+    --ok:#0f7a4d; --okbg:#ecfbf3; --okline:#b6ecd1;
+    --warn:#8a5a00; --warnbg:#fff8e6; --warnline:#f6dc9b;
+    --bad:#a32020; --badbg:#fff0f0; --badline:#f4bcbc;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  html{background:var(--bg)}
+  body{
+    font-family:Inter,"Segoe UI",system-ui,-apple-system,Roboto,Helvetica,Arial,sans-serif;
+    color:var(--navy); background:var(--bg); min-height:100vh; -webkit-font-smoothing:antialiased;
+  }
+  .container-custom{max-width:1120px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{text-align:center;padding:48px 0 30px}
+  h1.hero-title{margin:0 0 14px;font-size:clamp(30px,5vw,46px);line-height:1.12;font-weight:800;letter-spacing:-.025em;color:var(--navy)}
+  h1.hero-title span{background:linear-gradient(90deg,var(--blue),var(--cyan));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{margin:0 auto;max-width:640px;color:#2a3866;font-size:15px;line-height:1.55}
+
+  /* cards */
+  .card{background:var(--card);border:1px solid var(--line);border-radius:26px;box-shadow:0 12px 34px rgba(15,40,100,.05)}
+  .upload{max-width:880px;margin:0 auto;padding:32px}
+  .drop{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;text-align:center;
+    padding:42px 20px;border:2px dashed #c3cfe4;border-radius:22px;background:#f6f9fe;cursor:pointer;transition:.15s
+  }
+  .drop:hover,.drop.over{border-color:var(--blue);background:#eef5ff}
+  .drop:focus-visible{outline:3px solid rgba(10,108,255,.35);outline-offset:2px}
+  .upico{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;margin-bottom:10px;
+    background:linear-gradient(135deg,var(--blue),var(--cyan));box-shadow:0 8px 20px rgba(10,108,255,.25)}
+  .upico svg{width:30px;height:30px;stroke:#fff}
+  .drop b{font-size:17px}
+  .drop small{color:var(--muted);font-size:12.5px}
+  .btn{
+    appearance:none;border:1px solid var(--line);background:#fff;color:var(--navy);
+    padding:11px 18px;border-radius:12px;font:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:.15s
+  }
+  .btn:hover{background:#f2f6fd}
+  .btn.navy{background:var(--navy);border-color:var(--navy);color:#fff;margin-top:10px;padding:13px 26px;font-size:13.5px}
+  .btn.navy:hover{background:#12277d}
+  .btn.primary{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn.primary:hover{filter:brightness(1.08);background:var(--blue)}
+  .btn.sm{padding:8px 12px;font-size:13px;border-radius:10px}
+  .fine{margin:16px 0 0;text-align:center;color:var(--muted);font-size:12px}
+  .sr{position:absolute;left:-9999px}
+
+  #status{max-width:880px;margin:16px auto 0;font-size:14px;padding:11px 14px;border-radius:14px;border:1px solid var(--line);background:#fff;color:#2a3866}
+  #status.ok{background:var(--okbg);border-color:var(--okline);color:var(--ok)}
+  #status.warn{background:var(--warnbg);border-color:var(--warnline);color:var(--warn)}
+  #status.bad{background:var(--badbg);border-color:var(--badline);color:var(--bad)}
+
+  /* workspace */
+  #work{display:none;margin:26px auto 0;max-width:1040px}
+  .grid-layout{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:18px}
+  @media(max-width:900px){.grid-layout{grid-template-columns:1fr}}
+  .stage{padding:18px}
+  .tabs{display:flex;gap:10px;align-items:center;margin-bottom:12px;flex-wrap:wrap}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#f6f9fe}
+  .seg button{appearance:none;border:0;background:transparent;color:var(--muted);padding:8px 16px;font:inherit;font-weight:700;font-size:14px;cursor:pointer}
+  .seg button.on{background:var(--navy);color:#fff}
+  .hint{color:var(--muted);font-size:13px}
+  .canvaswrap{position:relative;line-height:0;border-radius:14px;overflow:hidden;border:1px solid var(--line);
+    background:repeating-conic-gradient(#eef2f9 0% 25%,#fff 0% 50%) 0 0/20px 20px}
+  .canvaswrap canvas{width:100%;height:auto;display:block}
+  #overlay{position:absolute;inset:0;opacity:.55;pointer-events:none;touch-action:none}
+  #overlay.on{pointer-events:auto;cursor:crosshair}
+  .side{padding:20px;display:flex;flex-direction:column;gap:20px;align-self:start}
+  .side h3{margin:0 0 2px;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .row{display:flex;flex-direction:column;gap:9px}
+  .row label.lbl{display:flex;justify-content:space-between;font-size:14px;font-weight:600}
+  input[type=range]{width:100%;accent-color:var(--blue)}
+  select{width:100%;padding:10px 11px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--navy);font:inherit;font-weight:600}
+  .check{display:flex;gap:10px;align-items:center;font-size:14px;font-weight:600;cursor:pointer}
+  .check input{width:18px;height:18px;accent-color:var(--blue)}
+  .close{display:grid;grid-template-columns:repeat(2,minmax(0,360px));justify-content:center;gap:14px;margin-top:18px;padding:20px}
+  .close h3{grid-column:1/-1;margin:0;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+  .close figure{margin:0}
+  .close canvas{width:100%;height:auto;border-radius:14px;border:1px solid var(--line);display:block;background:#eef2f9}
+  .close figcaption{font-size:13px;color:var(--muted);margin-top:8px;text-align:center;font-weight:600}
+
+  /* features */
+  .why{text-align:center;padding:64px 0 24px}
+  .why h2{margin:0 0 8px;font-size:clamp(24px,3.6vw,32px);font-weight:800;letter-spacing:-.02em}
+  .why p.sub{margin:0 0 34px;color:var(--muted);font-size:16px}
+  .feats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;text-align:left}
+  @media(max-width:800px){.feats{grid-template-columns:1fr}}
+  .feat{padding:26px;border-radius:22px}
+  .feat .ic{width:48px;height:48px;border-radius:14px;background:var(--soft);display:grid;place-items:center;margin-bottom:16px}
+  .feat .ic svg{width:24px;height:24px;stroke:var(--blue)}
+  .feat h4{margin:0 0 6px;font-size:17px}
+  .feat p{margin:0;color:var(--muted);font-size:14px;line-height:1.55}
+
+  /* FAQ */
+  .faq{padding:56px 0 8px}
+  .faq h2{margin:0 0 38px;text-align:center;font-size:clamp(26px,4vw,36px);font-weight:800;letter-spacing:-.02em}
+  .faq-list{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+  .faq details{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden}
+  .faq summary{
+    list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:24px 26px;font-weight:700;font-size:17px;line-height:1.35;color:var(--navy)
+  }
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary:focus-visible{outline:3px solid rgba(10,108,255,.35);outline-offset:-3px}
+  .faq summary svg{flex:none;width:22px;height:22px;stroke:#6b7794;transition:transform .2s}
+  .faq details[open] summary{background:#f9fbfe;border-bottom:1px solid #eef2f8}
+  .faq details[open] summary svg{transform:rotate(180deg)}
+  .faq details p{margin:0;padding:22px 26px 26px;color:var(--muted);font-size:14px;line-height:1.85}
+</style>
+</head>
+<body class="flex flex-col justify-between min-h-screen">
+
+  <!-- Mobile-Responsive Header (Matching index.html) -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 md:py-0 md:h-24 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+      
+      <!-- Logo -->
+      <a href="/" class="flex items-center shrink-0">
+        <img src="logo.png" alt="TryMetaClear" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
+      </a>
+
+      <!-- Navigation & Dropdown -->
+      <nav class="flex items-center justify-center space-x-6 md:space-x-8 w-full md:w-auto">
+        
+        <div class="relative group py-1 md:py-4">
+          <button class="flex items-center space-x-1.5 text-slate-800 hover:text-brand-600 font-bold text-base transition">
+            <span>Tools</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </button>
+
+          <div class="absolute left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 mt-2 w-64 md:w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">All AI Metadata Remover</a>
+            <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">C2PA Content Credentials</a>
+            <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Midjourney Metadata</a>
+            <a href="/remove-gemini-ai-watermark" class="block px-4 py-3 rounded-xl bg-slate-100 font-bold text-slate-900 text-sm">Gemini AI Metadata Remover</a>
+            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata Stripper</a>
+          </div>
+        </div>
+
+        <a href="/about.html" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
+        
+        <a href="/remove-video-ai-metadata" class="bg-brand-600 hover:bg-brand-700 text-white text-sm md:text-base font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-xl transition shadow-md whitespace-nowrap">
+          For Video
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+<main class="container-custom flex-grow">
+  <section class="hero">
+    <h1 class="hero-title">Free Gemini Watermark Remover <span>for Images</span></h1>
+    <p class="lead">Detect &amp; remove the visible Gemini watermark from the corner of your AI-generated images. Upload, clean, and download in seconds – everything runs in your browser.</p>
+  </section>
+
+  <section class="card upload">
+    <div id="dropzone" class="drop" tabindex="0" role="button" aria-label="Choose an image to upload">
+      <div class="upico">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 18a4.5 4.5 0 01-.6-8.96A6 6 0 0118 9.5a4 4 0 01-.5 8.5"/><path d="M12 21v-9m0 0l-3 3m3-3l3 3"/></svg>
+      </div>
+      <b>Drag and drop your image here</b>
+      <small>Supports PNG, JPG, WEBP up to 40MB · or paste with Ctrl/⌘+V</small>
+      <button type="button" class="btn navy">Browse Files</button>
+    </div>
+    <input id="file" class="sr" type="file" accept="image/png,image/jpeg,image/webp,image/*" tabindex="-1">
+    <p class="fine">Free. No account required. Removes the visible corner watermark only, not invisible pixel watermarks (like SynthID).</p>
+  </section>
+
+  <div id="status" role="status" aria-live="polite" style="display:none"></div>
+
+  <section id="work">
+    <div class="grid-layout">
+      <div class="card stage">
+        <div class="tabs">
+          <div class="seg" role="tablist" aria-label="Preview">
+            <button id="tabRes" class="on" role="tab">Result</button>
+            <button id="tabOrig" role="tab">Original</button>
+          </div>
+          <span class="hint" id="dims"></span>
+        </div>
+        <div class="canvaswrap">
+          <canvas id="view" aria-label="Image preview"></canvas>
+          <canvas id="overlay"></canvas>
+        </div>
+      </div>
+
+      <aside class="card side">
+        <div class="row">
+          <h3>Detection</h3>
+          <label class="check"><input type="checkbox" id="auto" checked> Auto-remove the corner watermark</label>
+          <label class="lbl" for="sens"><span>Sensitivity</span><span id="sensVal">6</span></label>
+          <input id="sens" type="range" min="1" max="10" value="6">
+          <span class="hint">Raise it if the watermark is faint (light backgrounds).</span>
+        </div>
+
+        <div class="row">
+          <h3>Manual brush</h3>
+          <label class="check"><input type="checkbox" id="brush"> Paint over anything left behind</label>
+          <label class="lbl" for="bsize"><span>Brush size</span><span id="bsizeVal">24</span></label>
+          <input id="bsize" type="range" min="6" max="90" value="24">
+          <button class="btn sm" id="clearBrush">Clear brush strokes</button>
+        </div>
+
+        <div class="row">
+          <h3>Download</h3>
+          <select id="fmt" aria-label="Output format">
+            <option value="png">PNG (lossless)</option>
+            <option value="jpeg">JPEG (smaller file)</option>
+          </select>
+          <button class="btn primary" id="download">Download clean image</button>
+          <button class="btn" id="again">Choose another image</button>
+        </div>
+      </aside>
+    </div>
+
+    <div class="card close" id="closeCard">
+      <h3>Bottom-right corner close-up</h3>
+      <figure><canvas id="closeA" width="320" height="320"></canvas><figcaption>Before</figcaption></figure>
+      <figure><canvas id="closeB" width="320" height="320"></canvas><figcaption>After</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="why">
+    <h2>Private, fast &amp; free</h2>
+    <p class="sub">Built for creators who just need a clean image without the hassle.</p>
+    <div class="feats">
+      <div class="card feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2L4 14h7l-1 8 9-12h-7l1-8z"/></svg></div>
+        <h4>Instant results</h4>
+        <p>The watermark is detected and filled in automatically the moment your image loads.</p>
+      </div>
+      <div class="card feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></div>
+        <h4>100% private</h4>
+        <p>Your image is processed on your device. Nothing is uploaded to any server.</p>
+      </div>
+      <div class="card feat">
+        <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg></div>
+        <h4>Only the mark changes</h4>
+        <p>Every pixel outside the watermark stays exactly as it was – export as lossless PNG.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" id="faq" aria-labelledby="faq-title">
+    <h2 id="faq-title">Frequently Asked Questions</h2>
+    <div class="faq-list">
+      <details open>
+        <summary>How do I remove the Gemini watermark from an image?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>Drag and drop your image (PNG, JPG or WEBP) into the upload box. The tool automatically finds the visible Gemini watermark in the bottom-right corner and fills it in using the surrounding pixels. Compare the Result and Original tabs, check the corner close-up, then click Download clean image.</p>
+      </details>
+      <details>
+        <summary>Does this remove SynthID or other invisible watermarks?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>No. This tool removes only the visible watermark shown in the corner of the image. It does not remove invisible watermarks embedded directly into the pixels, such as Google DeepMind SynthID, because those are structural pixel patterns rather than a visible overlay.</p>
+      </details>
+      <details>
+        <summary>Will removing the watermark reduce my image quality or resolution?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>No. Your image keeps its original resolution. Only the small area covered by the watermark is rebuilt from the neighbouring pixels, and every other pixel stays exactly the same. Export as PNG for a fully lossless result, or choose JPEG for a smaller file.</p>
+      </details>
+      <details>
+        <summary>Are my images uploaded or stored on your server?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>No. Everything happens inside your browser, on your own device. Your image is never uploaded, stored or shared, and you do not need an account.</p>
+      </details>
+      <details>
+        <summary>What if the watermark is not detected automatically?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>Raise the Sensitivity slider, which helps with faint watermarks on light backgrounds. You can also switch on the manual brush and paint over the watermark, and it is filled in instantly. Results look best on smooth or gradient backgrounds; on busy textures, check the corner close-up before downloading.</p>
+      </details>
+      <details>
+        <summary>Does the downloaded file keep EXIF or C2PA metadata?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>No. The cleaned image is saved as a fresh file built from the pixels, so embedded metadata such as EXIF, XMP and C2PA Content Credentials is not carried over. For a full metadata scan and dedicated cleaning, use the TryMetaClear AI Metadata Remover.</p>
+      </details>
+      <details>
+        <summary>Which image formats and file sizes are supported?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>You can upload PNG, JPG and WEBP images up to 40 MB or 40 megapixels. The cleaned image can be downloaded as a PNG (lossless) or a JPEG.</p>
+      </details>
+      <details>
+        <summary>Is the Gemini watermark remover free?<svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></summary>
+        <p>Yes. It is completely free, with no sign-up, no limit on the number of images, and nothing added to your result. Please use it only on images you created or have permission to edit.</p>
+      </details>
+    </div>
+  </section>
+</main>
+
+  <!-- Mobile-Centered Footer (Matching index.html) -->
+  <footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
+    <div class="max-w-6xl mx-auto px-4 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-300 text-center md:text-left">
+        
+        <div class="space-y-3">
+          <p class="font-bold text-white text-base">TryMetaClear</p>
+          <p class="text-slate-400">The ultimate privacy utility for stripping AI metadata, C2PA manifests, and EXIF footprints from digital media.</p>
+        </div>
+
+        <div>
+          <p class="font-bold text-white text-base mb-3">Popular Tools</p>
+          <ul class="space-y-2">
+            <li><a href="/remove-c2pa-content-credentials" class="hover:text-brand-400 transition">Remove C2PA Credentials</a></li>
+            <li><a href="/remove-midjourney-metadata" class="hover:text-brand-400 transition">Remove Midjourney Metadata</a></li>
+            <li><a href="/remove-gemini-ai-watermark" class="hover:text-brand-400 transition font-bold text-white">Gemini AI Metadata Remover</a></li>
+            <li><a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition">Video AI Metadata Remover</a></li>
+            <li><a href="/" class="hover:text-brand-400 transition">Remove AI Metadata</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="font-bold text-white text-base mb-3">Legal &amp; Company</p>
+          <ul class="space-y-2">
+            <li><a href="/about.html" class="hover:text-brand-400 transition">About</a></li>
+            <li><a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a></li>
+            <li><a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a></li>
+            <li><a href="/contact.html" class="hover:text-brand-400 transition">Contact</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="font-bold text-white text-base mb-3">About Creator</p>
+          <p class="text-slate-400">Created &amp; Owned by Mayank Gupta. Designed for high-speed performance marketing and absolute creator privacy.</p>
+        </div>
+
+      </div>
+
+      <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
+        <p>© 2026 TryMetaClear. All rights reserved.</p>
+        <p>Created &amp; Owned by Mayank Gupta.</p>
+      </div>
+    </div>
+  </footer>
+
+<script>
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id);
+  const dz = $('dropzone'), fileInput = $('file'), work = $('work'), statusEl = $('status');
+  const view = $('view'), vctx = view.getContext('2d');
+  const ovl = $('overlay'), mctx = ovl.getContext('2d');
+  const orig = document.createElement('canvas'), ox = orig.getContext('2d', { willReadFrequently: true });
+  const res  = document.createElement('canvas'), rx = res.getContext('2d',  { willReadFrequently: true });
+
+  const S = { W: 0, H: 0, name: 'image', autoMask: null, found: false, box: null,
+              hasManual: false, view: 'result', brush: false, jpegSource: false };
+
+  /* ---------- status ---------- */
+  function say(msg, kind) {
+    statusEl.style.display = msg ? 'block' : 'none';
+    statusEl.className = kind || '';
+    statusEl.textContent = msg || '';
+  }
+
+  /* ---------- loading ---------- */
+  function decodeViaBitmap(file) {
+    if (typeof createImageBitmap !== 'function') return Promise.reject(new Error('createImageBitmap unavailable'));
+    return createImageBitmap(file);
+  }
+  function decodeViaDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const fr = new FileReader();
+      fr.onerror = () => reject(fr.error || new Error('FileReader failed'));
+      fr.onload = () => {
+        const img = new Image();
+        img.onload = () => resolve(img);
+        img.onerror = () => reject(new Error('Image element could not decode the data'));
+        img.src = fr.result;
+      };
+      fr.readAsDataURL(file);
+    });
+  }
+  function decodeViaBlobUrl(file) {
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      img.onload = () => { URL.revokeObjectURL(url); resolve(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Blob URL could not be decoded')); };
+      img.src = url;
+    });
+  }
+
+  async function loadFile(file) {
+    if (!file) return;
+    const looksLikeImage = /^image\//.test(file.type) || /\.(png|jpe?g|webp|gif|bmp|avif)$/i.test(file.name || '');
+    if (!looksLikeImage) return say('Please choose an image file (PNG, JPG or WebP).', 'bad');
+    if (file.size > 40 * 1024 * 1024) return say('That file is over 40 MB.', 'bad');
+    say('Loading…');
+    const errors = [];
+    for (const decode of [decodeViaBitmap, decodeViaDataUrl, decodeViaBlobUrl]) {
+      try {
+        const img = await decode(file);
+        return init(img, file);
+      } catch (err) { errors.push(decode.name.replace('decodeVia', '') + ': ' + (err && err.message || err)); }
+    }
+    console.error('Image load failed', errors);
+    say("Couldn't read that image (" + errors.join(' | ') + '). The file may be corrupted or in an unsupported format – try re-saving it as PNG or JPG.', 'bad');
+  }
+
+  function init(img, file) {
+    const W = img.naturalWidth || img.width, H = img.naturalHeight || img.height;
+    if (W < 64 || H < 64) return say('That image is too small.', 'bad');
+    if (W * H > 40e6) return say('That image is over 40 megapixels – please resize it first.', 'bad');
+    S.W = W; S.H = H;
+    S.name = (file.name || 'image').replace(/\.[^.]+$/, '');
+    S.jpegSource = /jpe?g/i.test(file.type);
+    for (const c of [orig, res, view, ovl]) { c.width = W; c.height = H; }
+    ox.drawImage(img, 0, 0);
+    mctx.clearRect(0, 0, W, H);
+    S.hasManual = false;
+    $('brush').checked = false; setBrush(false);
+    $('fmt').value = S.jpegSource ? 'jpeg' : 'png';
+    $('dims').textContent = W + ' × ' + H + ' px';
+    work.style.display = 'block';
+    setView('result', true);
+    runDetect();
+    process();
+    work.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  /* ---------- detection ---------- */
+  function detectAt(T) {
+    const W = S.W, H = S.H;
+    const rxs = Math.floor(W * 0.72), rys = Math.floor(H * 0.72);
+    const rw = W - rxs, rh = H - rys, n = rw * rh;
+    const d = ox.getImageData(rxs, rys, rw, rh).data;
+    const lum = new Float32Array(n);
+    for (let i = 0; i < n; i++) lum[i] = 0.299 * d[i*4] + 0.587 * d[i*4+1] + 0.114 * d[i*4+2];
+
+    const iw = rw + 1, ii = new Float64Array(iw * (rh + 1));
+    for (let y = 0; y < rh; y++) {
+      let row = 0;
+      for (let x = 0; x < rw; x++) { row += lum[y*rw+x]; ii[(y+1)*iw + x+1] = ii[y*iw + x+1] + row; }
+    }
+    const R = Math.max(10, Math.round(Math.min(W, H) * 0.045));
+    const cand = new Uint8Array(n);
+    for (let y = 0; y < rh; y++) {
+      const y0 = Math.max(0, y - R), y1 = Math.min(rh, y + R + 1);
+      for (let x = 0; x < rw; x++) {
+        const x0 = Math.max(0, x - R), x1 = Math.min(rw, x + R + 1);
+        const mean = (ii[y1*iw+x1] - ii[y0*iw+x1] - ii[y1*iw+x0] + ii[y0*iw+x0]) / ((x1-x0)*(y1-y0));
+        if (lum[y*rw+x] - mean > T) cand[y*rw+x] = 1;
+      }
+    }
+
+    const seen = new Uint8Array(n), comps = [];
+    const minArea = Math.max(80, Math.round(W * H * 0.00006));
+    for (let s = 0; s < n; s++) {
+      if (!cand[s] || seen[s]) continue;
+      const stack = [s], px = []; seen[s] = 1;
+      let mnx = 1e9, mny = 1e9, mxx = -1, mxy = -1;
+      while (stack.length) {
+        const p = stack.pop(); px.push(p);
+        const x = p % rw, y = (p / rw) | 0;
+        if (x < mnx) mnx = x; if (x > mxx) mxx = x; if (y < mny) mny = y; if (y > mxy) mxy = y;
+        for (let dy = -1; dy <= 1; dy++) for (let dx = -1; dx <= 1; dx++) {
+          const xx = x + dx, yy = y + dy;
+          if (xx < 0 || yy < 0 || xx >= rw || yy >= rh) continue;
+          const q = yy * rw + xx;
+          if (cand[q] && !seen[q]) { seen[q] = 1; stack.push(q); }
+        }
+      }
+      const bw = mxx - mnx + 1, bh = mxy - mny + 1, area = px.length;
+      const aspect = bw / bh, fill = area / (bw * bh);
+      if (area >= minArea && aspect > 0.55 && aspect < 1.8 && fill > 0.15 && fill < 0.85 && bw < W * 0.14) {
+        const cx = rxs + mnx + bw / 2, cy = rys + mny + bh / 2;
+        comps.push({ px, dist: Math.hypot(W - cx, H - cy), bw, bh });
+      }
+    }
+    if (!comps.length) return null;
+    comps.sort((a, b) => a.dist - b.dist);
+    const best = comps[0];
+
+    const D = Math.max(3, Math.round(Math.min(W, H) * 0.0035));
+    const mask = new Uint8Array(W * H);
+    let mnx = W, mny = H, mxx = 0, mxy = 0;
+    for (const p of best.px) {
+      const x = rxs + (p % rw), y = rys + ((p / rw) | 0);
+      for (let dy = -D; dy <= D; dy++) for (let dx = -D; dx <= D; dx++) {
+        if (dx*dx + dy*dy > D*D) continue;
+        const xx = x + dx, yy = y + dy;
+        if (xx < 0 || yy < 0 || xx >= W || yy >= H) continue;
+        mask[yy * W + xx] = 1;
+        if (xx < mnx) mnx = xx; if (xx > mxx) mxx = xx; if (yy < mny) mny = yy; if (yy > mxy) mxy = yy;
+      }
+    }
+    return { mask, box: { x: mnx, y: mny, w: mxx - mnx + 1, h: mxy - mny + 1 } };
+  }
+
+  function runDetect() {
+    const s = +$('sens').value;
+    const T0 = 44 - s * 4;
+    let r = null;
+    for (const t of [T0, T0 * 0.65, T0 * 0.4]) {
+      r = detectAt(Math.max(4, t));
+      if (r) break;
+    }
+    S.autoMask = r ? r.mask : null;
+    S.found = !!r; S.box = r ? r.box : null;
+  }
+
+  /* ---------- inpainting ---------- */
+  function gauss() {
+    let u = 0, v = 0;
+    while (!u) u = Math.random();
+    while (!v) v = Math.random();
+    return Math.sqrt(-2 * Math.log(u)) * Math.cos(2 * Math.PI * v);
+  }
+
+  function noiseSigma(px, w, h, known) {
+    const vals = [];
+    const step = Math.max(1, Math.floor((w * h) / 60000));
+    for (let y = 1; y < h - 1; y++) for (let x = 1; x < w - 1; x += step) {
+      const i = y * w + x;
+      if (!(known[i] && known[i-1] && known[i+1] && known[i-w] && known[i+w])) continue;
+      const g = px[i*4+1];
+      vals.push(Math.abs(g - (px[(i-1)*4+1] + px[(i+1)*4+1] + px[(i-w)*4+1] + px[(i+w)*4+1]) / 4));
+    }
+    if (vals.length < 50) return 0;
+    vals.sort((a, b) => a - b);
+    const sigma = vals[vals.length >> 1] * 1.4826 / 1.118;
+    return sigma < 0.6 ? 0 : Math.min(sigma, 6);
+  }
+
+  function inpaint(px, w, h, unk, R) {
+    const n = w * h, known = new Uint8Array(n);
+    let remaining = 0;
+    for (let i = 0; i < n; i++) { if (unk[i]) remaining++; else known[i] = 1; }
+    if (remaining === n) return;
+    const sigma = noiseSigma(px, w, h, known);
+
+    while (remaining > 0) {
+      const list = [];
+      for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+        const i = y * w + x;
+        if (known[i]) continue;
+        let adj = false;
+        for (let dy = -1; dy <= 1 && !adj; dy++) {
+          const yy = y + dy; if (yy < 0 || yy >= h) continue;
+          for (let dx = -1; dx <= 1; dx++) {
+            const xx = x + dx; if (xx < 0 || xx >= w) continue;
+            if (known[yy * w + xx]) { adj = true; break; }
+          }
+        }
+        if (adj) list.push(i);
+      }
+      if (!list.length) break;
+      const out = new Float32Array(list.length * 3);
+      for (let k = 0; k < list.length; k++) {
+        const i = list[k], x = i % w, y = (i / w) | 0;
+        let sr = 0, sg = 0, sb = 0, sw = 0;
+        for (let dy = -R; dy <= R; dy++) {
+          const yy = y + dy; if (yy < 0 || yy >= h) continue;
+          for (let dx = -R; dx <= R; dx++) {
+            const xx = x + dx; if (xx < 0 || xx >= w) continue;
+            const j = yy * w + xx; if (!known[j]) continue;
+            const wt = 1 / (dx*dx + dy*dy + 1);
+            sr += px[j*4] * wt; sg += px[j*4+1] * wt; sb += px[j*4+2] * wt; sw += wt;
+          }
+        }
+        out[k*3] = sr / sw; out[k*3+1] = sg / sw; out[k*3+2] = sb / sw;
+      }
+      for (let k = 0; k < list.length; k++) {
+        const i = list[k];
+        px[i*4] = out[k*3]; px[i*4+1] = out[k*3+1]; px[i*4+2] = out[k*3+2];
+        known[i] = 1;
+      }
+      remaining -= list.length;
+    }
+    if (sigma) {
+      for (let i = 0; i < n; i++) if (unk[i]) {
+        const g = gauss() * sigma * 0.9;
+        px[i*4] += g; px[i*4+1] += g; px[i*4+2] += g;
+      }
+    }
+  }
+
+  /* ---------- pipeline ---------- */
+  function process() {
+    const W = S.W, H = S.H;
+    rx.drawImage(orig, 0, 0);
+    const m = new Uint8Array(W * H);
+    let any = false;
+    if ($('auto').checked && S.autoMask) { m.set(S.autoMask); any = true; }
+    if (S.hasManual) {
+      const d = mctx.getImageData(0, 0, W, H).data;
+      for (let i = 0, j = 3; i < W * H; i++, j += 4) if (d[j] > 40) { m[i] = 1; any = true; }
+    }
+    if (any) {
+      let mnx = W, mny = H, mxx = -1, mxy = -1;
+      for (let y = 0; y < H; y++) for (let x = 0; x < W; x++) if (m[y*W+x]) {
+        if (x < mnx) mnx = x; if (x > mxx) mxx = x; if (y < mny) mny = y; if (y > mxy) mxy = y;
+      }
+      if (mxx >= 0) {
+        const pad = 48;
+        const cx = Math.max(0, mnx - pad), cy = Math.max(0, mny - pad);
+        const cw = Math.min(W, mxx + pad + 1) - cx, ch = Math.min(H, mxy + pad + 1) - cy;
+        const id = rx.getImageData(cx, cy, cw, ch);
+        const unk = new Uint8Array(cw * ch);
+        for (let y = 0; y < ch; y++) for (let x = 0; x < cw; x++) unk[y*cw+x] = m[(cy+y)*W + cx + x];
+        inpaint(id.data, cw, ch, unk, 6);
+        rx.putImageData(id, cx, cy);
+      }
+    }
+    render();
+    drawClose();
+    if (S.found && $('auto').checked) {
+      say('Watermark found in the bottom-right corner (' + S.box.w + '×' + S.box.h + ' px) and removed.' +
+          (S.hasManual ? ' Brush strokes applied too.' : ''), 'ok');
+    } else if ($('auto').checked && !S.hasManual) {
+      say("Couldn't find the watermark automatically. Raise Sensitivity, or turn on the brush and paint over it.", 'warn');
+    } else if (S.hasManual) {
+      say('Brush strokes applied.', 'ok');
+    } else {
+      say('Auto-remove is off – showing the original pixels.', 'warn');
+    }
+  }
+
+  function render() {
+    vctx.clearRect(0, 0, S.W, S.H);
+    vctx.drawImage(S.view === 'result' ? res : orig, 0, 0);
+  }
+
+  function drawClose() {
+    const s = Math.round(Math.min(S.W, S.H) * 0.25), sx = S.W - s, sy = S.H - s;
+    for (const [id, src] of [['closeA', orig], ['closeB', res]]) {
+      const c = $(id), cx = c.getContext('2d');
+      cx.clearRect(0, 0, c.width, c.height);
+      cx.drawImage(src, sx, sy, s, s, 0, 0, c.width, c.height);
+    }
+  }
+
+  function setView(v, silent) {
+    S.view = v;
+    $('tabRes').classList.toggle('on', v === 'result');
+    $('tabOrig').classList.toggle('on', v === 'orig');
+    if (!silent) render();
+  }
+
+  /* ---------- brush ---------- */
+  function setBrush(on) {
+    S.brush = on;
+    ovl.classList.toggle('on', on);
+  }
+  let drawing = false, last = null, timer = 0;
+  function pt(e) {
+    const r = ovl.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * S.W / r.width, y: (e.clientY - r.top) * S.H / r.height };
+  }
+  function stroke(a, b) {
+    const r = ovl.getBoundingClientRect();
+    mctx.strokeStyle = 'rgb(255,70,70)'; mctx.lineCap = 'round'; mctx.lineJoin = 'round';
+    mctx.lineWidth = +$('bsize').value * S.W / r.width;
+    mctx.beginPath(); mctx.moveTo(a.x, a.y); mctx.lineTo(b.x + 0.01, b.y); mctx.stroke();
+  }
+  ovl.addEventListener('pointerdown', e => {
+    if (!S.brush) return;
+    drawing = true; ovl.setPointerCapture(e.pointerId);
+    last = pt(e); stroke(last, last); e.preventDefault();
+  });
+  ovl.addEventListener('pointermove', e => {
+    if (!drawing) return;
+    const p = pt(e); stroke(last, p); last = p;
+  });
+  const endStroke = () => {
+    if (!drawing) return;
+    drawing = false; S.hasManual = true;
+    setView('result', true); process();
+  };
+  ovl.addEventListener('pointerup', endStroke);
+  ovl.addEventListener('pointercancel', endStroke);
+
+  /* ---------- UI wiring ---------- */
+  fileInput.addEventListener('change', () => { if (fileInput.files[0]) loadFile(fileInput.files[0]); fileInput.value = ''; });
+  dz.addEventListener('click', () => fileInput.click());
+  dz.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); fileInput.click(); } });
+  ['dragenter', 'dragover'].forEach(t => dz.addEventListener(t, e => { e.preventDefault(); dz.classList.add('over'); }));
+  ['dragleave', 'drop'].forEach(t => dz.addEventListener(t, e => { e.preventDefault(); dz.classList.remove('over'); }));
+  dz.addEventListener('drop', e => { const f = e.dataTransfer.files[0]; if (f) loadFile(f); });
+  window.addEventListener('dragover', e => e.preventDefault());
+  window.addEventListener('drop', e => { e.preventDefault(); if (!dz.contains(e.target)) { const f = e.dataTransfer.files[0]; if (f) loadFile(f); } });
+  window.addEventListener('paste', e => {
+    const item = [...(e.clipboardData?.items || [])].find(i => i.type.startsWith('image/'));
+    if (item) loadFile(item.getAsFile());
+  });
+
+  $('tabRes').onclick = () => setView('result');
+  $('tabOrig').onclick = () => setView('orig');
+
+  $('sens').addEventListener('input', () => {
+    $('sensVal').textContent = $('sens').value;
+    clearTimeout(timer);
+    timer = setTimeout(() => { runDetect(); setView('result', true); process(); }, 150);
+  });
+  $('auto').addEventListener('change', () => { setView('result', true); process(); });
+  $('brush').addEventListener('change', e => setBrush(e.target.checked));
+  $('bsize').addEventListener('input', () => { $('bsizeVal').textContent = $('bsize').value; });
+  $('clearBrush').onclick = () => { mctx.clearRect(0, 0, S.W, S.H); S.hasManual = false; process(); };
+  $('again').onclick = () => { window.scrollTo({ top: 0, behavior: 'smooth' }); fileInput.click(); };
+
+  $('download').onclick = () => {
+    const fmt = $('fmt').value, mime = fmt === 'png' ? 'image/png' : 'image/jpeg';
+    let src = res;
+    if (fmt === 'jpeg') {
+      src = document.createElement('canvas'); src.width = S.W; src.height = S.H;
+      const c = src.getContext('2d'); c.fillStyle = '#fff'; c.fillRect(0, 0, S.W, S.H); c.drawImage(res, 0, 0);
+    }
+    src.toBlob(b => {
+      if (!b) return say('Could not create the file – try PNG instead.', 'bad');
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(b);
+      a.download = S.name + '-clean.' + (fmt === 'png' ? 'png' : 'jpg');
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+    }, mime, 0.95);
+  };
+})();
+</script>
+</body>
+</html>
