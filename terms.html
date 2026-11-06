@@ -5,52 +5,41 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Terms of Service - TryMetaClear</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: { brand: { 50: '#eef6ff', 600: '#0066ff', 900: '#0a194f' } }
-        }
-      }
-    }
-  </script>
 </head>
-<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col justify-between">
-  <header class="bg-white border-b border-slate-200">
+<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
     <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
-      <a href="/"><img src="logo.png" alt="TryMetaClear" class="w-52 h-auto object-contain"></a>
+      <a href="/" class="font-black text-xl text-slate-900">TryMetaClear</a>
+      <a href="/" class="text-xs font-bold text-blue-600 hover:underline">Back to Home</a>
     </div>
   </header>
-
-  <main class="max-w-4xl mx-auto px-4 py-12 w-full">
-    <div class="bg-white p-8 md:p-12 rounded-3xl border border-slate-200 shadow-sm space-y-6">
-      <h1 class="text-3xl font-extrabold text-brand-900">Terms of Service</h1>
-      <p class="text-xs text-slate-400">Last updated: November 2026</p>
-
-      <section class="space-y-3">
-        <h2 class="text-xl font-bold text-brand-900">1. Acceptance of Terms</h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          By accessing and using TryMetaClear, you agree to comply with these terms. TryMetaClear provides metadata inspection and removal utility tools for personal and professional image workflow management.
-        </p>
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 space-y-8 text-left">
+    <h1 class="text-3xl font-extrabold text-slate-900">Terms of Service</h1>
+    <p class="text-xs text-slate-500">Last updated: November 2026</p>
+    
+    <div class="space-y-6 text-sm text-slate-600 leading-relaxed">
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-slate-800">1. Acceptance of Terms</h2>
+        <p>By accessing and using TryMetaClear (including our image and video AI metadata removal utilities), you agree to comply with and be bound by these Terms of Service.</p>
       </section>
 
-      <section class="space-y-3">
-        <h2 class="text-xl font-bold text-brand-900">2. Permitted Usage</h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          You agree to use this service only on media files that you own or have explicit legal rights to modify. You may not use TryMetaClear to unlawfully obscure copyright notices or engage in unauthorized deceptive media manipulation.
-        </p>
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-slate-800">2. Permitted Use</h2>
+        <p>You agree to use our tools exclusively for lawful purposes. You retain full ownership and copyright over your uploaded media. TryMetaClear does not claim any rights over the images or videos you process.</p>
       </section>
 
-      <section class="space-y-3">
-        <h2 class="text-xl font-bold text-brand-900">3. Limitation of Liability</h2>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          The service is provided "as-is" without warranty of any kind. While TryMetaClear executes header-level metadata removal without modifying pixel matrices, we are not liable for accidental data loss or improper downstream file usage.
-        </p>
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-slate-800">3. Limitation of Liability</h2>
+        <p>TryMetaClear is provided on an "as-is" basis without warranties of any kind. We are not liable for any data loss, corruption, or unintended issues arising from the use of our image or video cleaning tools.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-slate-800">4. Modifications</h2>
+        <p>We reserve the right to modify these terms at any time without prior notice.</p>
       </section>
     </div>
   </main>
-
-  <footer class="bg-brand-900 text-white py-8 border-t border-slate-800 text-center text-xs text-slate-400">
+  <footer class="bg-slate-900 text-white py-6 text-center text-xs">
     <p>© 2026 TryMetaClear. All rights reserved.</p>
   </footer>
 </body>
