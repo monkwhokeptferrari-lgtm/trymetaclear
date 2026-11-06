@@ -291,33 +291,43 @@
     </section>
   </main>
 
-  <!-- Global Footer -->
-  <footer class="bg-brand-900 text-white py-10 border-t border-slate-800 mt-20">
-    <div class="max-w-6xl mx-auto px-4 space-y-6">
-      <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-slate-300">
-        <div>
-          <p class="font-bold text-white text-sm">TryMetaClear</p>
-          <p>© 2026 TryMetaClear. All rights reserved. Developed by Mayank Gupta.</p>
-        </div>
-        <div class="flex space-x-6 text-sm font-medium">
-          <a href="/about.html" class="hover:text-brand-400 transition">About</a>
-          <a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a>
-          <a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a>
-          <a href="/contact.html" class="hover:text-brand-400 transition">Contact</a>
-        </div>
+  <!-- Global Footer with Increased Font Size -->
+<footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
+  <div class="max-w-6xl mx-auto px-4 space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-300">
+      <div class="space-y-3">
+        <p class="font-bold text-white text-base">TryMetaClear</p>
+        <p class="text-slate-400">The ultimate privacy utility for stripping AI metadata, C2PA manifests, and EXIF footprints from digital media.</p>
       </div>
-      <!-- Bottom Row: High-Contrast Popular Tools Links -->
-    <div class="pt-6 border-t border-slate-800/80 text-center md:text-left">
-      <p class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Popular Tools</p>
-      <div class="flex flex-wrap justify-center md:justify-start gap-6 text-xs text-slate-300 font-medium">
-        <a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition font-bold text-white">Video AI Metadata Remover</a>
-        <a href="/remove-c2pa-content-credentials" class="hover:text-brand-500 transition">Remove C2PA Credentials</a>
-        <a href="/remove-midjourney-metadata" class="hover:text-brand-500 transition">Remove Midjourney Metadata</a>
-        <a href="/remove-ai-metadata-from-image" class="hover:text-brand-500 transition">Remove AI Metadata</a>
+      <div>
+        <p class="font-bold text-white text-base mb-3">Popular Tools</p>
+        <ul class="space-y-2">
+          <li><a href="/remove-c2pa-content-credentials" class="hover:text-brand-400 transition">Remove C2PA Credentials</a></li>
+          <li><a href="/remove-midjourney-metadata" class="hover:text-brand-400 transition">Remove Midjourney Metadata</a></li>
+          <li><a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition font-bold text-white">Video AI Metadata Remover</a></li>
+          <li><a href="/" class="hover:text-brand-400 transition">Remove AI Metadata</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white text-base mb-3">Legal & Company</p>
+        <ul class="space-y-2">
+          <li><a href="/about.html" class="hover:text-brand-400 transition">About</a></li>
+          <li><a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a></li>
+          <li><a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a></li>
+          <li><a href="/contact.html" class="hover:text-brand-400 transition">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <p class="font-bold text-white text-base mb-3">Developer</p>
+        <p class="text-slate-400">Developed by Mayank Gupta. Designed for high-speed performance marketing and creator privacy.</p>
       </div>
     </div>
+    <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400">
+      <p>© 2026 TryMetaClear. All rights reserved.</p>
+      <p>Built with Python Flask & Tailwind CSS.</p>
     </div>
-  </footer>
+  </div>
+</footer>
 
   <!-- Frontend Execution Script -->
   <script>
