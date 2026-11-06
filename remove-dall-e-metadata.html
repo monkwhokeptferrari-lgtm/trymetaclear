@@ -17,6 +17,44 @@
   <link rel="canonical" href="[https://trymetaclear.com/remove-dall-e-metadata](https://trymetaclear.com/remove-dall-e-metadata)">
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Schema.org Markup (WebApplication & FAQ Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TryMetaClear DALL-E Metadata Stripper",
+    "url": "https://trymetaclear.com/remove-dall-e-metadata",
+    "description": "Quickly detect and remove DALL-E generated prompt data, hidden tracking tags, and parameters from your AI images.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What hidden data does DALL-E inject into images?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "DALL-E images often contain specific generation metadata and identifiers embedded within file header chunks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is my uploaded DALL-E image stored anywhere?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No, files are processed strictly in server memory during cleanup and are automatically purged right after download."
+        }
+      }
+    ]
+  }
+  </script>
   <script>
     tailwind.config = {
       theme: {

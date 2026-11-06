@@ -17,6 +17,44 @@
   <link rel="canonical" href="https://trymetaclear.com/remove-midjourney-metadata">
   
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Schema.org Markup (WebApplication & FAQ Schema) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "TryMetaClear Midjourney Metadata Remover",
+    "url": "https://trymetaclear.com/remove-midjourney-metadata",
+    "description": "Strip hidden Midjourney prompts, job IDs, parameters (--v, --ar), and generation parameters from downloaded AI artwork instantly.",
+    "applicationCategory": "MultimediaApplication",
+    "operatingSystem": "All",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
+  }
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Does Midjourney embed prompts inside the image file?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, Midjourney embeds prompt text, job identifiers, and parameters directly into the image file's metadata and chunk structure."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can people reverse-engineer my Midjourney prompts if I don't clean them?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, anyone inspecting the raw file metadata can extract your exact text prompt and parameters unless you strip them beforehand."
+        }
+      }
+    ]
+  }
+  </script>
   <script>
     tailwind.config = {
       theme: {
