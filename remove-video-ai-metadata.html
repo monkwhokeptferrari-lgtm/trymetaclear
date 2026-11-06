@@ -389,7 +389,7 @@
     function renderDetailedVideoResults(data) {
       const scanContainer = document.getElementById('metadataResult');
       const originalFileName = currentUploadedFile ? currentUploadedFile.name : "video.mp4";
-      const totalFields = data.total_fields || (data.tags ? data.tags.length : 0);
+      const totalFields = (data.ai_tags_count !== undefined) ? data.ai_tags_count : (data.total_fields || 0);
       const detectedModel = data.detected_model || data.detected_ai || data.ai_model || "None Detected (Clean)";
 
       let sectionsHtml = '';
