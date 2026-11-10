@@ -16,6 +16,11 @@ Key facts:
 - [Remove DALL-E & ChatGPT Metadata](https://trymetaclear.com/remove-dall-e-metadata): The C2PA manifest OpenAI adds to generated images, and how to remove it.
 - [Video AI Metadata Remover](https://trymetaclear.com/remove-video-ai-metadata): Removes AI tags and C2PA from MP4, MOV and WebM without re-encoding.
 
+## Blog
+
+- [Blog index](https://trymetaclear.com/blog/): All guides.
+- [How to Remove the AI Label from Instagram Photos](https://trymetaclear.com/blog/how-to-remove-ai-label-from-instagram): Why Instagram shows "AI info" on real photos, how to remove the C2PA/IPTC metadata that triggers it, and what metadata cleaning cannot remove.
+
 ## Company
 
 - [About](https://trymetaclear.com/about)

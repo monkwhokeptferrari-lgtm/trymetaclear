@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PXHMQC7T');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Blog: AI Metadata, C2PA &amp; Image Privacy Guides | TryMetaClear</title>
+  <meta name="description" content="Guides on removing AI labels, C2PA Content Credentials and EXIF metadata from photos and videos, plus what metadata tools can and can't do.">
+  <link rel="canonical" href="https://trymetaclear.com/blog/">
+  <link rel="icon" type="image/png" href="/favico.png">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TryMetaClear">
+  <meta property="og:url" content="https://trymetaclear.com/blog/">
+  <meta property="og:title" content="TryMetaClear Blog: AI Metadata, C2PA &amp; Image Privacy Guides">
+  <meta property="og:description" content="Guides on removing AI labels, C2PA Content Credentials and EXIF metadata from photos and videos.">
+  <meta property="og:image" content="https://trymetaclear.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Blog",
+        "@id": "https://trymetaclear.com/blog/#blog",
+        "name": "TryMetaClear Blog",
+        "url": "https://trymetaclear.com/blog/",
+        "description": "Guides on removing AI labels, C2PA Content Credentials and EXIF metadata from photos and videos.",
+        "publisher": { "@id": "https://trymetaclear.com/#organization" },
+        "blogPost": [
+          {
+            "@type": "BlogPosting",
+            "@id": "https://trymetaclear.com/blog/how-to-remove-ai-label-from-instagram#article",
+            "headline": "How to Remove the AI Label from Instagram Photos (2027 Guide)",
+            "url": "https://trymetaclear.com/blog/how-to-remove-ai-label-from-instagram",
+            "datePublished": "2026-11-11",
+            "image": "https://trymetaclear.com/blog/images/instagram-ai-label-before-after.jpg",
+            "author": { "@type": "Person", "@id": "https://trymetaclear.com/about#mayank-gupta", "name": "Mayank Gupta", "url": "https://trymetaclear.com/about" }
+          }
+        ]
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://trymetaclear.com/#organization",
+        "name": "TryMetaClear",
+        "url": "https://trymetaclear.com/",
+        "logo": { "@type": "ImageObject", "url": "https://trymetaclear.com/logo.png", "width": 480, "height": 160 }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://trymetaclear.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://trymetaclear.com/blog/" }
+        ]
+      }
+    ]
+  }
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef6ff', 100: '#e0f0ff', 500: '#00d2ff', 600: '#0066ff', 700: '#0052cc', 900: '#0a194f' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXHMQC7T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <!-- Header -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+    <div class="max-w-6xl mx-auto px-4 py-4 md:py-0 md:h-24 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+      <a href="/" class="flex items-center shrink-0">
+        <img src="/logo.png" alt="TryMetaClear" width="240" height="80" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
+      </a>
+      <nav class="flex items-center justify-center space-x-6 md:space-x-8 w-full md:w-auto">
+        <div class="relative group py-1 md:py-4">
+          <button class="flex items-center space-x-1.5 text-slate-800 hover:text-brand-600 font-bold text-base transition">
+            <span>Tools</span>
+            <svg class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="absolute left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 mt-2 w-64 md:w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">AI Metadata &amp; EXIF Remover</a>
+            <a href="/remove-ai-metadata-from-image" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">How to Remove AI Metadata</a>
+            <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">C2PA Content Credentials</a>
+            <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Midjourney Metadata</a>
+            <a href="/remove-dall-e-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">DALL-E &amp; ChatGPT Metadata</a>
+            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata</a>
+          </div>
+        </div>
+        <a href="/blog/" class="text-brand-600 font-bold text-base transition" aria-current="page">Blog</a>
+        <a href="/about" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
+        <a href="/remove-video-ai-metadata" class="bg-brand-600 hover:bg-brand-700 text-white text-sm md:text-base font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-xl transition shadow-md whitespace-nowrap">For Video</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow w-full max-w-6xl mx-auto px-4 py-12">
+    <div class="text-center max-w-2xl mx-auto mb-10 space-y-3">
+      <h1 class="text-3xl md:text-5xl font-extrabold text-brand-900">TryMetaClear Blog</h1>
+      <p class="text-slate-600">Practical guides on AI labels, C2PA Content Credentials, EXIF data and image privacy, including what metadata tools can and can't do.</p>
+    </div>
+
+    <!-- Tag filter -->
+    <div id="tagFilter" class="flex flex-wrap justify-center gap-2 mb-10" aria-label="Filter articles by tag"></div>
+    <p id="filterNote" class="hidden text-center text-sm text-slate-500 -mt-6 mb-8"></p>
+
+    <!-- Posts: newest first. To add a post, copy an <article> card and fill in data-tags. -->
+    <div id="postList" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+      <article class="post-card bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden flex flex-col hover:shadow-md hover:border-brand-600 transition"
+               data-tags="Remove AI Label|Instagram AI Info|C2PA Content Credentials|EXIF Data|Photoshop Generative Fill|Image Privacy|TryMetaClear">
+        <a href="/blog/how-to-remove-ai-label-from-instagram" class="block aspect-[4/3] overflow-hidden bg-slate-100">
+          <img src="/blog/images/instagram-ai-label-before-after.jpg" width="1080" height="1350" alt="Before and after: an Instagram AI label removed by cleaning the image metadata" class="w-full h-full object-cover object-top">
+        </a>
+        <div class="p-6 flex flex-col flex-grow space-y-3">
+          <div class="text-xs text-slate-500"><time datetime="2026-11-11">November 11, 2026</time> · 8 min read</div>
+          <h2 class="text-xl font-extrabold text-brand-900 leading-snug">
+            <a href="/blog/how-to-remove-ai-label-from-instagram" class="hover:text-brand-600">How to Remove the AI Label from Instagram Photos (2027 Guide)</a>
+          </h2>
+          <p class="text-sm text-slate-600 leading-relaxed flex-grow">Why Instagram flags real photos as "AI info", how to strip the hidden C2PA and EXIF tags that trigger it, and what metadata tools can't remove.</p>
+          <div class="text-xs text-slate-500">By <span class="font-semibold text-slate-700">Mayank Gupta</span></div>
+          <ul class="flex flex-wrap gap-1.5 pt-1">
+            <li><a href="/blog/?tag=Remove%20AI%20Label" class="text-[11px] font-semibold bg-brand-50 text-brand-700 px-2.5 py-0.5 rounded-full hover:bg-brand-100">Remove AI Label</a></li>
+            <li><a href="/blog/?tag=Instagram%20AI%20Info" class="text-[11px] font-semibold bg-brand-50 text-brand-700 px-2.5 py-0.5 rounded-full hover:bg-brand-100">Instagram AI Info</a></li>
+            <li><a href="/blog/?tag=C2PA%20Content%20Credentials" class="text-[11px] font-semibold bg-brand-50 text-brand-700 px-2.5 py-0.5 rounded-full hover:bg-brand-100">C2PA Content Credentials</a></li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
+    <div class="max-w-6xl mx-auto px-4 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-300 text-center md:text-left">
+        <div class="space-y-3">
+          <p class="font-bold text-white text-base">TryMetaClear</p>
+          <p class="text-slate-400">Free tools to inspect and remove EXIF, GPS, IPTC, XMP and C2PA metadata from images and videos.</p>
+        </div>
+        <div>
+          <p class="font-bold text-white text-base mb-3">Tools</p>
+          <ul class="space-y-2">
+            <li><a href="/" class="hover:text-white transition">AI Metadata &amp; EXIF Remover</a></li>
+            <li><a href="/remove-ai-metadata-from-image" class="hover:text-white transition">How to Remove AI Metadata</a></li>
+            <li><a href="/remove-c2pa-content-credentials" class="hover:text-white transition">Remove C2PA Content Credentials</a></li>
+            <li><a href="/remove-midjourney-metadata" class="hover:text-white transition">Remove Midjourney Metadata</a></li>
+            <li><a href="/remove-dall-e-metadata" class="hover:text-white transition">Remove DALL-E &amp; ChatGPT Metadata</a></li>
+            <li><a href="/remove-video-ai-metadata" class="hover:text-white transition">Video AI Metadata Remover</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-bold text-white text-base mb-3">Company</p>
+          <ul class="space-y-2">
+            <li><a href="/blog/" class="hover:text-white transition">Blog</a></li>
+            <li><a href="/about" class="hover:text-white transition">About</a></li>
+            <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
+        <p>&copy; 2026 TryMetaClear. All rights reserved.</p>
+        <p>Built by <a href="/about" class="text-white hover:underline">Mayank Gupta</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Tag filter: builds tag buttons from the cards' data-tags and filters by ?tag= -->
+  <script>
+    (function () {
+      const cards = [...document.querySelectorAll('.post-card')];
+      const tags = [...new Set(cards.flatMap(c => c.dataset.tags.split('|')))].sort();
+      const active = new URLSearchParams(location.search).get('tag');
+      const filter = document.getElementById('tagFilter');
+      const note = document.getElementById('filterNote');
+
+      const chip = (label, href, on) => {
+        const a = document.createElement('a');
+        a.href = href;
+        a.textContent = label;
+        a.className = 'text-xs font-semibold px-3 py-1.5 rounded-full border transition ' +
+          (on ? 'bg-brand-600 text-white border-brand-600' : 'bg-white text-slate-700 border-slate-200 hover:border-brand-600');
+        if (on) a.setAttribute('aria-current', 'true');
+        return a;
+      };
+      filter.appendChild(chip('All articles', '/blog/', !active));
+      tags.forEach(t => filter.appendChild(chip(t, '/blog/?tag=' + encodeURIComponent(t), t === active)));
+
+      if (active) {
+        let shown = 0;
+        cards.forEach(c => { const match = c.dataset.tags.split('|').includes(active); c.hidden = !match; if (match) shown++; });
+        note.textContent = shown + ' article' + (shown === 1 ? '' : 's') + ' tagged "' + active + '"';
+        note.classList.remove('hidden');
+      }
+    })();
+  </script>
+</body>
+</html>
