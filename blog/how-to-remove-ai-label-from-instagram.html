@@ -58,6 +58,11 @@
         "datePublished": "2026-11-11",
         "dateModified": "2026-11-11",
         "keywords": ["Remove AI Label", "Instagram AI Info", "C2PA Content Credentials", "EXIF Data", "Photoshop Generative Fill", "Image Privacy", "TryMetaClear"],
+        "citation": [
+          "https://about.fb.com/news/2024/02/labeling-ai-generated-images-on-facebook-instagram-and-threads/",
+          "https://techcrunch.com/2024/07/01/meta-changes-its-label-from-made-with-ai-to-ai-info-to-indicate-use-of-ai-in-photos",
+          "https://techcrunch.com/2024/09/12/meta-is-making-its-ai-info-label-less-visible-on-content-edited-or-modified-by-ai-tools"
+        ],
         "articleSection": "Guides",
         "inLanguage": "en",
         "author": {
@@ -91,27 +96,27 @@
           {
             "@type": "Question",
             "name": "Why did my real photo get flagged with an AI label on Instagram?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Many editing tools (like Photoshop, Lightroom, or phone gallery apps) automatically write a C2PA metadata tag whenever you use AI-assisted retouching, background removal, or generative fill features. Instagram scans file headers upon upload and applies an automated label based on these embedded tags, even if 99% of your photo is a real camera capture." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Because the file said AI was involved. Photoshop, Lightroom and many phone gallery apps write a C2PA or IPTC tag when you use an AI feature such as generative fill, object removal or AI background removal. Instagram reads that tag when you upload and labels the post, even when almost all of the photo is a real camera capture." }
           },
           {
             "@type": "Question",
             "name": "Will stripping metadata reduce my photo's visual quality?",
-            "acceptedAnswer": { "@type": "Answer", "text": "No. TryMetaClear targets file header containers (EXIF, IPTC, XMP, C2PA) exclusively. It does not re-encode or compress visual pixel data, ensuring your image retains 100% of its original resolution, color space, and sharpness." }
+            "acceptedAnswer": { "@type": "Answer", "text": "No. TryMetaClear removes EXIF, IPTC, XMP and C2PA metadata without re-encoding the image, so resolution, colour and sharpness stay exactly the same." }
           },
           {
             "@type": "Question",
             "name": "Is my photo uploaded or stored on your servers?",
-            "acceptedAnswer": { "@type": "Answer", "text": "Your photo is sent over an encrypted (HTTPS) connection to our processing server, held in memory only while it is cleaned, and deleted immediately afterwards. It is never stored in cloud databases, shared, or used for AI model training." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Your photo is sent over an encrypted connection to our server, held in memory while it's cleaned, and deleted straight afterwards. We don't store it, share it or use it to train AI models. The details are in our privacy policy." }
           },
           {
             "@type": "Question",
             "name": "What can an AI metadata remover NOT remove?",
-            "acceptedAnswer": { "@type": "Answer", "text": "An AI metadata remover strips header tags and resets digital provenance containers. However, it cannot alter image pixels. Therefore, it cannot remove invisible pixel watermarks (such as Google SynthID) or bypass visual computer-vision classifiers that inspect physical pixel geometry." }
+            "acceptedAnswer": { "@type": "Answer", "text": "Anything in the pixels. That includes invisible watermarks such as Google's SynthID and anything a visual AI detector picks up from the image itself. It also can't change labels on posts that are already published." }
           },
           {
             "@type": "Question",
             "name": "What image file formats are supported?",
-            "acceptedAnswer": { "@type": "Answer", "text": "TryMetaClear supports all standard camera and web image formats, including JPG/JPEG, PNG, WebP, and HEIC, up to 100 MB per file." }
+            "acceptedAnswer": { "@type": "Answer", "text": "JPG/JPEG, PNG, WebP and HEIC, up to 100 MB per file." }
           }
         ]
       }
@@ -197,27 +202,28 @@
 
       <div class="prose prose-slate prose-lg max-w-none prose-headings:text-brand-900 prose-a:text-brand-600 prose-img:rounded-2xl prose-img:border prose-img:border-slate-200 prose-code:before:content-none prose-code:after:content-none prose-code:bg-slate-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:font-semibold">
 
-        <p>Maya is a wedding photographer. Last spring she spent an evening tidying a portrait: she removed a stranger from the background with a generative-fill tool and left everything else alone. She posted it to Instagram that night. The next morning a small label sat under her photo: <strong>AI info</strong>.</p>
-        <p>She hadn't made the picture with AI. Nobody had asked her about it. Her clients started asking.</p>
+        <p>Maya is a wedding photographer. Last spring she cleaned up a portrait: a stranger had wandered into the background, so she removed him with a generative-fill tool. Nothing else changed. She posted it that evening, and by morning a client had messaged her: "Is this photo AI?" Instagram had attached an <strong>AI info</strong> label to it.</p>
+        <p>She hadn't made the picture with AI. She had used AI to delete one person from the background, and the file remembered.</p>
         <p><em>(Maya is an illustrative example, not a real customer.)</em></p>
-        <p>If that sounds familiar, you're in the right place. Here's what you need to know, and then we'll go step by step.</p>
+        <p>This happens to a lot of photographers, and the cause is almost always the same: metadata. Below I'll explain what Instagram is reading, how to remove it, what I saw when I tested it on our own account, and when you shouldn't remove the label at all.</p>
 
         <div class="not-prose bg-white border border-slate-200 rounded-2xl p-6 my-8">
           <h2 class="text-xl font-extrabold text-brand-900 mb-3">The Short Answer</h2>
           <ul class="space-y-3 text-base text-slate-700 leading-relaxed list-disc list-inside">
-            <li><strong class="text-brand-900">Why it appears:</strong> Instagram shows an "AI info" label when your image file carries hidden header tags indicating AI software touched the file. Editing tools add these tags automatically—even for minor retouching, background removal, or object cleanup.</li>
-            <li><strong class="text-brand-900">How to remove the trigger:</strong> Cleaning that hidden metadata removes the embedded header tag. You can strip these header markers for free using <strong>TryMetaClear</strong>; your file is deleted from our server as soon as it's cleaned.</li>
-            <li><strong class="text-brand-900">What it can't guarantee:</strong> Metadata tools clean file header tags, but cannot remove invisible pixel watermarks (such as Google SynthID). Platforms may also evaluate visual pixel structures or rely on self-disclosures.</li>
+            <li><strong class="text-brand-900">Why it appears:</strong> Instagram reads hidden metadata in your file. If that metadata says an AI tool created or edited the image, Instagram adds an AI label. Editing apps write it automatically, even when the AI part was small, like removing one object.</li>
+            <li><strong class="text-brand-900">How to remove the trigger:</strong> Strip the metadata before you upload. <strong>TryMetaClear</strong> does it for free, and the file is deleted from our server as soon as it's cleaned.</li>
+            <li><strong class="text-brand-900">What it can't guarantee:</strong> Some AI images also carry an invisible watermark in the pixels (Google's SynthID, for example), and platforms can use other signals too. Removing metadata doesn't touch any of that.</li>
           </ul>
         </div>
 
         <nav class="not-prose bg-slate-100 rounded-2xl p-6 my-8" aria-label="Table of contents">
           <p class="text-sm font-extrabold text-brand-900 uppercase tracking-wider mb-3">In this guide</p>
           <ol class="list-decimal list-inside space-y-1.5 text-base text-slate-700">
-            <li><a href="#why-instagram-shows-ai-info" class="text-brand-600 font-semibold hover:underline">Why does Instagram show an "AI info" label?</a></li>
+            <li><a href="#why-instagram-shows-ai-info" class="text-brand-600 font-semibold hover:underline">Why Instagram adds an "AI info" label</a></li>
             <li><a href="#step-1" class="text-brand-600 font-semibold hover:underline">Step 1: See what your photo is carrying</a></li>
             <li><a href="#step-2" class="text-brand-600 font-semibold hover:underline">Step 2: Clean the metadata</a></li>
-            <li><a href="#step-3" class="text-brand-600 font-semibold hover:underline">Step 3: Download and post the clean copy</a></li>
+            <li><a href="#step-3" class="text-brand-600 font-semibold hover:underline">Step 3: Post the clean copy</a></li>
+            <li><a href="#my-test" class="text-brand-600 font-semibold hover:underline">What happened when I tested it</a></li>
             <li><a href="#label-still-appears" class="text-brand-600 font-semibold hover:underline">What if the label still appears?</a></li>
             <li><a href="#when-not-to-remove" class="text-brand-600 font-semibold hover:underline">When you shouldn't remove the AI label</a></li>
             <li><a href="#faq" class="text-brand-600 font-semibold hover:underline">Frequently asked questions</a></li>
@@ -225,105 +231,108 @@
         </nav>
 
         <h2 id="why-instagram-shows-ai-info">Why Does Instagram Show an "AI Info" Label?</h2>
-        <p>Every digital image file carries far more than visual color pixels. Beneath the surface, image files contain hidden header data containers that record when the photo was taken, what camera device was used, which software touched it, and how the file was altered over time.</p>
-        <p>When Meta (Instagram and Facebook) updated their content labeling algorithms, they integrated automated metadata scanning. Two primary metadata standards drive Instagram's automated labeling system today:</p>
+        <p>Meta doesn't guess which images are AI. It reads what the files say about themselves.</p>
+        <p>In February 2024, Meta <a href="https://about.fb.com/news/2024/02/labeling-ai-generated-images-on-facebook-instagram-and-threads/" rel="noopener" target="_blank">announced</a> that it would label AI images on Facebook, Instagram and Threads by detecting industry-standard markers: the C2PA and IPTC metadata that tools from Google, OpenAI, Microsoft, Adobe, Midjourney and Shutterstock write into their images.</p>
+        <p>The first version of the label said "Made with AI". Photographers objected almost immediately, because real photos with small edits were getting it. In July 2024 Meta <a href="https://techcrunch.com/2024/07/01/meta-changes-its-label-from-made-with-ai-to-ai-info-to-indicate-use-of-ai-in-photos" rel="noopener" target="_blank">renamed it "AI info"</a>. Then in September 2024 it <a href="https://techcrunch.com/2024/09/12/meta-is-making-its-ai-info-label-less-visible-on-content-edited-or-modified-by-ai-tools" rel="noopener" target="_blank">moved the label into the post's menu</a> for images that were only edited with AI, and kept it visible under the username for images detected as fully AI-generated.</p>
+        <p>So the label you see depends on what your file claims, and Meta has changed the wording more than once. In my own test (below), it appeared under the account name as "AI content".</p>
+        <p>Instagram reads two kinds of metadata.</p>
 
-        <h3>1. C2PA Content Credentials (Coalition for Content Provenance and Authenticity)</h3>
-        <p>C2PA is an open cross-industry standard developed by Adobe, Microsoft, Google, Sony, and Leica. It acts as a digital "nutrition label" or immutable cryptographic manifest attached to an image file header. Whenever you edit an image in software supporting C2PA—such as Adobe Photoshop, Lightroom, or generative platforms—the app embeds a signed manifest logging the exact tool version, editing action, and AI model signature used during production. <a href="/remove-c2pa-content-credentials">Learn more about C2PA Content Credentials</a>.</p>
+        <h3>C2PA Content Credentials</h3>
+        <p>C2PA (the Coalition for Content Provenance and Authenticity) is an open standard backed by Adobe, Microsoft, Google, Sony, Leica and others. A C2PA manifest is a signed record stored inside the file. It says which app made or edited the image and what it did, including whether AI was involved. Adobe Firefly, Photoshop's Generative Fill and ChatGPT's image generator all write one. Because the record is signed, nobody can quietly change it; you can only keep it or remove it. <a href="/remove-c2pa-content-credentials">Learn more about C2PA Content Credentials</a>.</p>
 
-        <h3>2. IPTC Photo Metadata &amp; XMP Tags</h3>
-        <p>IPTC (International Press Telecommunications Council) and Adobe XMP (Extensible Metadata Platform) are traditional photo header standards. Within these header schemas, specific metadata fields indicate digital provenance—notably:</p>
+        <h3>IPTC and XMP fields</h3>
+        <p>IPTC and XMP are older, plainer metadata formats that sit alongside EXIF. A few of their fields matter here:</p>
         <ul>
-          <li><code>DigitalSourceType</code>: Specifies if media is camera-captured, retouched, or algorithmically generated.</li>
-          <li><code>AISystemUsed</code> (IPTC "AI System Used"): Records the specific AI generator model (e.g., Adobe Firefly, <a href="/remove-dall-e-metadata">DALL-E 3</a>, <a href="/remove-midjourney-metadata">Midjourney</a>, or Stable Diffusion).</li>
-          <li><code>Software</code> / <code>History</code>: Logs edit steps, including Generative Fill and Generative Remove actions.</li>
+          <li><code>DigitalSourceType</code> says how the image was made. The value <code>trainedAlgorithmicMedia</code> means "made by AI", and <code>compositeWithTrainedAlgorithmicMedia</code> means a real image combined with AI elements.</li>
+          <li><code>AISystemUsed</code> (IPTC "AI System Used") names the generator, such as Adobe Firefly, <a href="/remove-dall-e-metadata">DALL-E 3</a>, <a href="/remove-midjourney-metadata">Midjourney</a> or Stable Diffusion.</li>
+          <li><code>Software</code> and <code>History</code> record the app that saved the file and, sometimes, a log of edit steps such as Generative Fill.</li>
         </ul>
-        <p>When you edit a photo with Adobe Photoshop Generative Fill, Lightroom Generative Remove, Google Pixel Magic Eraser, or Samsung Galaxy AI retouching, the software automatically writes these C2PA manifests or IPTC tags into your image file header.</p>
-        <p>When you upload the photo to Instagram, Meta's automated ingestion pipeline inspects these header containers. If it detects an embedded C2PA manifest or an IPTC tag marked with AI source credentials, it automatically attaches the <strong>"AI info"</strong> badge directly beneath your post.</p>
+        <p>Phones do this too. AI edits made with tools like Google's Magic Eraser or Samsung's Galaxy AI can leave the same kind of marker.</p>
+        <p>The important part: the label reacts to what the file <em>says</em>, not to what the photo looks like. A tag that says "AI touched this" is enough, even if 99% of the picture came straight off your camera.</p>
 
         <figure>
           <img src="/blog/images/instagram-ai-info-label-before.jpg" width="1280" height="720" loading="lazy" alt="An Instagram post by trymetaclear with the &quot;AI content&quot; label shown under the account name">
           <figcaption>Before: Instagram shows an AI label under the account name because of the metadata inside the file.</figcaption>
         </figure>
 
-        <p>This explains why a real camera photograph gets flagged. The embedded tag tells Instagram <em>"AI software touched this file header"</em>, not <em>"AI created the entire image"</em>.</p>
-
         <h2 id="step-1">Step 1: See What Your Photo Is Carrying</h2>
-        <p>Before altering your image, inspect the exact metadata embedded inside your file header.</p>
+        <p>Before you change anything, look at what's in the file.</p>
         <ol>
           <li>Open the <a href="/">TryMetaClear AI metadata remover</a>.</li>
-          <li>Drag and drop your photo into the upload box. It's sent over an encrypted connection to be scanned, and deleted from our server right after. Nothing is stored.</li>
-          <li>Review the parsed metadata list for <strong>C2PA, XMP, IPTC, and EXIF</strong> entries.</li>
+          <li>Drop your photo into the upload box. It goes over an encrypted connection to be scanned and is deleted from our server afterwards.</li>
+          <li>Read the results. The <strong>AI Status</strong> card tells you whether AI metadata was found, and <strong>Metadata Details</strong> lists every field by section.</li>
         </ol>
-        <p><strong>Checkpoint:</strong> You will know it worked when the results panel shows the <strong>AI Status</strong> card and a <strong>Metadata Details</strong> breakdown of embedded header tags. If you spot entries containing <code>C2PA Manifest</code>, <code>AISystemUsed</code>, <code>DigitalSourceType: trainedAlgorithmicMedia</code>, or specific generator prompt strings, those embedded header fields are the triggers causing Instagram to apply the AI label.</p>
+        <p>What to look for: a C2PA or JUMBF section, <code>DigitalSourceType</code> set to <code>trainedAlgorithmicMedia</code>, an <code>AISystemUsed</code> field, or prompt text from a generator. Any one of those is enough to set off the label.</p>
 
         <h2 id="step-2">Step 2: Clean the Metadata</h2>
-        <p>Once you have identified the embedded tags, use TryMetaClear to strip them in one simple click.</p>
-        <ol>
-          <li>Go to <a href="/">TryMetaClear</a>.</li>
-          <li>Drop your photo into the cleaner box. <em>(TryMetaClear supports <strong>JPG/JPEG, PNG, WebP, and HEIC</strong> files up to 100 MB.)</em></li>
-          <li>Click the <strong>"Remove AI &amp; Download"</strong> button.</li>
-        </ol>
+        <p>On the same results screen, click <strong>"Remove AI &amp; Download"</strong>. A progress bar shows the file being cleaned, and when it's done you'll see <strong>"AI label cleaned and downloaded"</strong>.</p>
+        <p>TryMetaClear accepts <strong>JPG/JPEG, PNG, WebP and HEIC</strong> files up to 100 MB.</p>
 
         <figure>
           <img src="/blog/images/trymetaclear-scan-results.png" width="1187" height="555" loading="lazy" alt="TryMetaClear scan results showing AI Metadata Found, ChatGPT detected, 55 metadata fields, 15 AI metadata tags and the Remove AI &amp; Download button">
-          <figcaption>TryMetaClear's scan found 15 AI metadata tags (detected model: ChatGPT) and shows the "Remove AI &amp; Download" button.</figcaption>
+          <figcaption>The scan from my test: 55 metadata fields, 15 of them AI-related, with ChatGPT detected as the generator.</figcaption>
         </figure>
 
-        <p><strong>Checkpoint:</strong> You will know it worked when a progress bar runs and the tool shows the confirmation <strong>"AI label cleaned and downloaded"</strong>.</p>
-
         <h2 id="step-3">Step 3: Download and Post the Clean Copy</h2>
+        <p>The cleaned file saves automatically, named <code>cleared_</code> followed by your original file name. Upload that copy to Instagram the way you normally would.</p>
+        <p>Keep your original somewhere safe. The cleaned version has also lost its camera details and edit history, and you may want those later.</p>
+        <p>Image quality doesn't change. Only the metadata is removed; the pixels are copied exactly as they are, so resolution, colour and sharpness stay the same.</p>
+
+        <h2 id="my-test">What Happened When I Tested It</h2>
+        <p>I wanted to see the whole chain for myself, so I ran it on our own Instagram account, @trymetaclear.</p>
         <ol>
-          <li>Your cleaned file downloads automatically, saved as <code>cleared_</code> plus your original file name. Always keep your original master file intact as an unedited backup.</li>
-          <li>Open Instagram and upload the cleaned copy to your feed or story as you normally would.</li>
+          <li>I posted a portrait. Instagram showed "AI content" under the account name straight away (the first screenshot above).</li>
+          <li>I ran the same file through TryMetaClear. The scan found 55 metadata fields across five sections. Fifteen of them pointed to AI, all inside the C2PA (JUMBF) block, and the detected generator was ChatGPT.</li>
+          <li>I cleaned it, downloaded the copy and posted it again. This time there was no label.</li>
         </ol>
-        <p>That's the entire workflow. Your image visual pixels remain 100% identical to the original, while the hidden header tags that signaled <em>"AI was involved"</em> have been stripped away.</p>
-        <p><em>(Note on image quality: TryMetaClear targets file header wrappers exclusively without re-compressing or modifying visual pixel data. Your photo preserves its exact original resolution, color space, dynamic range, and sharpness.)</em></p>
 
         <figure>
           <img src="/blog/images/instagram-ai-label-before-after.jpg" width="1080" height="1350" loading="lazy" alt="Before and after: the original post shows an AI content label; the same image posted after removing AI metadata shows no label">
           <figcaption>Before and after: the same image, posted again after removing the AI metadata, no longer shows the label.</figcaption>
         </figure>
 
+        <p>To be upfront about it: the test portrait was generated with ChatGPT. I used it because it triggers the label every time, which makes the cause easy to see. For a fully AI-generated image like this one, Meta expects you to disclose it, so I wouldn't strip it for a real post (more on that below). The mechanics are identical for a real photo that picked up a tag from a single AI edit, and that's the case this guide is for.</p>
+
         <h2 id="label-still-appears">What If the Label Still Appears?</h2>
-        <p>Transparency is essential: no file header cleaner can guarantee 100% removal of all platform labels under every circumstance. (For other ways to strip metadata, such as ExifTool or screenshots, see our <a href="/remove-ai-metadata-from-image">comparison of four methods to remove AI metadata</a>.) If an "AI info" label persists on a cleaned image, it is usually due to one of three technical factors:</p>
+        <p>Metadata is the most common trigger, but it isn't the only one. Meta itself said in its 2024 announcement that it can't detect all AI content from markers and that people can strip them, so it looks for other signals as well. If a cleaned image is still labelled, it's usually one of these. (For other ways to strip metadata, such as ExifTool or screenshots, see our <a href="/remove-ai-metadata-from-image">comparison of four methods to remove AI metadata</a>.)</p>
 
-        <h3>1. Invisible Pixel-Level Watermarks</h3>
-        <p>Certain AI generators embed tracking signatures directly into the image pixels themselves—rather than in the file header tags. For example, Google's <strong>SynthID</strong> alters pixel colors and high-frequency noise patterns imperceptibly to human eyes. Because these watermarks exist within the visual pixel matrix rather than header containers, metadata tools cannot remove them without altering the actual photo pixels.</p>
+        <h3>1. An invisible watermark in the pixels</h3>
+        <p>Some generators hide a signal in the image itself. Google's <strong>SynthID</strong> is the best-known example: it shifts pixel values in a pattern people can't see but software can detect. It isn't metadata, so no metadata tool can remove it without changing the picture.</p>
 
-        <h3>2. Visual AI Classification Algorithms</h3>
-        <p>Social platforms and third-party security tools sometimes run computer vision classifiers over uploaded media. These automated neural networks look for visual structural patterns common in generative models (such as unnatural lighting vectors, skin smoothing, irregular limb details, or symmetrical geometry).</p>
+        <h3>2. Detection from the image itself</h3>
+        <p>Platforms can also run classifiers that look at the picture rather than the file, checking for patterns that generative models tend to leave behind. Cleaning metadata has no effect on those.</p>
 
-        <h3>3. Previously Published Posts</h3>
-        <p>Cleaning an image file only affects new uploads. If a photo was previously published to Instagram and flagged, uploading a cleaned version will create a new post, but will not modify or remove labels on posts already live on Instagram's servers.</p>
+        <h3>3. The label is on an old post</h3>
+        <p>Cleaning a file only helps the next upload. Posts that are already live keep their label. To get rid of it, you'd have to delete the post and upload the cleaned copy as a new one.</p>
 
         <h2 id="when-not-to-remove">When You Shouldn't Remove the AI Label</h2>
-        <p>While stripping false-positive edit tags from real photos protects your creative work, creators must remain mindful of platform rules and disclosure ethics:</p>
+        <p>Removing a false label from a real photo is fair. Hiding the fact that an image was made by AI is something else.</p>
         <ul>
-          <li><strong>Platform Disclosures:</strong> Instagram's Community Guidelines require creators to disclose photorealistic media created entirely by AI generators.</li>
-          <li><strong>Ethical Transparency:</strong> If an image is fully generated or substantially synthetic, keeping the AI disclosure badge builds long-term audience trust and avoids account compliance flags.</li>
-          <li><strong>Best Practice:</strong> Use metadata cleaning to fix false-positive edit signatures on real photography retouched with AI tools, while following platform rules for fully synthetic creations.</li>
+          <li><strong>Platform rules:</strong> Meta requires people to disclose realistic AI-generated video and audio and says it may apply penalties if they don't. For images, it gives you a way to add the label yourself.</li>
+          <li><strong>Your audience:</strong> if an image is entirely or mostly generated, leaving the label up is the honest choice, and people trust creators who are open about it.</li>
+          <li><strong>A simple rule:</strong> clean the metadata when AI only helped you edit a real photo. Keep the label when AI made the picture.</li>
         </ul>
 
         <h2 id="faq">Frequently Asked Questions</h2>
 
         <h3>Q1: Why did my real photo get flagged with an AI label on Instagram?</h3>
-        <p>Many editing tools (like Photoshop, Lightroom, or phone gallery apps) automatically write a C2PA metadata tag whenever you use AI-assisted retouching, background removal, or generative fill features. Instagram scans file headers upon upload and applies an automated label based on these embedded tags, even if 99% of your photo is a real camera capture.</p>
+        <p>Because the file said AI was involved. Photoshop, Lightroom and many phone gallery apps write a C2PA or IPTC tag when you use an AI feature such as generative fill, object removal or AI background removal. Instagram reads that tag when you upload and labels the post, even when almost all of the photo is a real camera capture.</p>
 
         <h3>Q2: Will stripping metadata reduce my photo's visual quality?</h3>
-        <p>No. TryMetaClear targets file header containers (EXIF, IPTC, XMP, C2PA) exclusively. It does not re-encode or compress visual pixel data, ensuring your image retains 100% of its original resolution, color space, and sharpness.</p>
+        <p>No. TryMetaClear removes EXIF, IPTC, XMP and C2PA metadata without re-encoding the image, so resolution, colour and sharpness stay exactly the same.</p>
 
         <h3>Q3: Is my photo uploaded or stored on your servers?</h3>
-        <p>Your photo is sent over an encrypted (HTTPS) connection to our processing server, held in memory only while it is cleaned, and deleted immediately afterwards. It is never stored in cloud databases, shared, or used for AI model training. See our <a href="/privacy">privacy policy</a> for details.</p>
+        <p>Your photo is sent over an encrypted connection to our server, held in memory while it's cleaned, and deleted straight afterwards. We don't store it, share it or use it to train AI models. The details are in our <a href="/privacy">privacy policy</a>.</p>
 
         <h3>Q4: What can an AI metadata remover NOT remove?</h3>
-        <p>An AI metadata remover strips header tags and resets digital provenance containers. However, it cannot alter image pixels. Therefore, it cannot remove invisible pixel watermarks (such as Google SynthID) or bypass visual computer-vision classifiers that inspect physical pixel geometry.</p>
+        <p>Anything in the pixels. That includes invisible watermarks such as Google's SynthID and anything a visual AI detector picks up from the image itself. It also can't change labels on posts that are already published.</p>
 
         <h3>Q5: What image file formats are supported?</h3>
-        <p>TryMetaClear supports all standard camera and web image formats, including <strong>JPG/JPEG, PNG, WebP, and HEIC</strong>, up to 100 MB per file.</p>
+        <p>JPG/JPEG, PNG, WebP and HEIC, up to 100 MB per file.</p>
 
-        <h2 id="take-control">Take Control of Your Photo Metadata</h2>
-        <p>Just like Maya, you shouldn't have to explain why a real photograph carrying a minor software touch-up received a misleading automated label. By understanding how file header tags work and cleaning unnecessary C2PA manifests before uploading, you keep your creative workflow private and your content accurately presented. Posting Reels instead? The same applies to video: use the <a href="/remove-video-ai-metadata">video AI metadata remover</a> for MP4 and MOV files.</p>
+        <h2 id="take-control">Before You Post Your Next Edit</h2>
+        <p>Maya didn't need to explain her photo to anyone. She needed to know that her editing app had left a note inside the file, and that Instagram reads it. Check your files before you post, clean the ones where AI only helped with an edit, and leave the label on the ones AI actually made.</p>
+        <p>Posting Reels instead? The same applies to video: use the <a href="/remove-video-ai-metadata">video AI metadata remover</a> for MP4 and MOV files.</p>
       </div>
 
       <!-- CTA -->
