@@ -351,6 +351,14 @@
     return String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   }
 
+  // Count fields from the sections themselves; fall back to API totals only if no sections came back.
+  function metaCounts(data) {
+    const lists = Object.values(data.sections || {}).filter(Array.isArray);
+    if (lists.length === 0) return { total: data.total_fields || 0, ai: data.ai_count || 0, sections: 0 };
+    const all = lists.flat();
+    return { total: all.length, ai: all.filter(f => f && f.is_ai).length, sections: lists.filter(l => l.length > 0).length };
+  }
+
   // Setup Drag & Drop Handlers
   const dropZone = document.getElementById('dropZone');
   ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
@@ -490,8 +498,8 @@
     }
 
     document.getElementById('aiModelText').innerText = data.detected_model || "None";
-    document.getElementById('statTotalFields').innerText = data.total_fields || 0;
-    document.getElementById('statAiFields').innerText = data.ai_count || 0;
+    document.getElementById('statTotalFields').innerText = metaCounts(data).total;
+    document.getElementById('statAiFields').innerText = metaCounts(data).ai;
 
     const sectionsContainer = document.getElementById('sectionsList');
     sectionsContainer.innerHTML = "";
@@ -536,55 +544,16 @@
     document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
-  async function downloadCleanedImage() {
-    if (!currentUploadedFile) return;
-
-    const downloadBtn = document.getElementById('downloadBtn');
-    downloadBtn.disabled = true;
-    downloadBtn.innerHTML = `
-      <svg class="w-5 h-5 text-white animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
-      <span>Cleaning & Downloading...</span>
-    `;
-
-    const formData = new FormData();
-    formData.append("file", currentUploadedFile);
-
-    try {
-      const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
-        method: "POST",
-        body: formData
-      });
-
-      if (!response.ok) throw new Error("Cleaning failed");
-
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `cleared_${currentUploadedFile.name}`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-
-      // GTM Download Event Tracking
-      window.dataLayer = window.dataLayer || [];
-      window.dataLayer.push({
-        'event': 'file_download',
-        'file_name': currentUploadedFile.name,
-        'page_path': window.location.pathname
-      });
-
-    } catch (err) {
-      console.error("Clean download error:", err);
-      alert("Failed to download cleaned image.");
-    } finally {
-      downloadBtn.disabled = false;
-      downloadBtn.innerHTML = `
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
-        <span>Remove AI Metadata & Download</span>
-      `;
-    }
+  function downloadCleanedImage() {
+    // Progress bar + success message live in /clean-download.js
+    cleanAndDownload({
+      file: currentUploadedFile,
+      endpoint: `${BACKEND_API_URL}/api/v1/clean`,
+      button: document.getElementById('downloadBtn'),
+      anchor: null
+    });
   }
 </script>
+  <script src="/clean-download.js"></script>
 </body>
 </html>

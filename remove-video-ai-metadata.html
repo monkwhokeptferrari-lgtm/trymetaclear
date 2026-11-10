@@ -534,42 +534,16 @@
       });
     }
 
-    async function downloadCleanedVideo() {
-      if (!currentUploadedFile) return;
-
-      const downloadBtn = document.getElementById('downloadBtn');
-      downloadBtn.disabled = true;
-      downloadBtn.innerHTML = `
-        <div class="flex items-center justify-center space-x-2">
-          <div class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></div>
-          <span>Stripping Video Container & Downloading...</span>
-        </div>
-      `;
-
-      const formData = new FormData();
-      formData.append("file", currentUploadedFile);
-
-      try {
-        const response = await fetch(CLEAN_API_URL, { method: "POST", body: formData });
-        if (!response.ok) throw new Error("Cleaning failed");
-
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `cleared_${currentUploadedFile.name}`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        window.URL.revokeObjectURL(url);
-      } catch (err) {
-        console.error("Video processing error:", err);
-        alert("Failed to process video metadata.");
-      } finally {
-        downloadBtn.disabled = false;
-        downloadBtn.innerHTML = `<span>Remove AI Metadata & Download</span>`;
-      }
+    function downloadCleanedVideo() {
+      // Progress bar + success message live in /clean-download.js
+      cleanAndDownload({
+        file: currentUploadedFile,
+        endpoint: CLEAN_API_URL,
+        button: document.getElementById('downloadBtn'),
+        anchor: document.getElementById('downloadBtn')
+      });
     }
   </script>
+  <script src="/clean-download.js"></script>
 </body>
 </html>

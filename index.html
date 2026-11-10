@@ -263,7 +263,7 @@
           <div>
             <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">TOTAL METADATA FIELDS</span>
             <div id="statTotalFields" class="text-3xl font-extrabold text-brand-900">0</div>
-            <span class="text-xs text-slate-400">in sections</span>
+            <span id="statSections" class="text-xs text-slate-400">in sections</span>
           </div>
           <div class="border-l border-slate-200 pl-8">
             <span class="text-[10px] font-bold uppercase tracking-wider text-accent-coral">AI METADATA TAGS</span>
@@ -573,6 +573,14 @@
       return String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
     }
 
+    // Count fields from the sections themselves; fall back to API totals only if no sections came back.
+    function metaCounts(data) {
+      const lists = Object.values(data.sections || {}).filter(Array.isArray);
+      if (lists.length === 0) return { total: data.total_fields || 0, ai: data.ai_count || 0, sections: 0 };
+      const all = lists.flat();
+      return { total: all.length, ai: all.filter(f => f && f.is_ai).length, sections: lists.filter(l => l.length > 0).length };
+    }
+
     // Drag & drop
     const dropZone = document.getElementById('dropZone');
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
@@ -701,9 +709,12 @@
       }
       imgDiv.innerHTML = `<img src="${currentImagePreviewUrl}" alt="Uploaded image" class="w-full h-full object-cover">`;
 
-      const aiCount = data.ai_count || 0;
+      const counts = metaCounts(data);
+      const aiCount = counts.ai;
       document.getElementById('aiModelText').innerText = data.detected_model || "None";
-      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+      document.getElementById('statTotalFields').innerText = metaCounts(data).total;
+      const sectionsLabel = document.getElementById('statSections');
+      if (sectionsLabel) { const n = metaCounts(data).sections; sectionsLabel.innerText = n ? `in ${n} section${n === 1 ? '' : 's'}` : 'in sections'; }
       document.getElementById('statAiFields').innerText = aiCount;
       document.getElementById('statAiSub').innerText = `${aiCount} field${aiCount === 1 ? '' : 's'} show AI`;
 
@@ -758,46 +769,16 @@
       document.querySelectorAll('.accordion-content').forEach(el => el.classList.toggle('hidden', !expand));
     }
 
-    async function downloadCleanedImage() {
-      if (!currentUploadedFile) return;
-
-      const downloadBtn = document.getElementById('downloadBtn');
-      const originalBtnHtml = downloadBtn.innerHTML;
-      downloadBtn.disabled = true;
-      downloadBtn.innerHTML = `<span>Cleaning &amp; preparing...</span>`;
-
-      const formData = new FormData();
-      formData.append("file", currentUploadedFile);
-
-      try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, { method: "POST", body: formData });
-        if (!response.ok) throw new Error("Cleaning failed");
-
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `cleared_${currentUploadedFile.name}`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-        setTimeout(() => URL.revokeObjectURL(url), 1000);
-
-        // GTM download event
-        window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          'event': 'file_download',
-          'file_name': currentUploadedFile.name,
-          'page_path': window.location.pathname
-        });
-      } catch (err) {
-        console.error("Clean download error:", err);
-        alert("Failed to download cleaned image.");
-      } finally {
-        downloadBtn.disabled = false;
-        downloadBtn.innerHTML = originalBtnHtml;
-      }
+    function downloadCleanedImage() {
+      // Progress bar + success message live in /clean-download.js
+      cleanAndDownload({
+        file: currentUploadedFile,
+        endpoint: `${BACKEND_API_URL}/api/v1/clean`,
+        button: document.getElementById('downloadBtn'),
+        anchor: null
+      });
     }
   </script>
+  <script src="/clean-download.js"></script>
 </body>
 </html>
