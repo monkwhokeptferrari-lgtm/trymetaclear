@@ -403,6 +403,14 @@
       if (currentVideoObjectUrl) window.URL.revokeObjectURL(currentVideoObjectUrl);
       currentVideoObjectUrl = window.URL.createObjectURL(file);
 
+      await scanVideoFile(file);
+    }
+
+    // Scans the file; the download button is enabled only after a successful scan.
+    async function scanVideoFile(file) {
+      const downloadBtn = document.getElementById('downloadBtn');
+      downloadBtn.disabled = true;
+
       const scanContainer = document.getElementById('metadataResult');
       scanContainer.classList.remove('hidden');
 
@@ -423,24 +431,26 @@
 
       try {
         const response = await fetch(SCAN_API_URL, { method: "POST", body: formData });
-        if (response.ok) {
-          const data = await response.json();
-          renderDetailedVideoResults(data);
-        } else {
-          renderFallbackVideoResults();
-        }
+        if (!response.ok) throw new Error(`Scan failed with status ${response.status}`);
+        const data = await response.json();
+        if (file !== currentUploadedFile) return;  // a newer file was picked meanwhile
+        renderDetailedVideoResults(data);
+        downloadBtn.disabled = false;
       } catch (err) {
-        console.warn("Scan endpoint error:", err);
-        renderFallbackVideoResults();
+        console.error("Scan endpoint error:", err);
+        if (file !== currentUploadedFile) return;
+        renderVideoScanError();
       }
-
-      document.getElementById('downloadBtn').disabled = false;
     }
 
     function renderDetailedVideoResults(data) {
       const scanContainer = document.getElementById('metadataResult');
       const originalFileName = currentUploadedFile ? currentUploadedFile.name : "video.mp4";
-      const totalFields = (data.ai_tags_count !== undefined) ? data.ai_tags_count : (data.total_fields || 0);
+      // Prefer counting AI fields from the returned sections; fall back to the API's counts.
+      const sectionLists = Object.values(data.sections || {}).filter(Array.isArray);
+      const totalFields = sectionLists.length > 0
+        ? sectionLists.flat().filter(f => f && f.is_ai).length
+        : ((data.ai_tags_count !== undefined) ? data.ai_tags_count : (data.total_fields || 0));
       const detectedModel = data.detected_model || data.detected_ai || data.ai_model || "None Detected (Clean)";
 
       let sectionsHtml = '';
@@ -528,12 +538,21 @@
       }
     }
 
-    function renderFallbackVideoResults() {
-      renderDetailedVideoResults({
-        tags: ["FileType: MP4 / QuickTime", "MajorBrand: isom", "HandlerName: VideoHandler", "Encoder: Container Metadata"],
-        total_fields: 10,
-        detected_model: "None Detected (Clean)"
-      });
+    // Shown when the scan fails. Never show placeholder results: the file was not scanned.
+    function renderVideoScanError() {
+      const scanContainer = document.getElementById('metadataResult');
+      scanContainer.innerHTML = `
+        <div class="p-6 bg-white rounded-3xl border border-slate-200 shadow-xl text-left space-y-6">
+          <div class="rounded-2xl overflow-hidden bg-slate-900 max-h-72 flex items-center justify-center border border-slate-200">
+            <video src="${currentVideoObjectUrl}" controls class="max-h-72 w-full object-contain"></video>
+          </div>
+          <div class="p-5 bg-rose-50 rounded-2xl border border-rose-200 space-y-3" role="alert">
+            <p class="font-extrabold text-rose-700 text-base">We couldn't scan this video</p>
+            <p class="text-sm text-rose-600">Your file was not checked, so we can't show its metadata yet. Please check your connection and try again. If it keeps failing, email <a href="mailto:support@trymetaclear.com" class="font-semibold underline">support@trymetaclear.com</a>.</p>
+            <button type="button" onclick="scanVideoFile(currentUploadedFile)" class="bg-rose-600 hover:bg-rose-700 text-white font-bold text-sm px-5 py-2.5 rounded-xl transition">Try again</button>
+          </div>
+        </div>
+      `;
     }
 
     function downloadCleanedVideo() {
