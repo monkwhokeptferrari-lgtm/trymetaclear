@@ -220,7 +220,7 @@
       
       <!-- Logo -->
       <a href="/" class="flex items-center shrink-0">
-        <img src="logo.png" alt="TryMetaClear" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
+        <img src="/logo.png" alt="TryMetaClear" width="240" height="80" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
       </a>
 
       <!-- Navigation & Dropdown -->
@@ -235,15 +235,17 @@
           </button>
 
           <div class="absolute left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 mt-2 w-64 md:w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">All AI Metadata Remover</a>
+            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">AI Metadata &amp; EXIF Remover</a>
+            <a href="/remove-ai-metadata-from-image" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">How to Remove AI Metadata</a>
             <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">C2PA Content Credentials</a>
             <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Midjourney Metadata</a>
-            <a href="/remove-gemini-ai-watermark" class="block px-4 py-3 rounded-xl bg-slate-100 font-bold text-slate-900 text-sm">Gemini AI Metadata Remover</a>
-            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata Stripper</a>
+            <a href="/remove-dall-e-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">DALL-E &amp; ChatGPT Metadata</a>
+            <a href="/remove-gemini-ai-watermark" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Gemini Watermark Remover</a>
+            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata</a>
           </div>
         </div>
 
-        <a href="/about.html" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
+        <a href="/about" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
         
         <a href="/remove-video-ai-metadata" class="bg-brand-600 hover:bg-brand-700 text-white text-sm md:text-base font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-xl transition shadow-md whitespace-nowrap">
           For Video
@@ -390,44 +392,36 @@
   <!-- Mobile-Centered Footer (Matching index.html) -->
   <footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
     <div class="max-w-6xl mx-auto px-4 space-y-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-300 text-center md:text-left">
-        
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-300 text-center md:text-left">
         <div class="space-y-3">
           <p class="font-bold text-white text-base">TryMetaClear</p>
-          <p class="text-slate-400">The ultimate privacy utility for stripping AI metadata, C2PA manifests, and EXIF footprints from digital media.</p>
+          <p class="text-slate-400">Free tools to inspect and remove EXIF, GPS, IPTC, XMP and C2PA metadata from images and videos.</p>
         </div>
-
         <div>
-          <p class="font-bold text-white text-base mb-3">Popular Tools</p>
+          <p class="font-bold text-white text-base mb-3">Tools</p>
           <ul class="space-y-2">
-            <li><a href="/remove-c2pa-content-credentials" class="hover:text-brand-400 transition">Remove C2PA Credentials</a></li>
-            <li><a href="/remove-midjourney-metadata" class="hover:text-brand-400 transition">Remove Midjourney Metadata</a></li>
-            <li><a href="/remove-gemini-ai-watermark" class="hover:text-brand-400 transition font-bold text-white">Gemini AI Metadata Remover</a></li>
-            <li><a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition">Video AI Metadata Remover</a></li>
-            <li><a href="/" class="hover:text-brand-400 transition">Remove AI Metadata</a></li>
+            <li><a href="/" class="hover:text-white transition">AI Metadata &amp; EXIF Remover</a></li>
+            <li><a href="/remove-ai-metadata-from-image" class="hover:text-white transition">How to Remove AI Metadata</a></li>
+            <li><a href="/remove-c2pa-content-credentials" class="hover:text-white transition">Remove C2PA Content Credentials</a></li>
+            <li><a href="/remove-midjourney-metadata" class="hover:text-white transition">Remove Midjourney Metadata</a></li>
+            <li><a href="/remove-dall-e-metadata" class="hover:text-white transition">Remove DALL-E &amp; ChatGPT Metadata</a></li>
+            <li><a href="/remove-gemini-ai-watermark" class="hover:text-white transition">Gemini Watermark Remover</a></li>
+            <li><a href="/remove-video-ai-metadata" class="hover:text-white transition">Video AI Metadata Remover</a></li>
           </ul>
         </div>
-
         <div>
-          <p class="font-bold text-white text-base mb-3">Legal &amp; Company</p>
+          <p class="font-bold text-white text-base mb-3">Company</p>
           <ul class="space-y-2">
-            <li><a href="/about.html" class="hover:text-brand-400 transition">About</a></li>
-            <li><a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a></li>
-            <li><a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a></li>
-            <li><a href="/contact.html" class="hover:text-brand-400 transition">Contact</a></li>
+            <li><a href="/about" class="hover:text-white transition">About</a></li>
+            <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition">Terms of Service</a></li>
           </ul>
         </div>
-
-        <div>
-          <p class="font-bold text-white text-base mb-3">About Creator</p>
-          <p class="text-slate-400">Created &amp; Owned by Mayank Gupta. Designed for high-speed performance marketing and absolute creator privacy.</p>
-        </div>
-
       </div>
-
       <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
-        <p>© 2026 TryMetaClear. All rights reserved.</p>
-        <p>Created &amp; Owned by Mayank Gupta.</p>
+        <p>&copy; 2026 TryMetaClear. All rights reserved.</p>
+        <p>Built by <a href="/about" class="text-white hover:underline">Mayank Gupta</a></p>
       </div>
     </div>
   </footer>

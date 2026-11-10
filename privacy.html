@@ -3,45 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - TryMetaClear</title>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PXHMQC7T');</script>
+  <!-- End Google Tag Manager -->
+
+  <title>Privacy Policy | TryMetaClear</title>
+  <meta name="description" content="How TryMetaClear handles the images and videos you upload, what analytics we use, and how to contact us about your data.">
+  <link rel="canonical" href="https://trymetaclear.com/privacy">
   <link rel="icon" type="image/png" href="/favico.png">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TryMetaClear">
+  <meta property="og:url" content="https://trymetaclear.com/privacy">
+  <meta property="og:title" content="Privacy Policy | TryMetaClear">
+  <meta property="og:description" content="How TryMetaClear handles the images and videos you upload, what analytics we use, and how to contact us about your data.">
+  <meta property="og:image" content="https://trymetaclear.com/og-image.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 50: '#eef6ff', 100: '#e0f0ff', 600: '#0066ff', 700: '#0052cc', 900: '#0a194f' }
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-slate-50 text-slate-900 min-h-screen flex flex-col font-sans">
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PXHMQC7T" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
   <header class="bg-white border-b border-slate-200 sticky top-0 z-50">
-    <div class="max-w-6xl mx-auto px-4 h-20 flex items-center justify-between">
-      <a href="/" class="font-black text-xl text-slate-900">TryMetaClear</a>
-      <a href="/" class="text-xs font-bold text-blue-600 hover:underline">Back to Home</a>
+    <div class="max-w-6xl mx-auto px-4 h-24 flex items-center justify-between">
+      <a href="/" class="flex items-center py-2">
+        <img src="/logo.png" alt="TryMetaClear" width="240" height="80" class="h-14 md:h-16 w-auto object-contain">
+      </a>
+      <a href="/" class="text-sm font-bold text-slate-700 hover:text-brand-600 transition">&larr; Back to the tool</a>
     </div>
   </header>
-  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 space-y-8 text-left">
-    <h1 class="text-3xl font-extrabold text-slate-900">Privacy Policy</h1>
-    <p class="text-xs text-slate-500">Last updated: November 2026</p>
-    
-    <div class="space-y-6 text-sm text-slate-600 leading-relaxed">
+
+  <main class="flex-grow max-w-3xl mx-auto px-4 py-12 w-full">
+    <article class="space-y-8">
+      <div>
+        <h1 class="text-3xl font-extrabold text-brand-900 mb-2">Privacy Policy</h1>
+        <p class="text-xs text-slate-500">Last updated: November 10, 2026</p>
+      </div>
+
       <section class="space-y-2">
-        <h2 class="text-lg font-bold text-slate-800">1. Overview</h2>
-        <p>At TryMetaClear, accessible from https://trymetaclear.com, your privacy is a top priority. This Privacy Policy document outlines how we handle data when you use our image and video AI metadata removal tools.</p>
+        <h2 class="text-lg font-bold text-brand-900">1. Overview</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">This policy explains how TryMetaClear (https://trymetaclear.com) handles information when you use our image and video metadata tools.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-lg font-bold text-slate-800">2. File Processing & Temporary Storage</h2>
-        <p>When you upload images (PNG, JPG, WebM) or videos (MP4, MOV, WebM) through our scanning and cleaning endpoints, files are processed temporarily in server memory solely to extract metadata atoms and strip tracking tags. <strong>Files are never permanently stored, shared, or indexed</strong> and are automatically purged immediately after the cleaned file is generated and downloaded.</p>
+        <h2 class="text-lg font-bold text-brand-900">2. Files you upload</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">When you upload an image (PNG, JPG, WebP or HEIC) or a video (MP4, MOV or WebM), it is sent over an encrypted connection to our processing server. There it is held in memory only long enough to read or remove its metadata. <strong>We do not store, share or index your files</strong>, and we delete them as soon as processing is complete and the cleaned copy has been returned to you.</p>
+        <p class="text-sm text-slate-600 leading-relaxed">The <a href="/remove-gemini-ai-watermark" class="text-brand-600 font-semibold hover:underline">Gemini watermark remover</a> works differently. It runs entirely in your browser, and your image never leaves your device.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-lg font-bold text-slate-800">3. Log Files & Analytics</h2>
-        <p>Like standard web services, we utilize server logs and analytics tools (such as Microsoft Clarity and Google Analytics 4) to track aggregate site performance, browser types, and general traffic data to improve user experience.</p>
+        <h2 class="text-lg font-bold text-brand-900">3. Server logs</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Like most websites, our hosting and API servers automatically record basic request information: IP address, browser type, time and the page or endpoint requested. We use these logs only for security, abuse prevention and fixing errors. They do not contain your files.</p>
       </section>
 
       <section class="space-y-2">
-        <h2 class="text-lg font-bold text-slate-800">4. Contact Us</h2>
-        <p>If you have any questions regarding our privacy practices, please contact us via our contact page.</p>
+        <h2 class="text-lg font-bold text-brand-900">4. Analytics and cookies</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">We use Google Tag Manager and Google Analytics 4 to understand overall traffic, for example which pages are visited and which browsers are used, and to count successful downloads. These services may set cookies and process your IP address and device information on Google's behalf. We do not send your files, file contents or extracted metadata to analytics.</p>
+        <p class="text-sm text-slate-600 leading-relaxed">You can block analytics cookies in your browser settings, or install Google's <a href="https://tools.google.com/dlpage/gaoptout" class="text-brand-600 font-semibold hover:underline" rel="nofollow noopener">Analytics opt-out add-on</a>.</p>
       </section>
-    </div>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-brand-900">5. Your rights</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Depending on where you live, you may have the right to access, correct or delete personal data we hold about you, or to object to its processing. Because we do not keep your files, there is usually nothing beyond analytics data and short-lived server logs. To make a request, email <a href="mailto:support@trymetaclear.com" class="text-brand-600 font-semibold hover:underline">support@trymetaclear.com</a>.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-brand-900">6. Changes</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">If we change this policy, we will update the date at the top of this page.</p>
+      </section>
+
+      <section class="space-y-2">
+        <h2 class="text-lg font-bold text-brand-900">7. Contact</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">Questions about privacy? Email <a href="mailto:support@trymetaclear.com" class="text-brand-600 font-semibold hover:underline">support@trymetaclear.com</a> or visit the <a href="/contact" class="text-brand-600 font-semibold hover:underline">contact page</a>.</p>
+      </section>
+    </article>
+
   </main>
-  <footer class="bg-slate-900 text-white py-6 text-center text-xs">
-    <p>© 2026 TryMetaClear. All rights reserved.</p>
+
+  <footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
+    <div class="max-w-6xl mx-auto px-4 space-y-8">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-300 text-center md:text-left">
+        <div class="space-y-3">
+          <p class="font-bold text-white text-base">TryMetaClear</p>
+          <p class="text-slate-400">Free tools to inspect and remove EXIF, GPS, IPTC, XMP and C2PA metadata from images and videos.</p>
+        </div>
+        <div>
+          <p class="font-bold text-white text-base mb-3">Tools</p>
+          <ul class="space-y-2">
+            <li><a href="/" class="hover:text-white transition">AI Metadata &amp; EXIF Remover</a></li>
+            <li><a href="/remove-ai-metadata-from-image" class="hover:text-white transition">How to Remove AI Metadata</a></li>
+            <li><a href="/remove-c2pa-content-credentials" class="hover:text-white transition">Remove C2PA Content Credentials</a></li>
+            <li><a href="/remove-midjourney-metadata" class="hover:text-white transition">Remove Midjourney Metadata</a></li>
+            <li><a href="/remove-dall-e-metadata" class="hover:text-white transition">Remove DALL-E &amp; ChatGPT Metadata</a></li>
+            <li><a href="/remove-gemini-ai-watermark" class="hover:text-white transition">Gemini Watermark Remover</a></li>
+            <li><a href="/remove-video-ai-metadata" class="hover:text-white transition">Video AI Metadata Remover</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="font-bold text-white text-base mb-3">Company</p>
+          <ul class="space-y-2">
+            <li><a href="/about" class="hover:text-white transition">About</a></li>
+            <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
+        <p>&copy; 2026 TryMetaClear. All rights reserved.</p>
+        <p>Built by <a href="/about" class="text-white hover:underline">Mayank Gupta</a></p>
+      </div>
+    </div>
   </footer>
+
 </body>
 </html>

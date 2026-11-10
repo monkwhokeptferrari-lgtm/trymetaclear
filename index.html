@@ -2,65 +2,84 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PXHMQC7T');</script>
+  <!-- End Google Tag Manager -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TryMetaClear - Free AI Metadata & C2PA Removal Tool</title>
-  <meta name="description" content="Free online tool to inspect and strip hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing pixel quality.">
+  <title>Free AI Metadata Remover: Strip EXIF &amp; C2PA | TryMetaClear</title>
+  <meta name="description" content="Free online tool to see and remove AI metadata, EXIF, GPS, IPTC and C2PA Content Credentials from images. No sign-up, and the pixels are never re-encoded.">
   <link rel="canonical" href="https://trymetaclear.com/">
   <link rel="icon" type="image/png" href="/favico.png">
 
-  <!-- Google Tag Manager -->
-  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PXHMQC7T"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-  </script>
-  <!-- End Google Tag Manager -->
-
-  <!-- Single Consolidated Schema.org WebApplication Markup -->
+  <!-- Schema.org: Organization, WebSite, WebApplication, Person, FAQPage -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "TryMetaClear",
-    "url": "https://trymetaclear.com/",
-    "description": "Free online tool to detect and strip hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.",
-    "applicationCategory": "MultimediaApplication",
-    "operatingSystem": "All",
-    "browserRequirements": "Requires JavaScript. Requires HTML5.",
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD"
-    },
-    "author": {
-      "@type": "Person",
-      "name": "Mayank Gupta"
-    }
-  }
-  </script>
-
-  <!-- Schema.org FAQPage Markup -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "mainEntity": [
+    "@graph": [
       {
-        "@type": "Question",
-        "name": "Does stripping metadata reduce image quality?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "No. TryMetaClear strips metadata headers using ExifTool without re-encoding or compressing image pixels."
-        }
+        "@type": "Organization",
+        "@id": "https://trymetaclear.com/#organization",
+        "name": "TryMetaClear",
+        "url": "https://trymetaclear.com/",
+        "logo": { "@type": "ImageObject", "url": "https://trymetaclear.com/logo.png", "width": 480, "height": 160 },
+        "email": "support@trymetaclear.com",
+        "founder": { "@id": "https://trymetaclear.com/about#mayank-gupta" },
+        "contactPoint": { "@type": "ContactPoint", "contactType": "customer support", "email": "support@trymetaclear.com", "url": "https://trymetaclear.com/contact" }
       },
       {
-        "@type": "Question",
-        "name": "Can TryMetaClear remove C2PA Content Credentials?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes, TryMetaClear detects and deletes C2PA, JUMBF, and CBOR manifest tags embedded by AI generators and cameras."
-        }
+        "@type": "WebSite",
+        "@id": "https://trymetaclear.com/#website",
+        "name": "TryMetaClear",
+        "url": "https://trymetaclear.com/",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://trymetaclear.com/#organization" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://trymetaclear.com/about#mayank-gupta",
+        "name": "Mayank Gupta",
+        "url": "https://trymetaclear.com/about",
+        "sameAs": ["https://www.linkedin.com/in/mayank-gupta-performance-marketer/"],
+        "jobTitle": "Founder",
+        "worksFor": { "@id": "https://trymetaclear.com/#organization" }
+      },
+      {
+        "@type": "WebApplication",
+        "@id": "https://trymetaclear.com/#app",
+        "name": "TryMetaClear AI Metadata Remover",
+        "url": "https://trymetaclear.com/",
+        "description": "Free online tool to see and remove AI metadata, EXIF, GPS, IPTC, XMP and C2PA Content Credentials from images without re-encoding the pixels.",
+        "applicationCategory": "MultimediaApplication",
+        "operatingSystem": "Any",
+        "browserRequirements": "Requires JavaScript",
+        "featureList": ["Scan EXIF, IPTC, XMP and C2PA metadata", "Flag AI-generation fields", "Remove metadata without re-encoding", "PNG, JPG, WebP and HEIC up to 100 MB"],
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+        "author": { "@id": "https://trymetaclear.com/about#mayank-gupta" },
+        "publisher": { "@id": "https://trymetaclear.com/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Will TryMetaClear remove all metadata, including AI-specific tags?",
+            "acceptedAnswer": { "@type": "Answer", "text": "TryMetaClear removes EXIF, IPTC, XMP, GPS and C2PA Content Credentials stored in the image file. It does not remove invisible watermarks built into the pixels (such as Google DeepMind's SynthID), because those are patterns in the image itself rather than metadata." }
+          },
+          {
+            "@type": "Question",
+            "name": "Does cleaning metadata reduce my image resolution or quality?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. TryMetaClear removes metadata without decoding or re-compressing the image pixels. Your original resolution, color space and visual quality stay the same." }
+          },
+          {
+            "@type": "Question",
+            "name": "Are my uploaded images stored or saved on your server?",
+            "acceptedAnswer": { "@type": "Answer", "text": "No. Files are held in temporary memory only while they are scanned or cleaned, and deleted right after. We do not keep copies of your images. Like most websites, our servers keep basic request logs (such as IP address and time) for security, but these do not contain your files." }
+          }
+        ]
       }
     ]
   }
@@ -106,10 +125,12 @@
 
   <!-- Open Graph Meta Tags -->
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="TryMetaClear">
+  <meta property="og:image:alt" content="TryMetaClear: detect and remove AI image metadata and C2PA">
   <meta property="og:url" content="https://trymetaclear.com/">
   <meta property="og:title" content="TryMetaClear - Free AI Metadata & C2PA Removal Tool">
   <meta property="og:description" content="Detect and remove hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.">
-  <meta property="og:image" content="https://trymetaclear.com/og-image.png">
+  <meta property="og:image" content="https://trymetaclear.com/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
 
@@ -118,7 +139,7 @@
   <meta name="twitter:url" content="https://trymetaclear.com/">
   <meta name="twitter:title" content="TryMetaClear - Free AI Metadata & C2PA Removal Tool">
   <meta name="twitter:description" content="Detect and remove hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.">
-  <meta name="twitter:image" content="https://trymetaclear.com/og-image.png">
+  <meta name="twitter:image" content="https://trymetaclear.com/og-image.jpg">
 </head>
 
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
@@ -130,7 +151,7 @@
     <div class="max-w-6xl mx-auto px-4 py-4 md:py-0 md:h-24 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
       
       <a href="/" class="flex items-center shrink-0">
-        <img src="logo.png" alt="TryMetaClear" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
+        <img src="/logo.png" alt="TryMetaClear" width="240" height="80" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
       </a>
 
       <nav class="flex items-center justify-center space-x-6 md:space-x-8 w-full md:w-auto">
@@ -143,15 +164,16 @@
           </button>
 
           <div class="absolute left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 mt-2 w-64 md:w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <a href="/" class="block px-4 py-3 rounded-xl bg-slate-100 font-bold text-slate-900 text-sm">All AI Metadata Remover</a>
+            <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">AI Metadata &amp; EXIF Remover</a>
+            <a href="/remove-ai-metadata-from-image" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">How to Remove AI Metadata</a>
             <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">C2PA Content Credentials</a>
             <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Midjourney Metadata</a>
-            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata Stripper</a>
+            <a href="/remove-dall-e-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">DALL-E &amp; ChatGPT Metadata</a>
+            <a href="/remove-gemini-ai-watermark" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Gemini Watermark Remover</a>
+            <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata</a>
           </div>
         </div>
-
-        <a href="/blog/" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">Blog</a>
-        <a href="/about.html" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
+        <a href="/about" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
         
         <a href="/remove-video-ai-metadata" class="bg-brand-600 hover:bg-brand-700 text-white text-sm md:text-base font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-xl transition shadow-md whitespace-nowrap">
           For Video
@@ -243,8 +265,8 @@
   <!-- Why Choose TryMetaClear Section -->
   <section class="mt-16 max-w-6xl mx-auto px-4">
     <div class="text-center max-w-2xl mx-auto mb-12">
-      <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Why Creators & Marketers Trust TryMetaClear</h2>
-      <p class="text-slate-600 text-base mt-2">Built specifically for high-speed performance marketing and absolute media privacy.</p>
+      <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Why people use TryMetaClear</h2>
+      <p class="text-slate-600 text-base mt-2">A simple way to see what your files reveal, and remove it, before you share them.</p>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -262,8 +284,8 @@
 
       <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-500 transition group">
         <div class="w-12 h-12 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition-transform">🚀</div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2">Lightning-Fast Processing</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">Optimized backend scanning and quick downloads mean you can sanitize bulk batches of media assets in seconds.</p>
+        <h3 class="text-lg font-bold text-slate-900 mb-2">Fast, one-click cleaning</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Most files are scanned and cleaned in a few seconds, with no account and no software to install.</p>
       </div>
     </div>
   </section>
@@ -282,7 +304,7 @@
             <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
-            TryMetaClear removes EXIF, IPTC, XMP, GPS, and C2PA Content Credentials stored inside the image file headers. It does not remove invisible watermarks embedded directly into pixel matrices (such as DeepMind SynthID), because those are structural pixel patterns rather than file metadata tags.
+            TryMetaClear removes EXIF, IPTC, XMP, GPS and C2PA Content Credentials stored in the image file. It does not remove invisible watermarks built into the pixels (such as Google DeepMind's SynthID), because those are patterns in the image itself rather than metadata.
           </div>
         </div>
 
@@ -292,7 +314,7 @@
             <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
-            No. TryMetaClear strips metadata directly from the file header without decoding or re-compressing the image pixels. Your original resolution, color space, and visual quality remain untouched.
+            No. TryMetaClear removes metadata without decoding or re-compressing the image pixels. Your original resolution, color space and visual quality stay the same.
           </div>
         </div>
 
@@ -302,21 +324,21 @@
             <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
           </button>
           <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
-            No. Files are uploaded into temporary memory, scanned or cleaned on demand, and deleted automatically right after processing. We do not maintain any permanent storage or logs of uploaded images.
+            No. Files are held in temporary memory only while they are scanned or cleaned, and deleted right after. We do not keep copies of your images. Like most websites, our servers keep basic request logs (such as IP address and time) for security, but these do not contain your files.
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 1,500+ WORD SEO CONTENT ENGINE -->
+  <!-- About the tool -->
   <section class="max-w-6xl mx-auto px-4 py-16 text-slate-800 space-y-16 border-t border-slate-200">
     <div class="text-center space-y-4 max-w-3xl mx-auto">
       <h2 class="text-3xl md:text-5xl font-extrabold text-slate-900 tracking-tight">
         Free <span class="text-brand-600">AI Metadata Remover</span> & EXIF Data Cleaner
       </h2>
       <p class="text-lg text-slate-600 leading-relaxed">
-        TryMetaClear is an enterprise-grade online metadata cleaner and privacy utility designed to strip EXIF, delete GPS coordinates, erase C2PA Content Credentials, and remove AI generation signatures from photos and videos. Protect your personal privacy, avoid false automated social media labels, and secure your digital media footprint in seconds.
+        TryMetaClear is a free online metadata cleaner. It removes EXIF data, GPS coordinates, C2PA Content Credentials and AI-generation fields from photos and videos, so you decide what information goes out with the files you share.
       </p>
     </div>
 
@@ -370,50 +392,88 @@
             IPTC and XMP containers hold authorship, copyright status, editing history, and creation software tags. Generative AI tools insert digital source type labels inside IPTC structures.
           </p>
         </div>
+
+        <div class="space-y-3">
+          <h4 class="font-bold text-lg text-slate-900">3. C2PA Content Credentials</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            A signed record of how a file was made and edited, added by tools like DALL-E, ChatGPT and Adobe Firefly and by some cameras. Normal EXIF viewers often miss it. <a href="/remove-c2pa-content-credentials" class="text-brand-600 font-semibold hover:underline">How C2PA works and how to remove it</a>.
+          </p>
+        </div>
+
+        <div class="space-y-3">
+          <h4 class="font-bold text-lg text-slate-900">4. AI prompt and generation fields</h4>
+          <p class="text-sm text-slate-600 leading-relaxed">
+            Midjourney, Stable Diffusion and ComfyUI can save your prompt, seed, model and settings as text inside the image. Anyone who opens the file can read them. <a href="/remove-midjourney-metadata" class="text-brand-600 font-semibold hover:underline">See what Midjourney stores</a>.
+          </p>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Tool hub: internal links to every tool / guide -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <h2 class="text-2xl md:text-3xl font-extrabold text-slate-900 text-center mb-8">Tools and guides for specific AI generators</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <a href="/remove-ai-metadata-from-image" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">How to remove AI metadata</h3>
+        <p class="text-sm text-slate-600">Four methods compared: online tool, ExifTool, screenshots and OS settings.</p>
+      </a>
+      <a href="/remove-c2pa-content-credentials" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">Remove C2PA Content Credentials</h3>
+        <p class="text-sm text-slate-600">What C2PA is, who adds it, and how to remove it losslessly.</p>
+      </a>
+      <a href="/remove-midjourney-metadata" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">Remove Midjourney metadata</h3>
+        <p class="text-sm text-slate-600">Remove the prompt, Job ID and username stored in Midjourney images.</p>
+      </a>
+      <a href="/remove-dall-e-metadata" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">Remove DALL-E &amp; ChatGPT metadata</h3>
+        <p class="text-sm text-slate-600">See and remove the C2PA credentials OpenAI adds to generated images.</p>
+      </a>
+      <a href="/remove-gemini-ai-watermark" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">Gemini watermark remover</h3>
+        <p class="text-sm text-slate-600">Remove the visible Gemini corner mark, processed entirely in your browser.</p>
+      </a>
+      <a href="/remove-video-ai-metadata" class="block bg-white p-6 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
+        <h3 class="font-bold text-brand-900 mb-1">Video AI metadata remover</h3>
+        <p class="text-sm text-slate-600">Clean MP4, MOV and WebM files without re-encoding.</p>
+      </a>
     </div>
   </section>
 
   <!-- Global Footer -->
   <footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
     <div class="max-w-6xl mx-auto px-4 space-y-8">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-300 text-center md:text-left">
-        
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-sm text-slate-300 text-center md:text-left">
         <div class="space-y-3">
           <p class="font-bold text-white text-base">TryMetaClear</p>
-          <p class="text-slate-400">The ultimate privacy utility for stripping AI metadata, C2PA manifests, and EXIF footprints from digital media.</p>
+          <p class="text-slate-400">Free tools to inspect and remove EXIF, GPS, IPTC, XMP and C2PA metadata from images and videos.</p>
         </div>
-
         <div>
-          <p class="font-bold text-white text-base mb-3">Popular Tools</p>
+          <p class="font-bold text-white text-base mb-3">Tools</p>
           <ul class="space-y-2">
-            <li><a href="/remove-c2pa-content-credentials" class="hover:text-brand-400 transition">Remove C2PA Credentials</a></li>
-            <li><a href="/remove-midjourney-metadata" class="hover:text-brand-400 transition">Remove Midjourney Metadata</a></li>
-            <li><a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition font-bold text-white">Video AI Metadata Remover</a></li>
-            <li><a href="/" class="hover:text-brand-400 transition">Remove AI Metadata</a></li>
+            <li><a href="/" class="hover:text-white transition">AI Metadata &amp; EXIF Remover</a></li>
+            <li><a href="/remove-ai-metadata-from-image" class="hover:text-white transition">How to Remove AI Metadata</a></li>
+            <li><a href="/remove-c2pa-content-credentials" class="hover:text-white transition">Remove C2PA Content Credentials</a></li>
+            <li><a href="/remove-midjourney-metadata" class="hover:text-white transition">Remove Midjourney Metadata</a></li>
+            <li><a href="/remove-dall-e-metadata" class="hover:text-white transition">Remove DALL-E &amp; ChatGPT Metadata</a></li>
+            <li><a href="/remove-gemini-ai-watermark" class="hover:text-white transition">Gemini Watermark Remover</a></li>
+            <li><a href="/remove-video-ai-metadata" class="hover:text-white transition">Video AI Metadata Remover</a></li>
           </ul>
         </div>
-
         <div>
-          <p class="font-bold text-white text-base mb-3">Legal & Company</p>
+          <p class="font-bold text-white text-base mb-3">Company</p>
           <ul class="space-y-2">
-            <li><a href="/about.html" class="hover:text-brand-400 transition">About</a></li>
-            <li><a href="/blog/" class="hover:text-brand-400 transition">Blog</a></li>
-            <li><a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a></li>
-            <li><a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a></li>
+            <li><a href="/about" class="hover:text-white transition">About</a></li>
+            <li><a href="/contact" class="hover:text-white transition">Contact</a></li>
+            <li><a href="/privacy" class="hover:text-white transition">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition">Terms of Service</a></li>
           </ul>
         </div>
-
-        <div>
-          <p class="font-bold text-white text-base mb-3">About Creator</p>
-          <p class="text-slate-400">Created &amp; Owned by Founder Mayank Gupta. Designed for high-speed performance marketing and absolute creator privacy.</p>
-        </div>
-
       </div>
-
       <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
-        <p>© 2026 TryMetaClear. All rights reserved.</p>
-        <p>Created &amp; Owned by Founder Mayank Gupta.</p>
+        <p>&copy; 2026 TryMetaClear. All rights reserved.</p>
+        <p>Built by <a href="/about" class="text-white hover:underline">Mayank Gupta</a></p>
       </div>
     </div>
   </footer>
@@ -424,15 +484,62 @@
     let currentUploadedFile = null;
     let currentImagePreviewUrl = null;
 
+    // Metadata values come from user files, so escape them before inserting as HTML.
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    }
+
+    // Drag & drop
     const dropZone = document.getElementById('dropZone');
     ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
       dropZone.addEventListener(eName, e => { e.preventDefault(); e.stopPropagation(); }, false);
     });
-
+    ['dragenter', 'dragover'].forEach(eName => {
+      dropZone.addEventListener(eName, () => dropZone.classList.add('bg-brand-100/80', 'border-brand-600'), false);
+    });
+    ['dragleave', 'drop'].forEach(eName => {
+      dropZone.addEventListener(eName, () => dropZone.classList.remove('bg-brand-100/80', 'border-brand-600'), false);
+    });
     dropZone.addEventListener('drop', (e) => {
       const files = e.dataTransfer.files;
       if (files.length > 0) handleFileUpload(files[0]);
     });
+
+    // Scanning state: thumbnail + progress bar
+    function showScanningState(file) {
+      if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
+      currentImagePreviewUrl = URL.createObjectURL(file);
+
+      dropZone.innerHTML = `
+        <div class="w-full max-w-md mx-auto space-y-4 py-2">
+          <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
+            <img src="${currentImagePreviewUrl}" alt="Preview of the uploaded image" class="w-full h-full object-cover">
+          </div>
+          <div class="flex items-center justify-between text-xs font-bold text-brand-900">
+            <span class="flex items-center space-x-2">
+              <svg class="w-4 h-4 text-brand-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+              <span>Scanning metadata...</span>
+            </span>
+            <span id="scanPercentText" class="text-brand-600">15%</span>
+          </div>
+          <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
+            <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
+          </div>
+          <p class="text-xs text-slate-500 truncate">File: <span class="font-semibold text-slate-700">${escapeHtml(file.name)}</span></p>
+        </div>
+      `;
+
+      let currentPct = 15;
+      return setInterval(() => {
+        if (currentPct < 90) {
+          currentPct = Math.min(90, currentPct + Math.floor(Math.random() * 15) + 5);
+          const pBar = document.getElementById('scanProgressBar');
+          const pText = document.getElementById('scanPercentText');
+          if (pBar) pBar.style.width = `${currentPct}%`;
+          if (pText) pText.innerText = `${currentPct}%`;
+        }
+      }, 250);
+    }
 
     function resetDropZoneUI() {
       dropZone.innerHTML = `
@@ -452,41 +559,134 @@
       if (!file) return;
       currentUploadedFile = file;
 
+      const progressTimer = showScanningState(file);
       const formData = new FormData();
       formData.append("file", file);
 
       try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, {
-          method: "POST",
-          body: formData
-        });
-
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, { method: "POST", body: formData });
         if (!response.ok) throw new Error("Backend scan failed");
         const data = await response.json();
-        renderResults(data);
 
+        clearInterval(progressTimer);
+        const pBar = document.getElementById('scanProgressBar');
+        const pText = document.getElementById('scanPercentText');
+        if (pBar) pBar.style.width = '100%';
+        if (pText) pText.innerText = '100%';
+
+        setTimeout(() => {
+          resetDropZoneUI();
+          renderResults(data);
+        }, 300);
       } catch (err) {
+        clearInterval(progressTimer);
         console.error("Scan error:", err);
-        alert("Failed to scan image metadata.");
+        resetDropZoneUI();
+        alert("Failed to scan image metadata. Please check your connection and try again.");
       }
     }
 
     function renderResults(data) {
-      document.getElementById('resultsContainer').classList.remove('hidden');
+      const resultsContainer = document.getElementById('resultsContainer');
+      resultsContainer.classList.remove('hidden');
+      const statusCard = document.getElementById('statusCard');
+      const statusTitle = document.getElementById('statusTitle');
+      const statusIconBg = document.getElementById('statusIconBg');
+
+      if (data.has_ai) {
+        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
+        statusTitle.className = "text-xl font-extrabold text-accent-coral";
+        statusTitle.innerText = "AI Metadata Found";
+        statusIconBg.className = "w-12 h-12 bg-rose-100 text-accent-coral rounded-xl flex items-center justify-center text-xl font-bold";
+        statusIconBg.innerText = "⚠";
+      } else {
+        statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-100 flex flex-wrap items-center justify-between gap-4";
+        statusTitle.className = "text-xl font-extrabold text-brand-600";
+        statusTitle.innerText = "No AI Metadata Detected";
+        statusIconBg.className = "w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-xl font-bold";
+        statusIconBg.innerText = "✓";
+      }
+
+      // Thumbnail inside the status card
+      let imgDiv = document.getElementById('imgCardPreview');
+      if (!imgDiv) {
+        imgDiv = document.createElement('div');
+        imgDiv.id = 'imgCardPreview';
+        imgDiv.className = 'w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0';
+        statusCard.insertBefore(imgDiv, statusCard.firstChild);
+      }
+      imgDiv.innerHTML = `<img src="${currentImagePreviewUrl}" alt="Uploaded image" class="w-full h-full object-cover">`;
+
+      const aiCount = data.ai_count || 0;
+      document.getElementById('aiModelText').innerText = data.detected_model || "None";
+      document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+      document.getElementById('statAiFields').innerText = aiCount;
+      document.getElementById('statAiSub').innerText = `${aiCount} field${aiCount === 1 ? '' : 's'} show AI`;
+
+      const sectionsContainer = document.getElementById('sectionsList');
+      sectionsContainer.innerHTML = "";
+
+      let rendered = 0;
+      Object.entries(data.sections || {}).forEach(([sectionName, fields]) => {
+        if (!Array.isArray(fields) || fields.length === 0) return;
+
+        const sectionAi = fields.filter(f => f.is_ai).length;
+        const rowsHtml = fields.map(item => `
+          <tr class="border-b border-slate-100 hover:bg-slate-50/50">
+            <td class="py-3 px-4 font-semibold text-slate-800 text-xs w-1/3 align-middle">
+              <div class="flex items-center space-x-2">
+                <span>${escapeHtml(item.key || item.tag || item.name || 'Unknown')}</span>
+                ${item.is_ai ? '<span class="inline-flex items-center bg-[#FDF0ED] border border-[#F8D7DA] text-[#A94442] text-[10px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0">AI Tag</span>' : ''}
+              </div>
+            </td>
+            <td class="py-3 px-4 text-slate-700 text-xs font-sans break-all w-2/3 align-middle">${escapeHtml(item.value)}</td>
+          </tr>
+        `).join('');
+
+        const accordion = document.createElement('div');
+        accordion.className = "border border-slate-200 rounded-xl overflow-hidden bg-white";
+        accordion.innerHTML = `
+          <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-4 text-left font-bold text-brand-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition">
+            <div class="flex items-center space-x-2">
+              <span>${escapeHtml(sectionName)}</span>
+              <span class="text-xs font-normal text-slate-500">(${fields.length} fields ${sectionAi > 0 ? '· <strong class="text-accent-coral">' + sectionAi + ' AI</strong>' : ''})</span>
+            </div>
+            <svg class="w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+          </button>
+          <div class="accordion-content ${rendered === 0 ? '' : 'hidden'} p-2">
+            <table class="w-full text-left border-collapse">
+              <tbody>${rowsHtml}</tbody>
+            </table>
+          </div>
+        `;
+        sectionsContainer.appendChild(accordion);
+        rendered++;
+      });
+
+      if (rendered === 0) {
+        sectionsContainer.innerHTML = '<p class="text-sm text-slate-500">No metadata fields were found in this file.</p>';
+      }
+
+      resultsContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function toggleAllAccordions(expand) {
+      document.querySelectorAll('.accordion-content').forEach(el => el.classList.toggle('hidden', !expand));
     }
 
     async function downloadCleanedImage() {
       if (!currentUploadedFile) return;
 
+      const downloadBtn = document.getElementById('downloadBtn');
+      const originalBtnHtml = downloadBtn.innerHTML;
+      downloadBtn.disabled = true;
+      downloadBtn.innerHTML = `<span>Cleaning &amp; preparing...</span>`;
+
       const formData = new FormData();
       formData.append("file", currentUploadedFile);
 
       try {
-        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
-          method: "POST",
-          body: formData
-        });
-
+        const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, { method: "POST", body: formData });
         if (!response.ok) throw new Error("Cleaning failed");
 
         const blob = await response.blob();
@@ -497,17 +697,21 @@
         document.body.appendChild(a);
         a.click();
         a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
 
+        // GTM download event
         window.dataLayer = window.dataLayer || [];
         window.dataLayer.push({
           'event': 'file_download',
           'file_name': currentUploadedFile.name,
           'page_path': window.location.pathname
         });
-
       } catch (err) {
         console.error("Clean download error:", err);
         alert("Failed to download cleaned image.");
+      } finally {
+        downloadBtn.disabled = false;
+        downloadBtn.innerHTML = originalBtnHtml;
       }
     }
   </script>
