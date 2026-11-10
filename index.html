@@ -1,3 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <link rel="canonical" href="https://trymetaclear.com/">
+  <!-- Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-PXHMQC7T"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <!-- End Google Tag Manager -->
+   <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TryMetaClear",
+  "url": "https://trymetaclear.com",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free tool to inspect and strip EXIF, IPTC, XMP, GPS, and C2PA Content Credentials from images without altering pixel quality."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TryMetaClear",
+  "url": "https://trymetaclear.com",
+  "applicationCategory": "SecurityApplication",
+  "operatingSystem": "All",
+  "author": {
+    "@type": "Person",
+    "name": "Mayank Gupta"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Free tool to inspect and strip EXIF, IPTC, XMP, GPS, and C2PA Content Credentials from images without altering pixel quality."
+}
+</script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TryMetaClear - AI Metadata & C2PA Removal Tool</title>
+  <link rel="icon" type="image/png" href="/favico.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef6ff',
+              100: '#e0f0ff',
+              500: '#00d2ff',
+              600: '#0066ff',
+              700: '#0052cc',
+              900: '#0a194f',
+            },
+            accent: {
+              coral: '#ff4b4b',
+              purple: '#3a1c71',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+  /* Hide injected Netlify Badge & Drawer Widget */
+  [data-netlify-deploy-id],
+  iframe[src*="netlify"],
+  .netlify-badge,
+  #netlify-badge,
+  [class*="NetlifyBadge"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+</style>
+<!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://trymetaclear.com/">
+<meta property="og:title" content="TryMetaClear - Free AI Metadata & C2PA Removal Tool">
+<meta property="og:description" content="Detect and remove hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.">
+<meta property="og:image" content="https://trymetaclear.com/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+
+<!-- Twitter Card Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://trymetaclear.com/">
+<meta name="twitter:title" content="TryMetaClear - Free AI Metadata & C2PA Removal Tool">
+<meta name="twitter:description" content="Detect and remove hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.">
+<meta name="twitter:image" content="https://trymetaclear.com/og-image.png">
+<!-- Schema.org WebApplication Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "TryMetaClear",
+  "url": "https://trymetaclear.com/",
+  "description": "Free online tool to detect and strip hidden AI metadata, EXIF, IPTC, and C2PA Content Credentials from images instantly without losing quality.",
+  "applicationCategory": "MultimediaApplication",
+  "operatingSystem": "All",
+  "browserRequirements": "Requires JavaScript. Requires HTML5.",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "author": {
+    "@type": "Person",
+    "name": "Mayank Gupta"
+  }
+}
+</script>
+
+<!-- Schema.org FAQPage Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does stripping metadata reduce image quality?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. TryMetaClear strips metadata headers using ExifTool without re-encoding or compressing image pixels."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can TryMetaClear remove C2PA Content Credentials?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, TryMetaClear detects and deletes C2PA, JUMBF, and CBOR manifest tags embedded by AI generators and cameras."
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
+
+<!-- Header for Homepage -->
+  <!-- Mobile-Responsive Header -->
+<!-- Mobile-Responsive Header (Prominent Mobile Logo) -->
+<header class="bg-white border-b border-slate-200 sticky top-0 z-50">
+  <div class="max-w-6xl mx-auto px-4 py-4 md:py-0 md:h-24 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+    
+    <!-- Logo with Prominent Size on Mobile & Desktop -->
+    <a href="/" class="flex items-center shrink-0">
+      <img src="logo.png" alt="TryMetaClear" class="h-14 md:h-16 w-auto max-w-[240px] md:max-w-[280px] object-contain">
+    </a>
+
+    <!-- Navigation & Action Buttons -->
+    <nav class="flex items-center justify-center space-x-6 md:space-x-8 w-full md:w-auto">
+      
+      <!-- Tools Dropdown -->
+      <div class="relative group py-1 md:py-4">
+        <button class="flex items-center space-x-1.5 text-slate-800 hover:text-brand-600 font-bold text-base transition">
+          <span>Tools</span>
+          <svg class="w-4 h-4 text-slate-400 group-hover:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg>
+        </button>
+
+        <!-- Dropdown Menu -->
+        <div class="absolute left-1/2 md:left-auto md:right-0 -translate-x-1/2 md:translate-x-0 mt-2 w-64 md:w-72 bg-white rounded-2xl shadow-2xl border border-slate-100 p-2.5 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <a href="/" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">All AI Metadata Remover</a>
+          <a href="/remove-c2pa-content-credentials" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">C2PA Content Credentials</a>
+          <a href="/remove-midjourney-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Midjourney Metadata</a>
+          <a href="/remove-video-ai-metadata" class="block px-4 py-3 rounded-xl hover:bg-slate-50 font-bold text-slate-800 text-sm">Video AI Metadata Stripper</a>
+        </div>
+      </div>
+
+      <a href="/about.html" class="text-slate-800 hover:text-brand-600 font-bold text-base transition">About</a>
+      
+      <a href="/remove-video-ai-metadata" class="bg-brand-600 hover:bg-brand-700 text-white text-sm md:text-base font-bold px-4 md:px-5 py-2 md:py-2.5 rounded-xl transition shadow-md whitespace-nowrap">
+        For Video
+      </a>
+    </nav>
+
+  </div>
+</header>
+
+  <!-- Hero & Main Tool Section -->
+  <main id="tool" class="py-12 px-4 max-w-4xl mx-auto w-full">
+    <div class="text-center mb-8">
+      <h1 class="text-4xl font-extrabold text-brand-900 mb-3">
+        Free AI Metadata Remover <span class="bg-gradient-to-r from-brand-600 to-brand-500 bg-clip-text text-transparent">for Images</span>
+      </h1>
+      <p class="text-slate-600 text-sm max-w-xl mx-auto">
+        Detect & Clear AI Metadata, EXIF, IPTC, and C2PA Content Credentials. Strip hidden signatures instantly without losing image quality.
+      </p>
+    </div>
+
+    <!-- Upload Card -->
+    <div class="bg-white p-8 rounded-3xl shadow-sm border border-slate-200 text-center mb-8">
+      <div id="dropZone" class="border-2 border-dashed border-slate-300 hover:border-brand-600 bg-brand-50/50 hover:bg-brand-50 p-10 rounded-2xl cursor-pointer transition flex flex-col items-center justify-center">
+        <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+          <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+        </div>
+        <p class="font-bold text-brand-900 text-base mb-1">Drag and drop your image here</p>
+        <p class="text-xs text-slate-500 mb-4">Supports PNG, JPG, WEBP, HEIC up to 100MB</p>
+        <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
+          Browse Files
+        </button>
+        <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
+      </div>
+      <p class="text-xs text-slate-500 text-center mt-4">
+          Free. No account required. Removes metadata headers, not invisible pixel watermarks (like SynthID).
+      </p>
+    </div>
+    <!-- Why Choose TryMetaClear Section -->
+<section class="mt-24 max-w-6xl mx-auto px-4">
+  <div class="text-center max-w-2xl mx-auto mb-12">
+    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Why Creators & Marketers Trust TryMetaClear</h2>
+    <p class="text-slate-600 text-base mt-2">Built specifically for high-speed performance marketing and absolute media privacy.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+    <!-- Card 1 -->
+    <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-500 transition group">
+      <div class="w-12 h-12 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition-transform">
+        ⚡
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-2">Zero Stream Re-Encoding</h3>
+      <p class="text-sm text-slate-600 leading-relaxed">Unlike heavy software that degrades your video or image quality, we strip container atoms and metadata wrappers losslessly.</p>
+    </div>
+
+    <!-- Card 2 -->
+    <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-500 transition group">
+      <div class="w-12 h-12 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition-transform">
+        🔒
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-2">C2PA & Prompt Shield</h3>
+      <p class="text-sm text-slate-600 leading-relaxed">Permanently erase hidden prompt history, seed tokens, and cryptographic provenance manifests from Midjourney, Sora, and Runway files.</p>
+    </div>
+
+    <!-- Card 3 -->
+    <div class="p-8 bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-md hover:border-brand-500 transition group">
+      <div class="w-12 h-12 bg-brand-500/10 text-brand-500 rounded-2xl flex items-center justify-center font-bold text-xl mb-6 group-hover:scale-110 transition-transform">
+        🚀
+      </div>
+      <h3 class="text-lg font-bold text-slate-900 mb-2">Lightning-Fast Processing</h3>
+      <p class="text-sm text-slate-600 leading-relaxed">Optimized backend scanning and quick downloads mean you can sanitize bulk batches of media assets in seconds.</p>
+    </div>
+  </div>
+</section>
+
+<!-- Explore Tools Hub Section -->
+<section class="mt-24 max-w-6xl mx-auto px-4 text-center">
+  <div class="max-w-2xl mx-auto mb-12">
+    <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight">Specialized AI Metadata Strippers</h2>
+    <p class="text-slate-600 text-base mt-2">Select your media format below for tailored metadata cleaning.</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+    <!-- Image Tool Card -->
+    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl flex flex-col justify-between space-y-6">
+      <div class="space-y-3">
+        <span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-bold uppercase tracking-wider">Images & Artwork</span>
+        <h3 class="text-2xl font-extrabold text-slate-900">Image & Midjourney Metadata Remover</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Strip hidden prompts, aspect ratio tags, EXIF parameters, and DALL-E/Midjourney tracking chips instantly.</p>
+      </div>
+      <div>
+        <ul class="text-xs text-slate-600 space-y-2 mb-6 font-medium">
+          <li class="flex items-center gap-2">✅ Supports PNG, JPG, WebM, HEIC</li>
+          <li class="flex items-center gap-2">✅ Eradicates C2PA Manifests</li>
+        </ul>
+        <a href="/" class="block w-full py-3 px-4 bg-slate-900 hover:bg-brand-600 text-white font-bold text-center rounded-xl transition text-sm">
+          Open Image Tool &rarr;
+        </a>
+      </div>
+    </div>
+
+    <!-- Video Tool Card -->
+    <div class="bg-white p-8 rounded-3xl border border-slate-200 shadow-xl flex flex-col justify-between space-y-6">
+      <div class="space-y-3">
+        <span class="px-3 py-1 bg-sky-50 text-sky-600 rounded-full text-xs font-bold uppercase tracking-wider">Video Files</span>
+        <h3 class="text-2xl font-extrabold text-slate-900">Video AI Metadata Stripper</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Inspect MP4 and MOV container atoms (moov, udta) and clean AI video generator telemetry without re-encoding.</p>
+      </div>
+      <div>
+        <ul class="text-xs text-slate-600 space-y-2 mb-6 font-medium">
+          <li class="flex items-center gap-2">✅ Supports MP4, MOV, WebM up to 100MB</li>
+          <li class="flex items-center gap-2">✅ Lossless Atom Stripping</li>
+        </ul>
+        <a href="/remove-video-ai-metadata" class="block w-full py-3 px-4 bg-brand-600 hover:bg-brand-700 text-white font-bold text-center rounded-xl transition text-sm shadow-md">
+          Open Video Tool &rarr;
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+    <!-- Results Container -->
+    <div id="resultsContainer" class="hidden space-y-6">
+      
+      <!-- AI Status Card -->
+      <div id="statusCard" class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-4">
+        <div class="flex items-center space-x-4">
+          <div id="statusIconBg" class="w-12 h-12 rounded-xl flex items-center justify-center text-xl font-bold"></div>
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">AI STATUS</span>
+            <h3 id="statusTitle" class="text-xl font-extrabold"></h3>
+            <p class="text-xs text-slate-500">Based on File Hidden Metadata. Not a Pixel level scan.</p>
+          </div>
+        </div>
+        <div class="text-right">
+          <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">AI MODEL DETECTED</span>
+          <p id="aiModelText" class="text-lg font-bold text-brand-900"></p>
+        </div>
+      </div>
+
+      <!-- Overview Stats & Action Card -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex flex-wrap items-center justify-between gap-6">
+        <div class="flex items-center space-x-8">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-slate-400">TOTAL METADATA FIELDS</span>
+            <div id="statTotalFields" class="text-3xl font-extrabold text-brand-900">0</div>
+            <span class="text-xs text-slate-400">in sections</span>
+          </div>
+          <div class="border-l border-slate-200 pl-8">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-accent-coral">AI METADATA TAGS</span>
+            <div id="statAiFields" class="text-3xl font-extrabold text-accent-coral">0</div>
+            <span id="statAiSub" class="text-xs text-accent-coral font-medium">0 fields show AI</span>
+          </div>
+        </div>
+
+        <button id="downloadBtn" onclick="downloadCleanedImage()" class="bg-gradient-to-r from-brand-600 to-brand-500 hover:from-brand-700 hover:to-brand-600 text-white font-bold px-6 py-3.5 rounded-xl shadow-md transition flex items-center space-x-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+          <span>Remove AI & Download</span>
+        </button>
+      </div>
+
+      <!-- Accordion Details Section -->
+      <div class="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-extrabold text-brand-900 text-lg">Metadata Details</h3>
+          <div class="space-x-2">
+            <button onclick="toggleAllAccordions(true)" class="text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 px-3 py-1.5 rounded-lg transition">Expand all</button>
+            <button onclick="toggleAllAccordions(false)" class="text-xs font-semibold text-slate-500 hover:text-brand-600 bg-slate-100 px-3 py-1.5 rounded-lg transition">Collapse all</button>
+          </div>
+        </div>
+
+        <div id="sectionsList" class="space-y-3"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Features Section -->
+<section id="features" class="py-20 bg-white border-t border-slate-200">
+  <div class="max-w-6xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <span class="text-xs font-bold uppercase tracking-wider text-brand-600 bg-brand-50 px-3.5 py-1.5 rounded-full border border-brand-100">Capabilities</span>
+      <h2 class="text-3xl md:text-4xl font-extrabold text-brand-900 mt-4">Comprehensive Metadata Control</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Remove C2PA Credentials</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Strips C2PA, JUMBF, and CBOR manifests added by Midjourney, ChatGPT, DALL-E 3, Adobe Firefly, and cameras.</p>
+      </div>
+
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Delete Full EXIF, IPTC & XMP</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Deletes GPS location coordinates, camera serial numbers, software timestamps, and device info completely.</p>
+      </div>
+
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Clean Without Changing Pixels</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Removes metadata directly from file headers. Never recompresses or degrades your image's original visual quality.</p>
+      </div>
+
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Strip GPS Coordinates</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Removes precise geotags, latitude/longitude markers, altitude data, and location tracking from mobile photos.</p>
+      </div>
+
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Zero Data Logging</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Files are uploaded over encrypted HTTPS, processed strictly in temporary server memory, and deleted immediately after your cleaned copy is generated.</p>
+      </div>
+
+      <div class="bg-slate-50 p-7 rounded-2xl border border-slate-200/80 hover:border-brand-500/40 hover:shadow-md transition">
+        <div class="w-12 h-12 bg-brand-100 text-brand-600 rounded-xl flex items-center justify-center font-bold mb-5">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+        </div>
+        <h3 class="font-bold text-brand-900 text-lg mb-2">Large File Engine</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">Inspects images up to 100MB across JPG, PNG, WEBP, TIFF, and HEIC file types powered by ExifTool backend.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <!-- FAQs Section -->
+<section id="faq" class="py-20 bg-slate-50 border-t border-slate-200">
+  <div class="max-w-4xl mx-auto px-4">
+    <div class="text-center mb-14">
+      <h2 class="text-3xl md:text-4xl font-extrabold text-brand-900">Frequently Asked Questions</h2>
+    </div>
+
+    <div class="space-y-4">
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-6 text-left font-bold text-brand-900 text-lg flex justify-between items-center bg-slate-50/70 hover:bg-slate-100/80 transition">
+          <span>Will TryMetaClear remove all metadata, including AI-specific tags?</span>
+          <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white">
+          TryMetaClear removes EXIF, IPTC, XMP, GPS, and C2PA Content Credentials stored inside the image file headers. It does not remove invisible watermarks embedded directly into pixel matrices (such as DeepMind SynthID), because those are structural pixel patterns rather than file metadata tags.
+        </div>
+      </div>
+
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-6 text-left font-bold text-brand-900 text-lg flex justify-between items-center bg-slate-50/70 hover:bg-slate-100/80 transition">
+          <span>Does cleaning metadata reduce my image resolution or quality?</span>
+          <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
+          No. TryMetaClear strips metadata directly from the file header without decoding or re-compressing the image pixels. Your original resolution, color space, and visual quality remain untouched.
+        </div>
+      </div>
+
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-5 text-left font-bold text-brand-900 text-lg flex justify-between items-center bg-slate-50/70 hover:bg-slate-100/80 transition">
+          <span>Are my uploaded images stored or saved on your server?</span>
+          <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
+          No. Files are uploaded into temporary memory, scanned or cleaned on demand, and deleted automatically right after processing. We do not maintain any permanent storage or logs of uploaded images.
+        </div>
+      </div>
+
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-6 text-left font-bold text-brand-900 text-lg flex justify-between items-center bg-slate-50/70 hover:bg-slate-100/80 transition">
+          <span>What is C2PA and how is AI metadata embedded?</span>
+          <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
+          C2PA (Coalition for Content Provenance and Authenticity) is an open industry standard that embeds cryptographically signed manifests inside media files. Generative AI tools use C2PA to store generation claims, software names, and prompt history in hidden binary blocks.
+        </div>
+      </div>
+
+      <div class="border border-slate-200 rounded-2xl overflow-hidden bg-white shadow-xs">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-6 text-left font-bold text-brand-900 text-lg flex justify-between items-center bg-slate-50/70 hover:bg-slate-100/80 transition">
+          <span>What is the maximum file size supported?</span>
+          <svg class="w-5 h-5 text-slate-500 transform transition-transform shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="p-6 text-sm text-slate-600 leading-relaxed border-t border-slate-100 bg-white hidden">
+          TryMetaClear supports single image files up to 100MB in size across common formats including JPEG, PNG, WEBP, HEIC, and TIFF.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- SEO CONTENT ENGINE (1,500+ WORDS) -->
 <section class="max-w-6xl mx-auto px-4 py-16 text-slate-800 space-y-16 border-t border-slate-200">
 
@@ -194,3 +677,307 @@
   </div>
 
 </section>
+
+<!-- Global Footer (Updated Branding & Increased Font Size) -->
+<!-- Mobile-Centered Global Footer -->
+<footer class="bg-brand-900 text-white py-12 border-t border-slate-800 mt-20">
+  <div class="max-w-6xl mx-auto px-4 space-y-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-sm text-slate-300 text-center md:text-left">
+      
+      <div class="space-y-3">
+        <p class="font-bold text-white text-base">TryMetaClear</p>
+        <p class="text-slate-400">The ultimate privacy utility for stripping AI metadata, C2PA manifests, and EXIF footprints from digital media.</p>
+      </div>
+
+      <div>
+        <p class="font-bold text-white text-base mb-3">Popular Tools</p>
+        <ul class="space-y-2">
+          <li><a href="/remove-c2pa-content-credentials" class="hover:text-brand-400 transition">Remove C2PA Credentials</a></li>
+          <li><a href="/remove-midjourney-metadata" class="hover:text-brand-400 transition">Remove Midjourney Metadata</a></li>
+          <li><a href="/remove-video-ai-metadata" class="hover:text-brand-400 transition font-bold text-white">Video AI Metadata Remover</a></li>
+          <li><a href="/" class="hover:text-brand-400 transition">Remove AI Metadata</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-white text-base mb-3">Legal & Company</p>
+        <ul class="space-y-2">
+          <li><a href="/about.html" class="hover:text-brand-400 transition">About</a></li>
+          <li><a href="/privacy.html" class="hover:text-brand-400 transition">Privacy Policy</a></li>
+          <li><a href="/terms.html" class="hover:text-brand-400 transition">Terms of Service</a></li>
+          <li><a href="/contact.html" class="hover:text-brand-400 transition">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="font-bold text-white text-base mb-3">About Creator</p>
+        <p class="text-slate-400">Created &amp; Owned by Mayank Gupta. Designed for high-speed performance marketing and absolute creator privacy.</p>
+      </div>
+
+    </div>
+
+    <div class="border-t border-slate-800 pt-6 flex flex-col md:flex-row items-center justify-between text-sm text-slate-400 text-center gap-2 md:gap-0">
+      <p>© 2026 TryMetaClear. All rights reserved.</p>
+      <p>Created &amp; Owned by Mayank Gupta.</p>
+    </div>
+  </div>
+</footer>
+
+  <!-- JavaScript Application Logic -->
+<script>
+  const BACKEND_API_URL = "https://api.trymetaclear.com";
+  let currentUploadedFile = null;
+  let currentImagePreviewUrl = null;
+
+  // Setup Drag & Drop Handlers
+  const dropZone = document.getElementById('dropZone');
+  ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eName => {
+    dropZone.addEventListener(eName, preventDefaults, false);
+  });
+  function preventDefaults(e) { e.preventDefault(); e.stopPropagation(); }
+
+  ['dragenter', 'dragover'].forEach(eName => {
+    dropZone.addEventListener(eName, () => dropZone.classList.add('bg-brand-100/80', 'border-brand-600'), false);
+  });
+  ['dragleave', 'drop'].forEach(eName => {
+    dropZone.addEventListener(eName, () => dropZone.classList.remove('bg-brand-100/80', 'border-brand-600'), false);
+  });
+
+  dropZone.addEventListener('drop', (e) => {
+    const files = e.dataTransfer.files;
+    if (files.length > 0) handleFileUpload(files[0]);
+  });
+
+  // Animated Scanning State with Image Thumbnail Preview
+  function showScanningState(file) {
+    if (currentImagePreviewUrl) URL.revokeObjectURL(currentImagePreviewUrl);
+    currentImagePreviewUrl = URL.createObjectURL(file);
+
+    dropZone.innerHTML = `
+      <div class="w-full max-w-md mx-auto space-y-4 py-2">
+        <!-- Image Thumbnail Preview -->
+        <div class="relative w-24 h-24 mx-auto rounded-2xl overflow-hidden shadow-md border-2 border-brand-500 bg-slate-100">
+          <img src="${currentImagePreviewUrl}" alt="Preview" class="w-full h-full object-cover">
+          <div class="absolute inset-0 bg-brand-900/10 backdrop-blur-[1px]"></div>
+        </div>
+
+        <div class="flex items-center justify-between text-xs font-bold text-brand-900">
+          <span class="flex items-center space-x-2">
+            <svg class="w-4 h-4 text-brand-600 animate-spin" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
+            <span>Scanning metadata...</span>
+          </span>
+          <span id="scanPercentText" class="text-brand-600">15%</span>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="w-full bg-slate-200 h-2.5 rounded-full overflow-hidden p-0.5">
+          <div id="scanProgressBar" class="bg-gradient-to-r from-brand-600 to-brand-500 h-full rounded-full transition-all duration-300 ease-out" style="width: 15%"></div>
+        </div>
+        <p class="text-xs text-slate-500 truncate">File: <span class="font-semibold text-slate-700">${file.name}</span></p>
+      </div>
+    `;
+
+    let currentPct = 15;
+    const interval = setInterval(() => {
+      if (currentPct < 90) {
+        currentPct += Math.floor(Math.random() * 15) + 5;
+        if (currentPct > 90) currentPct = 90;
+        const pBar = document.getElementById('scanProgressBar');
+        const pText = document.getElementById('scanPercentText');
+        if (pBar) pBar.style.width = `${currentPct}%`;
+        if (pText) pText.innerText = `${currentPct}%`;
+      }
+    }, 250);
+
+    return interval;
+  }
+
+  function resetDropZoneUI() {
+    dropZone.innerHTML = `
+      <div class="w-16 h-16 bg-gradient-to-tr from-brand-600 to-brand-500 text-white rounded-2xl flex items-center justify-center text-2xl shadow-md mb-4">
+        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+      </div>
+      <p class="font-bold text-brand-900 text-base mb-1">Drag and drop your image here</p>
+      <p class="text-xs text-slate-500 mb-4">Supports PNG, JPG, WEBP, HEIC up to 100MB</p>
+      <button onclick="document.getElementById('fileInput').click()" class="bg-gradient-to-r from-brand-900 to-brand-700 hover:from-brand-700 hover:to-brand-600 text-white font-bold text-xs px-6 py-3 rounded-xl shadow transition">
+        Browse Files
+      </button>
+      <input type="file" id="fileInput" class="hidden" accept="image/*" onchange="handleFileUpload(this.files[0])">
+    `;
+  }
+
+  async function handleFileUpload(file) {
+    if (!file) return;
+    currentUploadedFile = file;
+
+    const progressTimer = showScanningState(file);
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const response = await fetch(`${BACKEND_API_URL}/api/v1/scan`, {
+        method: "POST",
+        body: formData
+      });
+
+      if (!response.ok) throw new Error("Backend scan failed");
+      const data = await response.json();
+
+      clearInterval(progressTimer);
+      const pBar = document.getElementById('scanProgressBar');
+      const pText = document.getElementById('scanPercentText');
+      if (pBar) pBar.style.width = '100%';
+      if (pText) pText.innerText = '100%';
+
+      setTimeout(() => {
+        resetDropZoneUI();
+        renderResults(data);
+      }, 300);
+
+    } catch (err) {
+      clearInterval(progressTimer);
+      console.error("Scan error:", err);
+      resetDropZoneUI();
+      alert("Failed to scan image metadata. Please check connection.");
+    }
+  }
+
+  function renderResults(data) {
+    document.getElementById('resultsContainer').classList.remove('hidden');
+    const statusCard = document.getElementById('statusCard');
+    const statusTitle = document.getElementById('statusTitle');
+    const statusIconBg = document.getElementById('statusIconBg');
+
+    if (data.has_ai) {
+      statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-rose-200 flex flex-wrap items-center justify-between gap-4";
+      statusTitle.className = "text-xl font-extrabold text-accent-coral";
+      statusTitle.innerText = "AI Footprints Found";
+      statusIconBg.className = "w-12 h-12 bg-rose-100 text-accent-coral rounded-xl flex items-center justify-center text-xl font-bold";
+      statusIconBg.innerText = "⚠";
+    } else {
+      statusCard.className = "bg-white p-6 rounded-2xl shadow-sm border border-brand-100 flex flex-wrap items-center justify-between gap-4";
+      statusTitle.className = "text-xl font-extrabold text-brand-600";
+      statusTitle.innerText = "No AI Metadata Detected";
+      statusIconBg.className = "w-12 h-12 bg-brand-50 text-brand-600 rounded-xl flex items-center justify-center text-xl font-bold";
+      statusIconBg.innerText = "✓";
+    }
+
+    // Attach Image Preview inside the Status Card header
+    const previewContainer = document.getElementById('statusCard');
+    if (!document.getElementById('imgCardPreview')) {
+      const imgDiv = document.createElement('div');
+      imgDiv.id = 'imgCardPreview';
+      imgDiv.className = 'w-16 h-16 rounded-xl overflow-hidden border border-slate-200 shrink-0';
+      imgDiv.innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
+      previewContainer.insertBefore(imgDiv, previewContainer.firstChild);
+    } else {
+      document.getElementById('imgCardPreview').innerHTML = `<img src="${currentImagePreviewUrl}" class="w-full h-full object-cover">`;
+    }
+
+    document.getElementById('aiModelText').innerText = data.detected_model || "None";
+    document.getElementById('statTotalFields').innerText = data.total_fields || 0;
+    document.getElementById('statAiFields').innerText = data.ai_count || 0;
+    document.getElementById('statAiSub').innerText = `${data.ai_count || 0} fields show AI`;
+
+    const sectionsContainer = document.getElementById('sectionsList');
+    sectionsContainer.innerHTML = "";
+
+    const sections = data.sections || {};
+    const entries = Object.entries(sections);
+
+    entries.forEach(([sectionName, fields], idx) => {
+      if (!fields || !Array.isArray(fields) || fields.length === 0) return;
+
+      const aiCount = fields.filter(f => f.is_ai).length;
+      const accordion = document.createElement('div');
+      accordion.className = "border border-slate-200 rounded-xl overflow-hidden bg-white";
+
+      let rowsHtml = fields.map(item => `
+        <tr class="border-b border-slate-100 hover:bg-slate-50/50">
+          <td class="py-3 px-4 font-semibold text-slate-800 text-xs w-1/3 align-middle">
+            <div class="flex items-center space-x-2">
+              <span>${item.key || item.tag || 'Unknown'}</span>
+              ${item.is_ai ? '<span class="inline-flex items-center bg-[#FDF0ED] border border-[#F8D7DA] text-[#A94442] text-[10px] font-medium px-2.5 py-0.5 rounded-full whitespace-nowrap shrink-0">AI Footprint</span>' : ''}
+            </div>
+          </td>
+          <td class="py-3 px-4 text-slate-700 text-xs font-sans break-all w-2/3 align-middle">${item.value !== undefined ? item.value : ''}</td>
+        </tr>
+      `).join('');
+
+      accordion.innerHTML = `
+        <button onclick="this.nextElementSibling.classList.toggle('hidden'); this.querySelector('svg').classList.toggle('rotate-180')" class="w-full p-4 text-left font-bold text-brand-900 flex justify-between items-center bg-slate-50 hover:bg-slate-100 transition">
+          <div class="flex items-center space-x-2">
+            <span>${sectionName}</span>
+            <span class="text-xs font-normal text-slate-500">(${fields.length} fields ${aiCount > 0 ? '· <strong class="text-accent-coral">' + aiCount + ' AI</strong>' : ''})</span>
+          </div>
+          <svg class="w-4 h-4 text-slate-500 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+        </button>
+        <div class="accordion-content ${idx === 0 ? '' : 'hidden'} p-2">
+          <table class="w-full text-left border-collapse">
+            <tbody>${rowsHtml}</tbody>
+          </table>
+        </div>
+      `;
+
+      sectionsContainer.appendChild(accordion);
+    });
+
+    document.getElementById('resultsContainer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function toggleAllAccordions(expand) {
+    document.querySelectorAll('.accordion-content').forEach(el => {
+      if (expand) el.classList.remove('hidden');
+      else el.classList.add('hidden');
+    });
+  }
+
+  async function downloadCleanedImage() {
+    if (!currentUploadedFile) return;
+
+    const downloadBtn = document.getElementById('downloadBtn');
+    downloadBtn.disabled = true;
+    downloadBtn.innerHTML = `<span>Cleaning & Preparing...</span>`;
+
+    const formData = new FormData();
+    formData.append("file", currentUploadedFile);
+
+    try {
+  const response = await fetch(`${BACKEND_API_URL}/api/v1/clean`, {
+    method: "POST",
+    body: formData
+  });
+
+  if (!response.ok) throw new Error("Cleaning failed");
+
+  const blob = await response.blob();
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `cleared_${currentUploadedFile.name}`;
+  document.body.appendChild(a);
+  a.click();
+  a.remove();
+
+  // --- ADD THIS GTM EVENT HERE ---
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push({
+    'event': 'file_download',
+    'file_name': currentUploadedFile.name,
+    'page_path': window.location.pathname
+  });
+
+} catch (err) {
+  console.error("Clean download error:", err);
+  alert("Failed to download cleaned image.");
+} finally {
+      downloadBtn.disabled = false;
+      downloadBtn.innerHTML = `
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+        <span>Remove AI & Download</span>
+      `;
+    }
+  }
+</script>
+</body>
+</html>
