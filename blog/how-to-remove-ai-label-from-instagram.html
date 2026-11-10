@@ -220,7 +220,7 @@
         <p>IPTC (International Press Telecommunications Council) and Adobe XMP (Extensible Metadata Platform) are traditional photo header standards. Within these header schemas, specific metadata fields indicate digital provenance—notably:</p>
         <ul>
           <li><code>DigitalSourceType</code>: Specifies if media is camera-captured, retouched, or algorithmically generated.</li>
-          <li><code>GenerativeSoft</code>: Records the specific AI generator model (e.g., Adobe Firefly, DALL-E 3, Midjourney, or Stable Diffusion).</li>
+          <li><code>AISystemUsed</code> (IPTC "AI System Used"): Records the specific AI generator model (e.g., Adobe Firefly, DALL-E 3, Midjourney, or Stable Diffusion).</li>
           <li><code>Software</code> / <code>History</code>: Logs edit steps, including Generative Fill and Generative Remove actions.</li>
         </ul>
         <p>When you edit a photo with Adobe Photoshop Generative Fill, Lightroom Generative Remove, Google Pixel Magic Eraser, or Samsung Galaxy AI retouching, the software automatically writes these C2PA manifests or IPTC tags into your image file header.</p>
@@ -240,7 +240,7 @@
           <li>Drag and drop your photo into the upload box. It's sent over an encrypted connection to be scanned, and deleted from our server right after. Nothing is stored.</li>
           <li>Review the parsed metadata list for <strong>C2PA, XMP, IPTC, and EXIF</strong> entries.</li>
         </ol>
-        <p><strong>Checkpoint:</strong> You will know it worked when the results panel shows the <strong>AI Status</strong> card and a <strong>Metadata Details</strong> breakdown of embedded header tags. If you spot entries containing <code>C2PA Manifest</code>, <code>GenerativeSoft</code>, <code>DigitalSourceType: trainedAlgorithmicMedia</code>, or specific generator prompt strings, those embedded header fields are the triggers causing Instagram to apply the AI label.</p>
+        <p><strong>Checkpoint:</strong> You will know it worked when the results panel shows the <strong>AI Status</strong> card and a <strong>Metadata Details</strong> breakdown of embedded header tags. If you spot entries containing <code>C2PA Manifest</code>, <code>AISystemUsed</code>, <code>DigitalSourceType: trainedAlgorithmicMedia</code>, or specific generator prompt strings, those embedded header fields are the triggers causing Instagram to apply the AI label.</p>
 
         <h2 id="step-2">Step 2: Clean the Metadata</h2>
         <p>Once you have identified the embedded tags, use TryMetaClear to strip them in one simple click.</p>
