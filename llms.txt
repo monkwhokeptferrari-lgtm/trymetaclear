@@ -5,7 +5,6 @@
 Key facts:
 - Free, no account required. Images: PNG, JPG, WebP, HEIC up to 100 MB. Video: MP4, MOV, WebM up to 100 MB.
 - Uploaded files are processed in memory and deleted after the cleaned copy is returned; no copies are kept.
-- The Gemini watermark remover runs entirely in the browser; images are not uploaded.
 - Built by Mayank Gupta. Contact: support@trymetaclear.com
 
 ## Tools and guides
@@ -15,7 +14,6 @@ Key facts:
 - [Remove C2PA Content Credentials](https://trymetaclear.com/remove-c2pa-content-credentials): What C2PA is, where it is stored in JPEG/PNG/WebP, who adds and reads it, and how to remove it.
 - [Remove Midjourney Metadata](https://trymetaclear.com/remove-midjourney-metadata): The prompt, Job ID and Author fields Midjourney stores, and how to remove them.
 - [Remove DALL-E & ChatGPT Metadata](https://trymetaclear.com/remove-dall-e-metadata): The C2PA manifest OpenAI adds to generated images, and how to remove it.
-- [Gemini Watermark Remover](https://trymetaclear.com/remove-gemini-ai-watermark): Removes the visible Gemini corner watermark in the browser.
 - [Video AI Metadata Remover](https://trymetaclear.com/remove-video-ai-metadata): Removes AI tags and C2PA from MP4, MOV and WebM without re-encoding.
 
 ## Company
