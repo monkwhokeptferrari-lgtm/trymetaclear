@@ -1,0 +1,32 @@
+# After every push to main that changes a page, wait for Netlify to deploy,
+# then tell IndexNow (Bing, Yandex, ...) which URLs changed.
+# Manual run (Actions -> IndexNow -> Run workflow) submits every URL in sitemap.xml.
+
+name: IndexNow
+
+on:
+  push:
+    branches: [main]
+    paths: ["**.html", "sitemap.xml"]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Wait for Netlify deploy
+        if: github.event_name == 'push'
+        run: sleep 120
+      - name: Submit changed pages
+        if: github.event_name == 'push'
+        run: bash .github/indexnow/submit.sh changed "${{ github.event.before }}" "${{ github.sha }}"
+      - name: Submit all sitemap pages
+        if: github.event_name == 'workflow_dispatch'
+        run: bash .github/indexnow/submit.sh all
