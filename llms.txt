@@ -4,7 +4,7 @@
 
 Key facts:
 - Free, no account required. Images: PNG, JPG, WebP, HEIC up to 100 MB. Video: MP4, MOV, WebM up to 100 MB.
-- Uploaded files are processed in memory and deleted after the cleaned copy is returned; no copies are kept.
+- Uploaded files are saved briefly as temporary files on the server and deleted immediately after processing; no copies are kept.
 - Built by Mayank Gupta. Contact: support@trymetaclear.com
 
 ## Tools and guides
