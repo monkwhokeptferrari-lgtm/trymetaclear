@@ -1,0 +1,31 @@
+# Checks every 30 minutes that the site loads and that upload (scan) and
+# "Remove AI & Download" (clean) work. If any check fails, this workflow fails
+# and GitHub emails the account that owns the schedule (the last person to push
+# a change to this file).
+#
+# Run it by hand any time: GitHub -> Actions -> "Site monitor" -> "Run workflow".
+
+name: Site monitor
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # every 30 minutes (UTC); GitHub may start runs a few minutes late
+  workflow_dispatch: {}       # allows a manual run from the Actions tab
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-monitor
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github/monitor
+      - name: Check site, upload and download
+        run: bash .github/monitor/check.sh
