@@ -1,0 +1,13 @@
+{
+  "private": true,
+  "description": "Builds the site's Tailwind CSS. Run: npm run build (from this folder).",
+  "scripts": {
+    "build": "npm run build:site && npm run build:video",
+    "build:site": "tailwindcss -c tailwind.config.js -i input.css -o ../assets/css/site.css --minify",
+    "build:video": "tailwindcss -c tailwind.video.config.js -i input.css -o ../assets/css/video.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/typography": "0.5.16",
+    "tailwindcss": "3.4.17"
+  }
+}
