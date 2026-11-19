@@ -53,6 +53,7 @@
         "mainEntityOfPage": "https://trymetaclear.com/blog/how-to-check-if-image-has-ai-metadata",
         "image": [
           "https://trymetaclear.com/blog/images/check-ai-metadata-share.jpg",
+          "https://trymetaclear.com/blog/images/ai-metadata-inside-image-file.png",
           "https://trymetaclear.com/blog/images/trymetaclear-scan-results.png"
         ],
         "datePublished": "2026-11-19",
@@ -227,6 +228,11 @@
 
         <h2 id="what-is-ai-metadata">What Is AI Metadata and Where Does It Live?</h2>
         <p>An image file holds two things: the picture (the pixels you see) and metadata, text stored inside the file that you don't see. Think of metadata as a receipt stapled to the back of a print. Your camera writes the first lines; every app that edits or exports the file can add more.</p>
+
+        <figure>
+          <img src="/blog/images/ai-metadata-inside-image-file.png" width="1200" height="860" loading="lazy" alt="Diagram of what's inside an image file: the visible pixels, plus hidden metadata layers. EXIF holds camera details and GPS; IPTC/XMP holds DigitalSourceType and AISystemUsed; C2PA holds signed Content Credentials; PNG text holds AI prompts and settings. The IPTC, C2PA and PNG text layers are where AI tools leave signals.">
+          <figcaption>An image file is the picture plus hidden metadata layers. AI tools leave their signals in the IPTC/XMP, C2PA and PNG text layers; SynthID watermarks live in the pixels instead.</figcaption>
+        </figure>
         <p>When AI is involved, it usually shows up in one of four places:</p>
         <ol>
           <li><strong>C2PA Content Credentials:</strong> a signed record of how the file was made and edited, backed by Adobe, Microsoft, Google, OpenAI and others. ChatGPT/DALL-E, Adobe Firefly, Photoshop's generative tools and Samsung's Galaxy AI (S25 and later) write one. <a href="/remove-c2pa-content-credentials">More on C2PA</a>.</li>
