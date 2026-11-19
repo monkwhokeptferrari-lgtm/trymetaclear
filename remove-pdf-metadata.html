@@ -126,6 +126,7 @@
       display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
     }
   </style>
+  <style>main h2[id] { scroll-margin-top: 10.5rem; } html { scroll-behavior: smooth; }</style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
   <!-- Google Tag Manager (noscript) -->
@@ -258,9 +259,25 @@
       </div>
     </div>
 
+    <!-- Table of contents -->
+    <nav class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200" aria-label="Table of contents">
+      <p class="text-sm font-extrabold text-brand-900 uppercase tracking-wider mb-3">On this page</p>
+      <ol class="list-decimal list-inside grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <li><a href="#how-to-remove-metadata-from-a-pdf-in-3-steps" class="text-brand-600 font-semibold hover:underline">How to remove metadata from a PDF in 3 steps</a></li>
+        <li><a href="#what-the-pdf-metadata-remover-removes" class="text-brand-600 font-semibold hover:underline">What the PDF Metadata Remover removes</a></li>
+        <li><a href="#why-pdf-metadata-matters" class="text-brand-600 font-semibold hover:underline">Why PDF metadata matters</a></li>
+        <li><a href="#how-to-remove-the-author-name-from-a-pdf" class="text-brand-600 font-semibold hover:underline">How to remove the author name from a PDF</a></li>
+        <li><a href="#how-to-view-a-pdfs-metadata" class="text-brand-600 font-semibold hover:underline">How to view a PDF's metadata</a></li>
+        <li><a href="#what-the-creator-and-producer-fields-mean" class="text-brand-600 font-semibold hover:underline">What the Creator and Producer fields mean</a></li>
+        <li><a href="#what-it-cant-remove" class="text-brand-600 font-semibold hover:underline">What it can't remove</a></li>
+        <li><a href="#pdf-metadata-frequently-asked-questions" class="text-brand-600 font-semibold hover:underline">PDF metadata frequently asked questions</a></li>
+        <li><a href="#related-tools" class="text-brand-600 font-semibold hover:underline">Related tools</a></li>
+      </ol>
+    </nav>
+
     <!-- How it works (matches HowTo schema) -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-6">
-      <h2 class="text-2xl font-extrabold text-brand-900">How to remove metadata from a PDF in 3 steps</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="how-to-remove-metadata-from-a-pdf-in-3-steps">How to remove metadata from a PDF in 3 steps</h2>
       <ol class="space-y-4 list-decimal list-inside text-sm text-slate-600 leading-relaxed font-medium">
         <li class="pl-2"><strong class="text-brand-900">Add your PDF:</strong> Select or drop your PDF into the box. It is read in your browser and is not uploaded.</li>
         <li class="pl-2"><strong class="text-brand-900">Review what it contains:</strong> See the author, software, dates, document IDs, editing history, signatures, photo details and AI labels the file carries.</li>
@@ -270,7 +287,7 @@
 
     <!-- What it removes -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-5">
-      <h2 class="text-2xl font-extrabold text-brand-900">What the PDF Metadata Remover removes</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-the-pdf-metadata-remover-removes">What the PDF Metadata Remover removes</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-600 leading-relaxed">
         <div class="bg-slate-50 rounded-2xl p-5 space-y-2">
           <h3 class="font-extrabold text-brand-900">Who made it, and with what</h3>
@@ -289,7 +306,7 @@
 
     <!-- Why it matters -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Why PDF metadata matters</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="why-pdf-metadata-matters">Why PDF metadata matters</h2>
       <p class="text-sm text-slate-600 leading-relaxed">Every PDF carries details you never typed. Open a contract, CV or report in any PDF reader's <strong class="text-brand-900">Document Properties</strong> and you'll usually see the author's name as it appears on their computer account, the program that made the file, and exactly when it was created and last edited.</p>
       <p class="text-sm text-slate-600 leading-relaxed">That's not all. A hidden XMP block can repeat the same details along with a permanent document ID that links every copy of the file together. Acrobat and other editors may store their own private editing data. Files saved with "incremental updates" keep earlier versions inside them, so text you deleted can sometimes be recovered. Photos placed in the PDF can still include the phone model and GPS location they were taken at.</p>
       <figure class="pt-2">
@@ -301,7 +318,7 @@
 
     <!-- Remove author (long-tail) -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">How to remove the author name from a PDF</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="how-to-remove-the-author-name-from-a-pdf">How to remove the author name from a PDF</h2>
       <p class="text-sm text-slate-600 leading-relaxed">The author name usually comes from the account name on the computer that made the file, so it often shows your full name even if you never typed it. There are three ways to get rid of it:</p>
       <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">With this tool (any PDF):</strong> drop the file above and click <strong class="text-brand-900">Remove Metadata &amp; Download</strong>. The author is removed from both places it's stored, the document properties and the hidden XMP data, along with the app, dates and IDs.</li>
@@ -313,7 +330,7 @@
 
     <!-- View metadata (long-tail) -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">How to view a PDF's metadata</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="how-to-view-a-pdfs-metadata">How to view a PDF's metadata</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">This tool:</strong> drop the PDF above to see every hidden field, including XMP history, signatures, photo GPS and C2PA, before you decide what to remove.</li>
         <li><strong class="text-brand-900">Adobe Acrobat Reader:</strong> <strong class="text-brand-900">File &gt; Properties</strong> (Ctrl+D, or Cmd+D on a Mac) shows the title, author, app, producer and dates.</li>
@@ -325,7 +342,7 @@
 
     <!-- Creator / Producer decoder -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">What the Creator and Producer fields mean</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-the-creator-and-producer-fields-mean">What the Creator and Producer fields mean</h2>
       <p class="text-sm text-slate-600 leading-relaxed">Most PDFs name the app that created them (<strong class="text-brand-900">Creator</strong>) and the software that wrote the file (<strong class="text-brand-900">Producer</strong>). The values are often cryptic. Here's what the common ones mean:</p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm text-left border border-slate-200 rounded-xl overflow-hidden">
@@ -349,7 +366,7 @@
 
     <!-- Limits -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">What it can't remove</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-it-cant-remove">What it can't remove</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">Visible content:</strong> names, addresses or dates typed on the page, in headers and footers, or inside scanned pages are part of the document itself.</li>
         <li><strong class="text-brand-900">Valid signatures:</strong> any change to a signed PDF breaks its signature, so signature details are removed rather than kept. Keep the original if you need the signed copy.</li>
@@ -360,7 +377,7 @@
 
     <!-- FAQ (matches FAQPage schema) -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">PDF metadata frequently asked questions</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="pdf-metadata-frequently-asked-questions">PDF metadata frequently asked questions</h2>
       <div class="space-y-3">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 text-sm">
           <h3 class="font-bold text-brand-900 mb-1">Is my PDF uploaded to your server?</h3>
@@ -399,7 +416,7 @@
 
     <!-- Related tools -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Related tools</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="related-tools">Related tools</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href="/ai-pdf-detector" class="block bg-white p-5 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
           <h3 class="font-bold text-brand-900 mb-1">AI PDF Detector</h3>

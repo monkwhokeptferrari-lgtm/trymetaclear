@@ -171,6 +171,7 @@
       display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
     }
   </style>
+  <style>main h2[id] { scroll-margin-top: 10.5rem; } html { scroll-behavior: smooth; }</style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
   <!-- Google Tag Manager (noscript) -->
@@ -280,9 +281,23 @@
       </div>
     </div>
 
+    <!-- Table of contents -->
+    <nav class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200" aria-label="Table of contents">
+      <p class="text-sm font-extrabold text-brand-900 uppercase tracking-wider mb-3">On this page</p>
+      <ol class="list-decimal list-inside grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <li><a href="#how-to-check-a-pdf-for-ai-labels-in-3-steps" class="text-brand-600 font-semibold hover:underline">How to check a PDF for AI labels in 3 steps</a></li>
+        <li><a href="#what-the-ai-pdf-detector-checks" class="text-brand-600 font-semibold hover:underline">What the AI PDF Detector checks</a></li>
+        <li><a href="#ai-pdf-detector-vs-ai-writing-detectors" class="text-brand-600 font-semibold hover:underline">AI PDF detector vs AI writing detectors</a></li>
+        <li><a href="#who-uses-an-ai-pdf-detector" class="text-brand-600 font-semibold hover:underline">Who uses an AI PDF detector</a></li>
+        <li><a href="#why-most-ai-written-pdfs-show-no-ai-signals" class="text-brand-600 font-semibold hover:underline">Why most AI-written PDFs show "No AI signals"</a></li>
+        <li><a href="#ai-pdf-detector-frequently-asked-questions" class="text-brand-600 font-semibold hover:underline">AI PDF Detector frequently asked questions</a></li>
+        <li><a href="#related-tools" class="text-brand-600 font-semibold hover:underline">Related tools</a></li>
+      </ol>
+    </nav>
+
     <!-- How it works (matches HowTo schema) -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-6">
-      <h2 class="text-2xl font-extrabold text-brand-900">How to check a PDF for AI labels in 3 steps</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="how-to-check-a-pdf-for-ai-labels-in-3-steps">How to check a PDF for AI labels in 3 steps</h2>
       <ol class="space-y-4 list-decimal list-inside text-sm text-slate-600 leading-relaxed font-medium">
         <li class="pl-2"><strong class="text-brand-900">Add the PDF:</strong> Select or drop the PDF into the box. It is read in your browser and is not uploaded.</li>
         <li class="pl-2"><strong class="text-brand-900">Read the verdict:</strong> See whether the file's data says AI was involved, with the exact evidence for each signal.</li>
@@ -291,7 +306,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">What the AI PDF Detector checks</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-the-ai-pdf-detector-checks">What the AI PDF Detector checks</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">C2PA Content Credentials:</strong> signed provenance records attached to the PDF, and whether they explicitly declare generative AI.</li>
         <li><strong class="text-brand-900">Hidden XMP data:</strong> AI markers such as the IPTC digital source type <code class="bg-slate-100 px-1 rounded text-xs">trainedAlgorithmicMedia</code>, which apps write when content is made with generative AI.</li>
@@ -305,7 +320,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">AI PDF detector vs AI writing detectors</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="ai-pdf-detector-vs-ai-writing-detectors">AI PDF detector vs AI writing detectors</h2>
       <p class="text-sm text-slate-600 leading-relaxed">Most "AI detectors" guess from the wording. This one reads the evidence stored in the file. They answer different questions:</p>
       <div class="overflow-x-auto">
         <table class="w-full text-sm text-left border border-slate-200 rounded-xl overflow-hidden">
@@ -323,7 +338,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Who uses an AI PDF detector</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="who-uses-an-ai-pdf-detector">Who uses an AI PDF detector</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">Editors and publishers</strong> checking submitted documents for AI-generated images and illustrations.</li>
         <li><strong class="text-brand-900">Businesses</strong> checking reports, proposals and vendor documents for declared AI content.</li>
@@ -333,7 +348,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Why most AI-written PDFs show "No AI signals"</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="why-most-ai-written-pdfs-show-no-ai-signals">Why most AI-written PDFs show "No AI signals"</h2>
       <p class="text-sm text-slate-600 leading-relaxed">When you ask an AI assistant for a PDF, it usually writes the content as a web page or document and converts it with ordinary software, such as a headless Chrome browser on a server. That software records itself as the creator. It doesn't add an AI label, and neither does the assistant.</p>
       <p class="text-sm text-slate-600 leading-relaxed">So a PDF with no AI signals may still have been written with AI. The detector tells you what the <em>file</em> says, honestly. It doesn't guess from the writing style, because AI-writing detectors are unreliable and regularly flag text written by people.</p>
       <p class="text-sm text-slate-600 leading-relaxed">Checking a resume? Use the <a href="/ai-resume-detector" class="text-brand-600 font-semibold hover:underline">AI Resume Detector</a>, which explains the results for job seekers and recruiters. Want to remove what the file reveals? Use the <a href="/remove-pdf-metadata" class="text-brand-600 font-semibold hover:underline">PDF Metadata Remover</a>.</p>
@@ -341,7 +356,7 @@
 
     <!-- FAQ (matches FAQPage schema) -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">AI PDF Detector frequently asked questions</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="ai-pdf-detector-frequently-asked-questions">AI PDF Detector frequently asked questions</h2>
       <div class="space-y-3">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 text-sm">
           <h3 class="font-bold text-brand-900 mb-1">How does the AI PDF Detector work?</h3>
@@ -376,7 +391,7 @@
 
     <!-- Related tools -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Related tools</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="related-tools">Related tools</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href="/remove-pdf-metadata" class="block bg-white p-5 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
           <h3 class="font-bold text-brand-900 mb-1">PDF Metadata Remover</h3>

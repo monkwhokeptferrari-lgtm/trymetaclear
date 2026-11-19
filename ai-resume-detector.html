@@ -171,6 +171,7 @@
       display: none !important; visibility: hidden !important; opacity: 0 !important; pointer-events: none !important;
     }
   </style>
+  <style>main h2[id] { scroll-margin-top: 10.5rem; } html { scroll-behavior: smooth; }</style>
 </head>
 <body class="bg-slate-50 text-slate-800 font-sans antialiased min-h-screen flex flex-col justify-between">
   <!-- Google Tag Manager (noscript) -->
@@ -280,9 +281,23 @@
       </div>
     </div>
 
+    <!-- Table of contents -->
+    <nav class="bg-white p-6 md:p-8 rounded-3xl border border-slate-200" aria-label="Table of contents">
+      <p class="text-sm font-extrabold text-brand-900 uppercase tracking-wider mb-3">On this page</p>
+      <ol class="list-decimal list-inside grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-sm">
+        <li><a href="#how-to-check-a-resume-pdf-for-ai-labels-in-3-steps" class="text-brand-600 font-semibold hover:underline">How to check a resume PDF for AI labels in 3 steps</a></li>
+        <li><a href="#what-the-ai-resume-detector-looks-for-in-a-resume" class="text-brand-600 font-semibold hover:underline">What the AI Resume Detector looks for in a resume</a></li>
+        <li><a href="#what-a-recruiter-can-see-in-your-resume-file" class="text-brand-600 font-semibold hover:underline">What a recruiter can see in your resume file</a></li>
+        <li><a href="#resume-file-checklist-before-you-apply" class="text-brand-600 font-semibold hover:underline">Resume file checklist before you apply</a></li>
+        <li><a href="#for-recruiters-how-to-read-the-result-fairly" class="text-brand-600 font-semibold hover:underline">For recruiters: how to read the result fairly</a></li>
+        <li><a href="#ai-resume-detector-frequently-asked-questions" class="text-brand-600 font-semibold hover:underline">AI Resume Detector frequently asked questions</a></li>
+        <li><a href="#related-tools" class="text-brand-600 font-semibold hover:underline">Related tools</a></li>
+      </ol>
+    </nav>
+
     <!-- How it works (matches HowTo schema) -->
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-6">
-      <h2 class="text-2xl font-extrabold text-brand-900">How to check a resume PDF for AI labels in 3 steps</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="how-to-check-a-resume-pdf-for-ai-labels-in-3-steps">How to check a resume PDF for AI labels in 3 steps</h2>
       <ol class="space-y-4 list-decimal list-inside text-sm text-slate-600 leading-relaxed font-medium">
         <li class="pl-2"><strong class="text-brand-900">Add the resume:</strong> Select or drop the resume PDF into the box. It is read in your browser and is not uploaded.</li>
         <li class="pl-2"><strong class="text-brand-900">Read the verdict:</strong> See whether the file's data says AI was involved, including AI-labelled headshot photos, with the evidence for each signal.</li>
@@ -291,7 +306,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">What the AI Resume Detector looks for in a resume</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-the-ai-resume-detector-looks-for-in-a-resume">What the AI Resume Detector looks for in a resume</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">AI-generated headshots:</strong> some AI photo tools add C2PA Content Credentials or an IPTC "AI generated" field to the image, and it can stay in the photo after you place it in your resume.</li>
         <li><strong class="text-brand-900">An AI tool named as the creator:</strong> if the PDF was exported by an app that names itself (for example ChatGPT or Copilot) in the Creator or Producer field.</li>
@@ -305,7 +320,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">What a recruiter can see in your resume file</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="what-a-recruiter-can-see-in-your-resume-file">What a recruiter can see in your resume file</h2>
       <p class="text-sm text-slate-600 leading-relaxed">Anyone who opens your resume in a PDF reader can check <strong class="text-brand-900">File &gt; Properties</strong>. Depending on how you made it, that can show:</p>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">Author:</strong> often the account name on your computer, or a previous owner's name if you started from someone else's template.</li>
@@ -317,7 +332,7 @@
     </section>
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Resume file checklist before you apply</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="resume-file-checklist-before-you-apply">Resume file checklist before you apply</h2>
       <ol class="list-decimal list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li>Check the file with the AI Resume Detector above.</li>
         <li>If it shows an old author name, a template title or details you'd rather not share, clean it with the <a href="/remove-pdf-metadata" class="text-brand-600 font-semibold hover:underline">PDF Metadata Remover</a>.</li>
@@ -329,7 +344,7 @@
 
 
     <section class="bg-white p-8 rounded-3xl border border-slate-200 space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">For recruiters: how to read the result fairly</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="for-recruiters-how-to-read-the-result-fairly">For recruiters: how to read the result fairly</h2>
       <ul class="list-disc list-inside space-y-2 text-sm text-slate-600 leading-relaxed">
         <li><strong class="text-brand-900">"AI signals found"</strong> means the file itself declares AI, for example an AI-labelled headshot or a document made with an AI tool. It doesn't tell you how much of the writing came from AI.</li>
         <li><strong class="text-brand-900">"No AI signals in the file"</strong> doesn't prove a person wrote it. AI assistants rarely label the PDFs they export.</li>
@@ -340,7 +355,7 @@
 
     <!-- FAQ (matches FAQPage schema) -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">AI Resume Detector frequently asked questions</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="ai-resume-detector-frequently-asked-questions">AI Resume Detector frequently asked questions</h2>
       <div class="space-y-3">
         <div class="bg-white p-5 rounded-2xl border border-slate-200 text-sm">
           <h3 class="font-bold text-brand-900 mb-1">Can this tell if a resume was written with ChatGPT?</h3>
@@ -375,7 +390,7 @@
 
     <!-- Related tools -->
     <section class="space-y-4">
-      <h2 class="text-2xl font-extrabold text-brand-900">Related tools</h2>
+      <h2 class="text-2xl font-extrabold text-brand-900" id="related-tools">Related tools</h2>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         <a href="/remove-pdf-metadata" class="block bg-white p-5 rounded-2xl border border-slate-200 hover:border-brand-600 transition">
           <h3 class="font-bold text-brand-900 mb-1">PDF Metadata Remover</h3>
