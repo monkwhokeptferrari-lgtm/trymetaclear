@@ -1,10 +1,11 @@
 # TryMetaClear
 
-> TryMetaClear is a free online tool that shows and removes hidden metadata from images and videos: EXIF, GPS, IPTC, XMP, AI-generation fields (prompts, model names, digital source type) and C2PA Content Credentials. Metadata is removed with ExifTool without re-encoding pixels or video streams. It does not remove pixel-level watermarks such as SynthID.
+> TryMetaClear is a free online tool that shows and removes hidden metadata from images, videos and PDFs: EXIF, GPS, IPTC, XMP, AI-generation fields (prompts, model names, digital source type) and C2PA Content Credentials. Image and video metadata is removed with ExifTool without re-encoding pixels or video streams. It does not remove pixel-level watermarks such as SynthID.
 
 Key facts:
 - Free, no account required. Images: PNG, JPG, WebP, HEIC up to 100 MB. Video: MP4, MOV, WebM up to 100 MB.
 - Uploaded files are saved briefly as temporary files on the server and deleted immediately after processing; no copies are kept.
+- PDFs (up to 100 MB) are cleaned in the browser by the PDF Metadata Remover and are never uploaded.
 - Built by Mayank Gupta. Contact: support@trymetaclear.com
 
 ## Tools and guides
@@ -15,6 +16,9 @@ Key facts:
 - [Remove Midjourney Metadata](https://trymetaclear.com/remove-midjourney-metadata): The prompt, Job ID and Author fields Midjourney stores, and how to remove them.
 - [Remove DALL-E & ChatGPT Metadata](https://trymetaclear.com/remove-dall-e-metadata): The C2PA manifest OpenAI adds to generated images, and how to remove it.
 - [Video AI Metadata Remover](https://trymetaclear.com/remove-video-ai-metadata): Removes AI tags and C2PA from MP4, MOV and WebM without re-encoding.
+- [PDF Metadata Remover](https://trymetaclear.com/remove-pdf-metadata): Removes author, creator/producer software, dates, XMP, document IDs, editing history (PieceInfo, earlier saved versions), digital signature details, comment authors, EXIF/GPS in embedded photos and C2PA from PDFs. Runs entirely in the browser; the PDF is not uploaded.
+- [AI PDF Detector](https://trymetaclear.com/ai-pdf-detector): Checks a PDF's file data for AI evidence (C2PA Content Credentials and whether they declare AI, IPTC/XMP AI source fields, AI tool names in Creator/Producer, AI-labelled images inside the PDF) and explains which software made it. Does not judge writing style. Runs in the browser.
+- [AI Resume Detector](https://trymetaclear.com/ai-resume-detector): The same file-evidence check for resume PDFs (including AI-labelled headshots), with guidance for job seekers and recruiters; no AI-writing percentage score by design. Runs in the browser.
 
 ## Blog
 
