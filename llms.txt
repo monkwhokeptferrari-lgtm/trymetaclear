@@ -20,6 +20,7 @@ Key facts:
 
 - [Blog index](https://trymetaclear.com/blog/): All guides.
 - [How to Remove the AI Label from Instagram Photos](https://trymetaclear.com/blog/how-to-remove-ai-label-from-instagram): Why Instagram shows "AI info" on real photos, how to remove the C2PA/IPTC metadata that triggers it, and what metadata cleaning cannot remove.
+- [Instagram Labeled Your Real Photo "AI Info"? Here's Why](https://trymetaclear.com/blog/instagram-ai-info-label-real-photo): Which editing features (Photoshop Generative Fill, Lightroom Generative Remove, Samsung Galaxy AI, Google Magic Editor, iPhone Clean Up) write C2PA/IPTC AI tags that get real photos labeled, and how to check and clean a file before posting.
 
 ## Company
 
